@@ -2,6 +2,7 @@
   "requires": true,
   "lockfileVersion": 1,
   "dependencies": {
+    "chai": "^4.1.2",
     "cucumber": "^4.2.1",
     "cucumber-html-reporter": {
       "integrity": "sha512-ShAZR19eIiQfjfXj6HHkLhX5U/qAgo4n2MwXnuUK3E8pmHj/Msvr4QLvqIPEUP9wkOp1JcIClYjPHm+UksV1jQ==",
