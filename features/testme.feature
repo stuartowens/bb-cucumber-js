@@ -13,6 +13,8 @@ Feature: Simple maths
     Given a variable set to 20
     When I increment the variable by 1
     When I test things
+    |username | password|
+    |{ $username1 }    | {@save(password, pasword1234)}|""
     Then the variable should contain 21
 
   Scenario Outline: much more complex stuff

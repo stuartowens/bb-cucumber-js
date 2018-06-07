@@ -1,0 +1,16 @@
+{
+"webElements": [
+ { 
+	"name": "ExampleObject",
+	"byType": "id",
+	"definition": "totalCost",
+	"specialInstr": "NA"			
+ },	
+ {
+	"name": "ExampleObject2",
+	"byType": "xpath",
+ 	"definition": "totalCost2",
+ 	"specialInstr": "overwrite"
+ }	
+]
+}
