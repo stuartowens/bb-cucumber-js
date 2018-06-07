@@ -1,0 +1,7 @@
+{
+	"baseURL": " https://macmillanlearning.com",
+	"pageDefinitionsFolder": "features//pageDefinitions//",
+	"loaddriver": "firefox",
+	"chromeDriver_location_windows": "NA",
+	"timeout": "60"
+}
