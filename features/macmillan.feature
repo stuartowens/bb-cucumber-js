@@ -4,7 +4,10 @@ Feature: Test on MacMillan.com
   as a developer
   I want to build a full feature pageObject
 
-  Scenario: navigate macmillan.com
-    Given I am on MacMillan.com
-    When I click the Home link
-    Then I should be on the home page
+  Scenario: navigate macmillanLearning.com
+    Given I am on MacMillanLearning.com
+    When I click the login button
+    Then I should be on the login screen
+    When I enter "<username>" and "<password>"
+    When I save a variable "<@save(loginfail, * You need a valid e-mail address and password to log in.)>"
+    Then I should get a message that says "<$loginfail>"

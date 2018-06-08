@@ -1,0 +1,24 @@
+{
+"webElements": [
+
+ { 
+	"name": "txt_loginemail",
+	"byType": "id",
+	"definition": "ctl00_cphContent_txtLoginEmail",
+	"specialInstr": "NA"			
+ },	
+ { 
+	"name": "btn_login",
+	"byType": "id",
+	"definition": "ctl00_cphContent_btnLogin",
+	"specialInstr": "NA"			
+ },	
+ {
+	"name": "txt_password",
+	"byType": "id",
+ 	"definition": "ctl00_cphContent_txtLoginPassword",
+ 	"specialInstr": "overwrite"
+ }	
+ 
+]
+}

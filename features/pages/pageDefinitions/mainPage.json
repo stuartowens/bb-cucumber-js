@@ -1,9 +1,10 @@
 {
 "webElements": [
  { 
-	"name": "ExampleObject",
+
+	"name": "btn_login",
 	"byType": "id",
-	"definition": "totalCost",
+	"definition": "ctl00_ucHeaderContactUsToolBar_aLoginLink",
 	"specialInstr": "NA"			
  },	
  {

@@ -1,8 +1,8 @@
 /**
  * http://usejsdoc.org/
  */
-const EVAL_BEGIN = "{";
-const EVAL_END = "}";
+const EVAL_BEGIN = "<";
+const EVAL_END = ">";
 const PARAM_BEGIN = "(";
 const PARAM_END = ")";
 
@@ -48,7 +48,7 @@ var StringProcessing = function (ScenarioData){
 			else {
 				
 				if (inputString.toString().startsWith(FUNCTION_PREFIX)) {
-					returnString = inputString.toString().replace("@","");
+					returnString = inputString.toString().replace(FUNCTION_PREFIX,"");
 					my.func.name = returnString.toString().slice(0,returnString.toString().indexOf(PARAM_BEGIN));
 					my.func.data = getEvalSection(returnString, PARAM_BEGIN, PARAM_END);
 					my.func.after = returnString.toString().substr(returnString.lastIndexOf(PARAM_END));

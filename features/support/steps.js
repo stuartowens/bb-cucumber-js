@@ -10,56 +10,56 @@ var firefox = require('selenium-webdriver/firefox');
 */
 
 const assert = require('assert');
-const webdriver = require('selenium-webdriver');
-const browser = new webdriver.Builder()
-  .usingServer()
-  .withCapabilities({'browserName': 'chrome' })
-  .build();
+var webdriver = require('selenium-webdriver');
+var chrome = require('selenium-webdriver/chrome');
+var path = require('chromedriver').path;
 
-//let driver = new webdriver.Builder()
-//  .withCapabilities(selenium.Capabilities.chrome())
-//  .build();
+var service = new chrome.ServiceBuilder(path).build();
+chrome.setDefaultService(service);
 
-browser.get('http://en.wikipedia.org/wiki/Wiki');
-browser.findElements(webdriver.By.css('[href^="/wiki/"]'))
-	.then(function(links){
-	  assert.equal(19, links.length); // Made up number
-	  browser.quit();
-	});
-
-//var driver = new webdriver.Builder()
-//	.forBrowser('firefox')
-//	.setFirefoxOptions( /* … */)
-//	.setChromeOptions( /* … */)
-//	.build();
-
+var driver = new webdriver.Builder()
+    .withCapabilities(webdriver.Capabilities.chrome())
+    .build();
 
 let pages = {};
 
-pages.mainPage = PageObject("mainPage.json");
+pages.mainPage = new PageObject("mainPage.json");
 pages.mainPage.setDriver(driver);
+pages.login = PageObject("loginPage.json");
+pages.login.setDriver(driver);
 
-
-Given('I am on MacMillan.com', function() {
+Given('I am on MacMillanLearning.com', function() {
 	driver.get("https:\\macmillanlearning.com")
 });
 
+ When('I click the login button', function () {
+   pages.login.populate("btn_login", "click");
+   
+     });
 
-Given('a variable set to {int}', function(number) {
-  this.setTo(number);
-  console.log("mainPage2: " + pages.mainPage.test());
-});
+ Then('I should be on the login screen', function () {
+   // Write code here that turns the phrase above into concrete actions
+   pages.login.exists("btn_login");
+     });
 
-When('I increment the variable by {int}', function(number) {
-  this.incrementBy(number)
-});
+ When(/^I enter "(.*)" and "(.*)"$/, function (username, password) {
+   // Write code here that turns the phrase above into concrete actions
+   pages.login.populate("txt_logemail", username);
+   pages.login.populate("txt_password", password);
+   
+   });
 
+When(/^I save a variable "(.*)"$/, function (saveVariable) {
+   pages.login.parse(saveVariable)
+ 
+ });
 When('I test things', function () {
   // Write code here that turns the phrase above into concrete actions
   console.log("test steps:" + pages.mainPage.name);
   
 });
 
-Then('the variable should contain {int}', function(number) {
-  expect(this.variable).to.eql(number)
-});
+Then(/^I should get a message that says "(.*)"$/, function (message) {
+    // Write code here that turns the phrase above into concrete actions
+    pages.login.assertText("txt_loginFaled", "* You need a valid e-mail address and password to log in.")
+  });
