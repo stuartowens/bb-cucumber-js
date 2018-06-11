@@ -64,6 +64,7 @@ const StringProcessing = function (ScenarioData){
 					
 				}
 			}
+			return inputString;
 		
 	}
 	that.strEval = strEval;

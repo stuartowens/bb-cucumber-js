@@ -5,24 +5,23 @@ const that = {};
 
 
 var WebElement = function (driver, webdriver, element) {
-	let my = {};
+  let my = {};
 
-	my.driver = driver;
-	my.webdriver = webdriver;
-	my.element = element;
-	my.byType = element.byType.toLowerCase();
-	my.definition;
-	my.specialInstr;
-	my.by = my.driver.By;
-	
-	
-	that.getWebElement = function () {
-		const webElement = my.element;
+  my.driver = driver;
+  my.webdriver = webdriver;
+  my.element = element;
+  my.byType = element.byType.toLowerCase();
+  my.definition = element ? element.definition : null;
+  my.specialInstr = null;
+  my.by = my.webdriver.By;
+
+  that.getWebElement = async function () {
+  const webElement = my.element;
 
 		//Wait is to make sure the item is loaded.
 		//let wait = new WebDriverWait.WebElement(driver, 20);
-		const elementDef = webdriver.By.id(webElement.definition);
-		const returnElement = driver.findElement(elementDef);
+  const elementDef = webdriver.By.id(webElement.definition);
+		const returnElement = await driver.findElement(elementDef);
 		//let returnElement = WebDriverWait.until(WebDriverWait.WebElementCondition.elementToBeClickable(this.getBy()));
 		/**if (returnElement.isDisplayed()){
 			 try {
@@ -35,7 +34,7 @@ var WebElement = function (driver, webdriver, element) {
 		return returnElement;
 	}
 	
-	that.getBy = function () {
+	that.getBy = async function () {
 		
 			let byReturn = null;
 			const classType = my.byType.toLowerCase().trim();

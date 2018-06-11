@@ -31,29 +31,25 @@ Given('I am on MacMillanLearning.com', function () {
 });
 
 When('I click the login button', function () {
-  console.log('Testing stuff');
-  const loginButton = webdriver.By.id('ctl00_ucHeaderContactUsToolBar_aLoginLink');
-  //driver.findElement(loginButton).click()
-
+  console.log('Clicking on login button');
   pages.login.populate('btn_login', 'click');
 });
 
- Then('I should be on the login screen', function () {
-   // Write code here that turns the phrase above into concrete actions
-   pages.login.exists('btn_login');
-     });
+Then('I should be on the login screen', function () {
+  // Write code here that turns the phrase above into concrete actions
+  const onLoginPage = pages.login.getElement('btn_login');
+  assert(onLoginPage, 'Expected to be on Login page');
+});
 
- When(/^I enter "(.*)" and "(.*)"$/, function (username, password) {
-   // Write code here that turns the phrase above into concrete actions
-   pages.login.populate('txt_logemail', username);
-   pages.login.populate('txt_password', password);
-   
-   });
+When(/^I enter "(.*)" and "(.*)"$/, function (username, password) {
+  // Write code here that turns the phrase above into concrete actions
+  pages.login.populate('txt_logemail', username);
+  pages.login.populate('txt_password', password);
+});
 
 When(/^I save a variable "(.*)"$/, function (saveVariable) {
-   pages.login.parse(saveVariable)
- 
- });
+  pages.login.parse(saveVariable)
+});
 When('I test things', function () {
   // Write code here that turns the phrase above into concrete actions
   console.log('test steps:' + pages.mainPage.name);

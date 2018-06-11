@@ -14,17 +14,17 @@ const PageObject = function (name) {
   var that = {};
   that.ScenarioData = ScenarioData;
 
-	let sp = StringProcessing(that.ScenarioData);
-	that.sp = sp;
-	that.pageName = name;
-	that.pageDefinitionFileName = "./features/pages/pageDefinitions/" + name;
-	that.pageElements = new HashTable({});  //a hash of all of the web elements for this page.
-	console.log("New PageObject: " + name);
+  let sp = StringProcessing(that.ScenarioData);
+  that.sp = sp;
+  that.pageName = name;
+  that.pageDefinitionFileName = "./features/pages/pageDefinitions/" + name;
+  that.pageElements = new HashTable({});  //a hash of all of the web elements for this page.
+  console.log("New PageObject: " + name);
 
-	var setDriver = function (driver, webdriver) {
+  var setDriver = async function (driver, webdriver) {
 		that.driver = driver;
 		that.webdriver = webdriver;
-	}
+  }
 
 	var getDriver = function () {
 		return that.driver;
@@ -34,19 +34,19 @@ const PageObject = function (name) {
 		return that.webdriver;
 	}
 	
-	var addElement = function (elementName, elements){
+	var addElement = async function (elementName, elements){
 		that.pageElements.setItem(elementName, elements);
 	}
 	
-	var getElement = function (elementName){
+	var getElement = async function (elementName){
 		return that.pageElements.getItem(elementName);
 	}
 	
-	var hasElement = function (elementName) {
+	var hasElement = async function (elementName) {
 		return that.pageElements.hasItem(elementName);
 	}
 	
-	var loadPageDefinitionFile = function(fullFileName){
+	var loadPageDefinitionFile = async function (fullFileName){
 		 var contents = fs.readFileSync(fullFileName);
 		 var jsonContent = JSON.parse(contents);
 		 		 
@@ -58,55 +58,55 @@ const PageObject = function (name) {
 	}
 		
 
-	var populateWebObject = function (elementName, value){
+	var populateWebObject = async function (elementName, value){
 		let element = getElement(elementName);
 		let newValue=sp.strEval(value);
 		console.log("Populating Element: " + element.name + " with value '" + newValue + "'");
 		//this.ca.test();
 	}
 	
-	var getWebObjectValue = function (webElementName, variableName){
+	var getWebObjectValue = async function (webElementName, variableName){
 		that.ScenarioData.storeData("testme", "ronAsher")
 	}
 	
-	var genericPopulateElement = function (elementName, value){
+	var genericPopulateElement = async function (elementName, value){
 		let elementTarget = "";
 		let specialInstr = "";
 		let tempElement = {};
-		let strTagName = null;
 		
-		if (hasElement(elementName)) {
-			tempElement = getElement(elementName);
+		if (await hasElement(elementName)) {
+			tempElement = await getElement(elementName);
 			specialInstr = tempElement.specialInstr;
 			elementTarget = WebElement(that.driver, that.webdriver, tempElement);
 	    	console.log("Info: Page Element '" + elementName + "' retrieved from Page Elements collection.");
 	    
-	    	strTagName = elementTarget.getWebElement();
+			const webElement = await elementTarget.getWebElement();
+			const tagName = await webElement.getTagName();
 	    	
-	    	switch (strTagName.toLowerCase()){
+	    	switch (tagName.toLowerCase()){
     		case "input":
-    			populateInput(elementTarget, value, specialInstr);
+    			populateInput(webElement, value, specialInstr);
     			break;
     		case "textarea":
-    			populateTextField(elementTarget, value, specialInstr);
+    			populateTextField(webElement, value, specialInstr);
     			break;
     		case  "a":
-    			populateClick(elementTarget, value, specialInstr);
+    			populateClick(webElement, value, specialInstr);
     			break;
     		case  "button":
-    			populateClick(elementTarget, value, specialInstr);
+    			populateClick(webElement, value, specialInstr);
     			break;
     		case  "div":
-    			populateClick(elementTarget, value, specialInstr);
+    			populateClick(webElement, value, specialInstr);
     			break;
     		case  "span":
-    			populateClick(elementTarget, value, specialInstr);
+    			populateClick(webElement, value, specialInstr);
     			break;
     		case  "ul":
-    			populateClick(elementTarget, value, specialInstr);
+    			populateClick(webElement, value, specialInstr);
     			break;
     		case "select":
-    			populateSelect(elementTarget, value, specialInstr);
+    			populateSelect(webElement, value, specialInstr);
     			break;
     		default:
 				console.log("ERROR: We tried to populate an unknown tag(" + strTagName + ") with data in populateGenericElement()\n\tWe failed.");
@@ -117,17 +117,17 @@ const PageObject = function (name) {
     	}
 	
 	}
-	const populateElement = function ( strName,  strValue) {
+	const populateElement = async function (strName, strValue) {
 		try {
-			console.log("INFO: Starting populate the web element: '" + strName +"' with value '" + strValue + "'");
+			console.log("INFO: Starting populate the web element: '" + strName + "' with value '" + strValue + "'");
 			console.log("INFO++: WorldData: " + this.worldData);
 
-			strValue = sp.strEval(strValue);
+			strValue = await sp.strEval(strValue);
 
 			/*if(!customPopulateElement(strName, strValue)){
 				genericPopulateElement(strName, strValue);
 			}*/
-			genericPopulateElement(strName, strValue);
+			await genericPopulateElement(strName, strValue);
 		} catch (err) {
 			console.error(err.stack);
 			throw err;

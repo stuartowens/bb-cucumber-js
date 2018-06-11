@@ -10,17 +10,17 @@ var CoreData = function(ScenarioName){
 	
 	that.data = HashTable();
 	
-	let storeData = function (key, value) {
+	let storeData = async function (key, value) {
 		that.data.setItem(key, value);
 	}
 	
 	
-	let getData = function(key) {
+	let getData = async function(key) {
 		return that.data.getItem(key);
 		
 	}
 	
-	that.test = function (){
+	that.test = async function (){
 		console.log("**CoreData.test()");
 	}
 	that.storeData = storeData;
