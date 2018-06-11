@@ -10,7 +10,7 @@
  { 
 	"name": "btn_login",
 	"byType": "id",
-	"definition": "ctl00_cphContent_btnLogin",
+	"definition": "ctl00_ucHeaderContactUsToolBar_aLoginLink",
 	"specialInstr": "NA"			
  },	
  {

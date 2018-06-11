@@ -7,12 +7,12 @@ const HashTable = require('./HashTable');
 const StringProcessing = require('./StringProcessing');
 const ScenarioData = require('./ScenarioData');
 const WebElement = require('./WebElement');
-const Populate = require('./Populate');
-const that = {}
+const fs = require('fs');
+const { populateInput, populateClick, populateSelect, populateTextField } = require('./Populate');
 
-var  PageObject = function(name){
-	var that = {};
-	that.ScenarioData = ScenarioData;
+const PageObject = function (name) {
+  var that = {};
+  that.ScenarioData = ScenarioData;
 
 	let sp = StringProcessing(that.ScenarioData);
 	that.sp = sp;
@@ -21,12 +21,17 @@ var  PageObject = function(name){
 	that.pageElements = new HashTable({});  //a hash of all of the web elements for this page.
 	console.log("New PageObject: " + name);
 
-	var setDriver = function (driver) {
+	var setDriver = function (driver, webdriver) {
 		that.driver = driver;
+		that.webdriver = webdriver;
 	}
 
 	var getDriver = function () {
 		return that.driver;
+	}
+
+	const getWebDriver = function () {
+		return that.webdriver;
 	}
 	
 	var addElement = function (elementName, elements){
@@ -42,7 +47,6 @@ var  PageObject = function(name){
 	}
 	
 	var loadPageDefinitionFile = function(fullFileName){
-		 var fs = require("fs");
 		 var contents = fs.readFileSync(fullFileName);
 		 var jsonContent = JSON.parse(contents);
 		 		 
@@ -70,20 +74,14 @@ var  PageObject = function(name){
 		let specialInstr = "";
 		let tempElement = {};
 		let strTagName = null;
-
-		let populate = Populate(elementTarget);
-		let populateClick = populate.populateClick;
-		let populateTextField = populate.populateTextInput;
-		let populateInput = populate.populateInput;
-		let populateSelect = populate.populateSelect;
 		
 		if (hasElement(elementName)) {
 			tempElement = getElement(elementName);
 			specialInstr = tempElement.specialInstr;
-			elementTarget = WebElement(that.driver, tempElement.byType, tempElement.description, tempElement.specialStr);
+			elementTarget = WebElement(that.driver, that.webdriver, tempElement);
 	    	console.log("Info: Page Element '" + elementName + "' retrieved from Page Elements collection.");
 	    
-	    	strTagName = elementTarget.getTagName();
+	    	strTagName = elementTarget.getWebElement();
 	    	
 	    	switch (strTagName.toLowerCase()){
     		case "input":
@@ -119,16 +117,21 @@ var  PageObject = function(name){
     	}
 	
 	}
-	var populateElement = function ( strName,  strValue){
-    	//loadPageElements();
-		System.out.println("INFO: Starting populate the web element: '" + strName +"' with value '" + strValue + "'");
-		System.out.println("INFO++: WorldData.toString(): " + this.worldData.toString());
-		
-		strValue = sp.eval(strValue);
-		
-		if(!customPopulateElement(strName, strValue)){
-    		genericPopulateElement(strName, strValue);
-    	}
+	const populateElement = function ( strName,  strValue) {
+		try {
+			console.log("INFO: Starting populate the web element: '" + strName +"' with value '" + strValue + "'");
+			console.log("INFO++: WorldData: " + this.worldData);
+
+			strValue = sp.strEval(strValue);
+
+			/*if(!customPopulateElement(strName, strValue)){
+				genericPopulateElement(strName, strValue);
+			}*/
+			genericPopulateElement(strName, strValue);
+		} catch (err) {
+			console.error(err.stack);
+			throw err;
+		}
     }
 	that.test = function() {
 		console.log("PageObject testing.");

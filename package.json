@@ -1,6 +1,9 @@
 {
   "requires": true,
   "lockfileVersion": 1,
+  "scripts": {
+    "test": "node ./node_modules/cucumber/bin/cucumber-js"
+  },
   "dependencies": {
     "any-promise": {
       "integrity": "sha1-q8av7tzqUugJzcA3au0845Y10X8=",
@@ -213,6 +216,7 @@
       "resolved": "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz",
       "version": "1.0.5"
     },
+    "eslint": "^4.19.1",
     "extsprintf": {
       "integrity": "sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=",
       "resolved": "https://registry.npmjs.org/extsprintf/-/extsprintf-1.4.0.tgz",
@@ -507,6 +511,11 @@
     }
   },
   "devDependencies": {
-    "cucumber-html-reporter": "^4.0.2"
+    "cucumber-html-reporter": "^4.0.2",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0"
   }
 }

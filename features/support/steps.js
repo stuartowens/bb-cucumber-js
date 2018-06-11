@@ -17,35 +17,36 @@ var path = require('chromedriver').path;
 var service = new chrome.ServiceBuilder(path).build();
 chrome.setDefaultService(service);
 
-var driver = new webdriver.Builder()
-    .withCapabilities(webdriver.Capabilities.chrome())
-    .build();
+var driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
 
 let pages = {};
 
-pages.mainPage = new PageObject("mainPage.json");
-pages.mainPage.setDriver(driver);
-pages.login = PageObject("loginPage.json");
-pages.login.setDriver(driver);
+pages.mainPage = new PageObject('mainPage.json');
+pages.mainPage.setDriver(driver, webdriver);
+pages.login = PageObject('loginPage.json');
+pages.login.setDriver(driver, webdriver);
 
-Given('I am on MacMillanLearning.com', function() {
-	driver.get("https:\\macmillanlearning.com")
+Given('I am on MacMillanLearning.com', function () {
+  driver.get('https:\\macmillanlearning.com')
 });
 
- When('I click the login button', function () {
-   pages.login.populate("btn_login", "click");
-   
-     });
+When('I click the login button', function () {
+  console.log('Testing stuff');
+  const loginButton = webdriver.By.id('ctl00_ucHeaderContactUsToolBar_aLoginLink');
+  //driver.findElement(loginButton).click()
+
+  pages.login.populate('btn_login', 'click');
+});
 
  Then('I should be on the login screen', function () {
    // Write code here that turns the phrase above into concrete actions
-   pages.login.exists("btn_login");
+   pages.login.exists('btn_login');
      });
 
  When(/^I enter "(.*)" and "(.*)"$/, function (username, password) {
    // Write code here that turns the phrase above into concrete actions
-   pages.login.populate("txt_logemail", username);
-   pages.login.populate("txt_password", password);
+   pages.login.populate('txt_logemail', username);
+   pages.login.populate('txt_password', password);
    
    });
 
@@ -55,11 +56,10 @@ When(/^I save a variable "(.*)"$/, function (saveVariable) {
  });
 When('I test things', function () {
   // Write code here that turns the phrase above into concrete actions
-  console.log("test steps:" + pages.mainPage.name);
-  
+  console.log('test steps:' + pages.mainPage.name);
 });
 
 Then(/^I should get a message that says "(.*)"$/, function (message) {
     // Write code here that turns the phrase above into concrete actions
-    pages.login.assertText("txt_loginFaled", "* You need a valid e-mail address and password to log in.")
+    pages.login.assertText('txt_loginFaled', '* You need a valid e-mail address and password to log in.')
   });
