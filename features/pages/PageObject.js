@@ -14,7 +14,7 @@ const PageObject = function (name) {
   var that = {};
   that.ScenarioData = ScenarioData;
 
-  let sp = StringProcessing(that.ScenarioData);
+  let sp =  StringProcessing(that.ScenarioData);
   that.sp = sp;
   that.pageName = name;
   that.pageDefinitionFileName = "./features/pages/pageDefinitions/" + name;
@@ -52,15 +52,15 @@ const PageObject = function (name) {
 		 		 
 		 for (var i in jsonContent.webElements) {
 			  var element = jsonContent.webElements[i];
-			  addElement(element.name, element)
+			  await addElement(element.name, element)
 			  console.log("Element:" + element.byType)
 		 }
 	}
 		
 
 	var populateWebObject = async function (elementName, value){
-		let element = getElement(elementName);
-		let newValue=sp.strEval(value);
+		let element = await getElement(elementName);
+		let newValue= await sp.strEval(value);
 		console.log("Populating Element: " + element.name + " with value '" + newValue + "'");
 		//this.ca.test();
 	}
@@ -73,25 +73,31 @@ const PageObject = function (name) {
 		let elementTarget = "";
 		let specialInstr = "";
 		let tempElement = {};
-		
+		let wait = null;
+
 		if (await hasElement(elementName)) {
 			tempElement = await getElement(elementName);
 			specialInstr = tempElement.specialInstr;
-			elementTarget = WebElement(that.driver, that.webdriver, tempElement);
-	    	console.log("Info: Page Element '" + elementName + "' retrieved from Page Elements collection.");
-	    
+			elementTarget = await WebElement(that.driver, that.webdriver, tempElement);
+			console.log("****genericPopulateElement: " + elementName)
+			console.log("Info: Page Element '" + elementName + "' retrieved from Page Elements collection.");
+		
+			
 			const webElement = await elementTarget.getWebElement();
+			that.getDriver().wait(until.elementLocated(webElement));
+
 			const tagName = await webElement.getTagName();
-	    	
-	    	switch (tagName.toLowerCase()){
+			
+			//webElement.implicitlyWait(3000);
+			switch (tagName.toLowerCase()){
     		case "input":
-    			populateInput(webElement, value, specialInstr);
+    			await populateInput(webElement, value, specialInstr);
     			break;
     		case "textarea":
-    			populateTextField(webElement, value, specialInstr);
+    			await populateTextField(webElement, value, specialInstr);	
     			break;
     		case  "a":
-    			populateClick(webElement, value, specialInstr);
+    			await populateClick(webElement, value, specialInstr);
     			break;
     		case  "button":
     			populateClick(webElement, value, specialInstr);
