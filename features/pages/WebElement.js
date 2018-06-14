@@ -16,21 +16,9 @@ var WebElement = function (driver, webdriver, element) {
   my.by = my.webdriver.By;
 
   that.getWebElement = async function () {
-  const webElement = my.element;
-
-		//Wait is to make sure the item is loaded.
-		//let wait = new WebDriverWait.WebElement(driver, 20);
-  const elementDef = webdriver.By.id(webElement.definition);
+  		const webElement = my.element;
+  		const elementDef = webdriver.By.id(webElement.definition);
 		const returnElement = await driver.findElement(elementDef);
-		//let returnElement = WebDriverWait.until(WebDriverWait.WebElementCondition.elementToBeClickable(this.getBy()));
-		/**if (returnElement.isDisplayed()){
-			 try {
-			        returnElement = driver.findElement(that.getBy());
-			    } catch (e) {
-			        console.log("Attempting to recover from " + e.getClass().getSimpleName() + "...");
-			        returnElement = that.getWebElement();
-			    }	
-		}*/
 		return returnElement;
 	}
 	

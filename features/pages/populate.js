@@ -4,7 +4,8 @@
 
 var populateInput = async function (eleTarget, strValue, specialInstr) {
 	
-	switch(eleTarget.getAttribute('type')){
+	const type = await eleTarget.getAttribute('type');
+	switch(type){
 	case 'radio':
 		if(strValue.toLowerCase() === 'click'){
 			console.log('Clicking radio button');
@@ -103,34 +104,35 @@ var populateSelect = async function (eleTarget, value, specialInstr){
 	*/
 var populateTextField = async function (eleTarget, strValue, specialInstr) {
   let localSpecialInstr = '';
+  const eleValue = await eleTarget.getAttribute('value');
   if (specialInstr != null) {
     localSpecialInstr = specialInstr;
   }
 
-  if (!localSpecialInstr.toLowerCase().indexOf('noclick') > -1) {
+  if (localSpecialInstr && !localSpecialInstr.toLowerCase().indexOf('noclick') > -1) {
     console.log('Clicking text field.');
     await eleTarget.click();
   }
 
-  if (localSpecialInstr.toLowerCase().contains('overwrite')) {
-    console.log("Pre overwrite text field value: '" + eleTarget.getAttribute('value') + "'");
+  if (localSpecialInstr.toLowerCase().indexOf('overwrite') > -1) {
+    console.log("Pre overwrite text field value: '" + eleValue + "'");
     //eleTarget.sendKeys(Keys.chord(Keys.CONTROL, "a"));
-  } else if (!localSpecialInstr.toLowerCase().contains('noclear')) {
-    console.log("Pre clear text field value: '" + eleTarget.getAttribute('value') + "'");
+  } else if (!localSpecialInstr.toLowerCase().indexOf('noclear') > -1) {
+    console.log("Pre clear text field value: '" + eleValue + "'");
     await eleTarget.clear();   		
   }
 
   await eleTarget.sendKeys(strValue);
-  console.log("Post populate text field value: '" + eleTarget.getAttribute('value') +"'");
+  console.log("Post populate text field value: '" + eleValue + "'");
 
-  if (localSpecialInstr.contains('tabAfter')) {
-    await eleTarget.sendKeys(Keys.chord(Keys.TAB));
+  if (localSpecialInstr.indexOf('tabAfter') > -1) {
+    //await eleTarget.sendKeys(Keys.chord(Keys.TAB));
   }
 
-  if (localSpecialInstr.toLowerCase().contains('waitAfter2secs'.toLowerCase())) {
+  if (localSpecialInstr.toLowerCase().indexOf('waitAfter2secs'.toLowerCase()) > -1) {
     try {
       console.log('Sleeping 2 seconds: Text Field - waitAfter2secs');
-      sleep(3000);
+      //sleep(3000);
       console.log('Waking up.');
     } catch (e) {
       console.error(e);

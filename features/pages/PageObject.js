@@ -14,12 +14,12 @@ const PageObject = function (name) {
   var that = {};
   that.ScenarioData = ScenarioData;
 
-  let sp =  StringProcessing(that.ScenarioData);
+  let sp = StringProcessing(that.ScenarioData);
   that.sp = sp;
   that.pageName = name;
-  that.pageDefinitionFileName = "./features/pages/pageDefinitions/" + name;
+  that.pageDefinitionFileName = './features/pages/pageDefinitions/' + name;
   that.pageElements = new HashTable({});  //a hash of all of the web elements for this page.
-  console.log("New PageObject: " + name);
+  console.log('New PageObject: ' + name);
 
   var setDriver = async function (driver, webdriver) {
 		that.driver = driver;
@@ -84,11 +84,10 @@ const PageObject = function (name) {
 		
 			
 			const webElement = await elementTarget.getWebElement();
-			that.getDriver().wait(until.elementLocated(webElement));
+			//that.getDriver().wait(until.elementLocated(webElement));
 
 			const tagName = await webElement.getTagName();
 			
-			//webElement.implicitlyWait(3000);
 			switch (tagName.toLowerCase()){
     		case "input":
     			await populateInput(webElement, value, specialInstr);
