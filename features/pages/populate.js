@@ -3,12 +3,12 @@
  */
 
 var populateInput = async function (eleTarget, strValue, specialInstr) {
-		
+	
 	switch(eleTarget.getAttribute('type')){
 	case 'radio':
 		if(strValue.toLowerCase() === 'click'){
 			console.log('Clicking radio button');
-			eleTarget.click();
+			await eleTarget.click();
 		}
 		else {
 			console.log('By passing radio button click');
@@ -16,17 +16,17 @@ var populateInput = async function (eleTarget, strValue, specialInstr) {
 		break;
 		
 	case 'text':
-		populateTextField(eleTarget, strValue, specialInstr);
+		await populateTextField(eleTarget, strValue, specialInstr);
 		break;
 	case 'password':
-		populateTextField(eleTarget, strValue, specialInstr);
+		await populateTextField(eleTarget, strValue, specialInstr);
 		break;
 	case 'checkbox':
-		populateCheckbox(eleTarget, strValue, specialInstr);
+		await populateCheckbox(eleTarget, strValue, specialInstr);
 		break;		
 	case 'button':
 		if(strValue.toLowerCase() === 'click') {
-			populateClick(eleTarget, strValue, specialInstr);
+			await populateClick(eleTarget, strValue, specialInstr);
 		}
 		else {
 			console.log('Bypassing the button click');
@@ -46,16 +46,16 @@ var populateCheckbox = async function (eleTarget, strValue, specialInstr) {
 	switch (strValue.toLowerCase()) {
 	case 'check':
 		if(!elementValue === 'check') {
-			eleTarget.click();
+			await eleTarget.click();
 		}
 		break;
 	case 'uncheck':
 		if(elementValue.equalsIgnoreCase('check')) {
-			eleTarget.click();
+			await eleTarget.click();
 		}
 		break;
 	case 'click':
-		eleTarget.click();		
+		await eleTarget.click();		
 	}	
 }
    
@@ -72,22 +72,22 @@ var populateSelect = async function (eleTarget, value, specialInstr){
 	if (specialInstr.toLowerCase().contains('byValue'.toLowerCase())) {
 		try {
 		if (!noClick) eleTarget.click();	
-		dropDown.selectByValue(value);
+		await dropDown.selectByValue(value);
 		}
 		catch (e){
 			if (!noClick) eleTarget.click();	
-			dropDown.selectByVisibleText(value);
+			await dropDown.selectByVisibleText(value);
 		} 
 	}
 	else {
 		try {
 			if (!noClick) eleTarget.click();	
-			dropDown.selectByVisibleText(value);
+			await dropDown.selectByVisibleText(value);
 
 		}
 		catch (e){
 			if (!noClick) eleTarget.click();	
-			dropDown.selectByValue(value);
+			await dropDown.selectByValue(value);
 		}
 			
 	}
@@ -109,7 +109,7 @@ var populateTextField = async function (eleTarget, strValue, specialInstr) {
 
   if (!localSpecialInstr.toLowerCase().indexOf('noclick') > -1) {
     console.log('Clicking text field.');
-    eleTarget.click();
+    await eleTarget.click();
   }
 
   if (localSpecialInstr.toLowerCase().contains('overwrite')) {
@@ -117,14 +117,14 @@ var populateTextField = async function (eleTarget, strValue, specialInstr) {
     //eleTarget.sendKeys(Keys.chord(Keys.CONTROL, "a"));
   } else if (!localSpecialInstr.toLowerCase().contains('noclear')) {
     console.log("Pre clear text field value: '" + eleTarget.getAttribute('value') + "'");
-    eleTarget.clear();   		
+    await eleTarget.clear();   		
   }
 
-  eleTarget.sendKeys(strValue);
+  await eleTarget.sendKeys(strValue);
   console.log("Post populate text field value: '" + eleTarget.getAttribute('value') +"'");
 
   if (localSpecialInstr.contains('tabAfter')) {
-    eleTarget.sendKeys(Keys.chord(Keys.TAB));
+    await eleTarget.sendKeys(Keys.chord(Keys.TAB));
   }
 
   if (localSpecialInstr.toLowerCase().contains('waitAfter2secs'.toLowerCase())) {
@@ -145,7 +145,7 @@ var populateClick = async function (eleTarget, strValue, specialInstr) {
 	}
 	
 	if (strValue.toLowerCase() === 'click'){
-		eleTarget.click();
+		await eleTarget.click();
 		console.log('Clicking web element');
 
 	}

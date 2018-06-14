@@ -21,6 +21,8 @@ var driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chr
 
 let pages = {};
 
+//driver.implicitlyWait(8000);
+driver.manage().setTimeouts('{10000,10000,10000}');
 pages.mainPage = new PageObject('mainPage.json');
 pages.mainPage.setDriver(driver, webdriver);
 pages.login = PageObject('loginPage.json');
@@ -43,7 +45,7 @@ Then('I should be on the login screen', function () {
 
 When(/^I enter "(.*)" and "(.*)"$/, function (username, password) {
   // Write code here that turns the phrase above into concrete actions
-  pages.login.populate('txt_logemail', username);
+  pages.login.populate('txt_loginemail', username);
   pages.login.populate('txt_password', password);
 });
 
