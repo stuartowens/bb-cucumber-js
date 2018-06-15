@@ -29,7 +29,7 @@ pages.login = new PageObject('loginPage.json');
 pages.login.setDriver(driver, webdriver);
 
 Given('I am on MacMillanLearning.com', async function () {
-  await driver.get('https:\\macmillanlearning.com')
+  await driver.get('https:\\macmillanlearning.com');
 });
 
 Then(/^Switch to IFrame "(.*)"$/, async function (iframe) {
@@ -77,7 +77,7 @@ Then('I should be on the login screen', async function () {
 
 When(/^I enter "(.*)" and "(.*)"$/, async function (username, password) {
   console.log('Enter username and password');
-  driver.switchTo().frame(0);
+  //driver.switchTo().frame(0);
   // Write code here that turns the phrase above into concrete actions
   await pages.login.populate('txt_loginemail', username);
   await pages.login.populate('txt_password', password);
