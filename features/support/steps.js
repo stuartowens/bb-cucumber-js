@@ -93,5 +93,5 @@ When('I test things', function () {
 
 Then(/^I should get a message that says "(.*)"$/, function (message) {
   // Write code here that turns the phrase above into concrete actions
-  //pages.login.assertText('txt_loginFaled', '* You need a valid e-mail address and password to log in.')
+  pages.login.assertText('txt_loginFaled', '* You need a valid e-mail address and password to log in.')
 });

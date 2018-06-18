@@ -22,29 +22,29 @@ const PageObject = function (name) {
   console.log('New PageObject: ' + name);
 
   var setDriver = async function (driver, webdriver) {
-		that.driver = driver;
-		that.webdriver = webdriver;
+    that.driver = driver;
+    that.webdriver = webdriver;
   }
 
-	var getDriver = function () {
-		return that.driver;
-	}
+  var getDriver = function () {
+    return that.driver;
+  }
 
-	const getWebDriver = function () {
-		return that.webdriver;
-	}
-	
-	var addElement = async function (elementName, elements){
-		that.pageElements.setItem(elementName, elements);
-	}
-	
-	var getElement = async function (elementName){
-		return that.pageElements.getItem(elementName);
-	}
-	
-	var hasElement = async function (elementName) {
-		return that.pageElements.hasItem(elementName);
-	}
+  const getWebDriver = function () {
+    return that.webdriver;
+  }
+
+  var addElement = async function (elementName, elements) {
+    that.pageElements.setItem(elementName, elements);
+  }
+
+  var getElement = async function (elementName) {
+    return that.pageElements.getItem(elementName);
+  }
+
+  var hasElement = async function (elementName) {
+    return that.pageElements.hasItem(elementName);
+  }
 	
 	var loadPageDefinitionFile = async function (fullFileName){
 		 var contents = fs.readFileSync(fullFileName);
@@ -84,8 +84,6 @@ const PageObject = function (name) {
 		
 			
 			const webElement = await elementTarget.getWebElement();
-			//that.getDriver().wait(until.elementLocated(webElement));
-
 			const tagName = await webElement.getTagName();
 			
 			switch (tagName.toLowerCase()){
@@ -99,19 +97,19 @@ const PageObject = function (name) {
     			await populateClick(webElement, value, specialInstr);
     			break;
     		case  "button":
-    			populateClick(webElement, value, specialInstr);
+				await populateClick(webElement, value, specialInstr);
     			break;
     		case  "div":
-    			populateClick(webElement, value, specialInstr);
+				await populateClick(webElement, value, specialInstr);
     			break;
     		case  "span":
-    			populateClick(webElement, value, specialInstr);
+				await populateClick(webElement, value, specialInstr);
     			break;
     		case  "ul":
-    			populateClick(webElement, value, specialInstr);
+				await populateClick(webElement, value, specialInstr);
     			break;
     		case "select":
-    			populateSelect(webElement, value, specialInstr);
+				await populateSelect(webElement, value, specialInstr);
     			break;
     		default:
 				console.log("ERROR: We tried to populate an unknown tag(" + strTagName + ") with data in populateGenericElement()\n\tWe failed.");
