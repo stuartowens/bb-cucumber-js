@@ -62,13 +62,32 @@ const PageObject = function (name) {
 		let element = await getElement(elementName);
 		let newValue= await sp.strEval(value);
 		console.log("Populating Element: " + element.name + " with value '" + newValue + "'");
-		//this.ca.test();
+//what does this do?		
 	}
 	
-	var getWebObjectValue = async function (webElementName, variableName){
-		that.ScenarioData.storeData("testme", "ronAsher")
+	var getWebObjectValue = async function (elementName){
+
 	}
-	
+	var switchFrame = async function (elementName) {
+		//elementName is the name of the frame element in the json file.
+		//if it is default, switch to frame(0)
+		if (elementName == "default"){
+			console.log("Switching Frame to frame(0)");
+			that.driver.switchTo().frame(0);
+		}
+		//else , look up the frame element in the hash table.
+		// get the webElement for the frame
+		//switch to the frame.
+		else {
+			var frameElement = await getElement(elementName);
+			var frameElementObj = await getElement(frameElement);
+			var eleTarget = await WebElement(that.driver, that.webdriver, frameElementObj);
+			console.log("Switching Frame to frame (" + frameElement + ")");
+			that.driver.switchTo().frame(eleTarget);
+
+		}
+
+	}
 	var genericPopulateElement = async function (elementName, value){
 		let elementTarget = "";
 		let specialInstr = "";
@@ -84,6 +103,10 @@ const PageObject = function (name) {
 		
 			
 			const webElement = await elementTarget.getWebElement();
+			if (tempElement.frame) {
+				await switchFrame(tempElement.frame);
+			}
+
 			const tagName = await webElement.getTagName();
 			
 			switch (tagName.toLowerCase()){
@@ -135,11 +158,30 @@ const PageObject = function (name) {
 			console.error(err.stack);
 			throw err;
 		}
-    }
+	}
+	var assertText = async function (strName, strValue) {
+		try {
+			console.log("INFO: Starting text assertion: '" + strName + "' with value '" + strValue + "'");
+			console.log("INFO++: WorldData: " + this.worldData);
+
+			strValue = await sp.strEval(strValue);
+// Add code to get the value from the web page and asset it matches strValue
+// Add code for any other asserts needed.
+			/*if(!customPopulateElement(strName, strValue)){
+				genericPopulateElement(strName, strValue);
+			}*/ 
+			//await genericPopulateElement(strName, strValue);
+		} catch (err) {
+			console.error(err.stack);
+			throw err;
+		}
+
+	}
 	that.test = function() {
 		console.log("PageObject testing.");
 	}
 	
+	that.assertText = assertText;
 	that.getWebObjectValue = getWebObjectValue;
 	that.populateWebObject = populateWebObject;
 	that.getElement = getElement;

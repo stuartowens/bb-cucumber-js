@@ -20,13 +20,22 @@ var CoreData = function(ScenarioName){
 		
 	}
 	
+	let saveToFile = async function (scenarioFileName) {
+	// Implement me!!!
+	}
+	let readFromFile = async function (scenarioFileName) {
+	//Implement me!!!
+	}
+
 	that.test = async function (){
 		console.log("**CoreData.test()");
 	}
 	that.storeData = storeData;
 	that.get = getData;
 	that.put = storeData;
-	
+	that.saveToFile = saveToFile;
+	that.readFromFile = readFromFile;
+
 	return that;
 }
 
