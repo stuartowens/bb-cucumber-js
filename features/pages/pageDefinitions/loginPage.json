@@ -26,7 +26,7 @@
 		"name": "txt_password",
 		"byType": "id",
 		"definition": "ctl00_cphContent_txtLoginPassword",
-		"frame": "iframe_login",
+		"frame": "default",
 		"specialInstr": "overwrite"
 	},	
 	{ 

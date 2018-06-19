@@ -38,9 +38,13 @@ Then(/^Switch to IFrame "(.*)"$/, async function (iframe) {
 });
 
 When('I click the login button', async function () {
-  console.log('Clicking on login button');
-  await pages.login.populate('btn_login', 'click');
-  console.log('Login button was clicked');
+  try {
+    console.log('Clicking on login button');
+    await pages.login.populate('btn_login', 'click');
+    console.log('Login button was clicked');
+  } catch (err) {
+    console.error(err);
+  }
   // const frames = driver.findElements(webdriver.By.tagName('iframe'));
   // driver.switchTo().frame(0);
   // try {
@@ -58,7 +62,6 @@ When('I click the login button', async function () {
   // } catch (e) {
   //   console.error(e);
   // }
-  
 });
 
 When(/^I click by id "(.*)" button$/, async function (buttonLabel) {

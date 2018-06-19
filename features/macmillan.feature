@@ -7,7 +7,6 @@ Feature: Test on MacMillan.com
   Scenario: navigate macmillanLearning.com
     Given I am on MacMillanLearning.com
     When I click the login button
-    #Then Switch to IFrame "0"
     Then I should be on the login screen
     When I enter "testUsername" and "testPassword"
     # When I save a variable "<@save(loginfail, * You need a valid e-mail address and password to log in.)>"
