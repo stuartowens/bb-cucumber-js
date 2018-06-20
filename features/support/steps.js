@@ -1,7 +1,5 @@
 // features/support/steps.js
-const { Given, When, Then } = require('cucumber')
-const { expect } = require('chai')
-
+const { Given, When, Then } = require('cucumber');
 const PageObject = require('../pages/PageObject.js');
 /*
 var webdriver = require('selenium-webdriver');
@@ -20,9 +18,6 @@ chrome.setDefaultService(service);
 var driver = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
 
 let pages = {};
-
-//driver.implicitlyWait(8000);
-//driver.manage().setTimeouts('{10000,10000,10000}');
 pages.mainPage = new PageObject('mainPage.json');
 pages.mainPage.setDriver(driver, webdriver);
 pages.login = new PageObject('loginPage.json');

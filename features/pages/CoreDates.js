@@ -1,11 +1,6 @@
+const DateProcessing = function (worldData) {
+  let that = {};
+  that.worldData = worldData;
+};
 
-'use strict';
-
-
-var DateProcessing = function (worldData) {
-	let that = {};
-	that.worldData = worldData;
-	
-	
-}
- 
+module.exports = DateProcessing;

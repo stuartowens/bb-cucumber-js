@@ -17,7 +17,7 @@ const PageObject = function (name) {
   let sp = StringProcessing(that.ScenarioData);
   that.sp = sp;
   that.pageName = name;
-  that.pageDefinitionFileName = './features/pages/pageDefinitions/' + name;
+  that.pageDefinitionFileName = './test/pageDefinitions/' + name;
   that.pageElements = new HashTable({}); // a hash of all of the web elements for this page.
   console.log('New PageObject: ' + name);
 
@@ -75,7 +75,6 @@ const PageObject = function (name) {
     // elementName is the name of the frame element in the json file. if it is default, switch to frame(0)
     if ((!isNumber && !elementName) || elementName === 'default') {
       console.log('Do nothing, no frame set: ' + elementName);
-      //that.driver.switchTo().frame(0);
     } else { // else , look up the frame element in the hash table. get the webElement for the frame switch to the frame.
       if (isNumber) {
         console.log('Switching Frame to frame via number(' + elementName + ')');
