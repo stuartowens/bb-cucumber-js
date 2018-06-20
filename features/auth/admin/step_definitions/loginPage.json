@@ -32,7 +32,7 @@
 			"name": "btn_login_second",
 			"byType": "id",
 			"definition": "ctl00_cphContent_btnLogin",
-			"frame": "iframe_login",
+			"frame": "default",
 			"specialInstr": "NA"
 		}
 	]

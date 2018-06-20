@@ -10,29 +10,33 @@ const WebElement = require('./WebElement');
 const fs = require('fs');
 const { populateInput, populateClick, populateSelect, populateTextField } = require('./Populate');
 
-const PageObject = function (name) {
+
+// ------------ Start up the chrome server ------------
+const webdriver = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
+const chromePath = require('chromedriver').path;
+
+const service = new chrome.ServiceBuilder(chromePath).build();
+chrome.setDefaultService(service);
+
+const driver = new webdriver.Builder()
+  .withCapabilities(webdriver.Capabilities.chrome())
+  .build();
+
+const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   var that = {};
   that.ScenarioData = ScenarioData;
 
   let sp = StringProcessing(that.ScenarioData);
   that.sp = sp;
-  that.pageName = name;
-  that.pageDefinitionFileName = './test/pageDefinitions/' + name;
+  that.pageName = pageNameInput;
+  that.pageDefinitionFileName = pageNameDirectoryInput + pageNameInput;
   that.pageElements = new HashTable({}); // a hash of all of the web elements for this page.
-  console.log('New PageObject: ' + name);
 
-  var setDriver = async function (driver, webdriver) {
-    that.driver = driver;
-    that.webdriver = webdriver;
-  }
+  that.driver = driver;
+  that.webdriver = webdriver;
 
-  var getDriver = function () {
-    return that.driver;
-  }
-
-  const getWebDriver = function () {
-    return that.webdriver;
-  }
+  console.log('New PageObject: ' + pageNameInput);
 
   const addElement = async function (elementName, elements) {
     that.pageElements.setItem(elementName, elements);
@@ -47,13 +51,14 @@ const PageObject = function (name) {
   }
 
   const loadPageDefinitionFile = async function (fullFileName) {
+    console.log(`Opening file ${fullFileName} from ${__filename} `);
     var contents = fs.readFileSync(fullFileName);
     var jsonContent = JSON.parse(contents);
 
     for (var i in jsonContent.webElements) {
       var element = jsonContent.webElements[i];
       await addElement(element.name, element)
-      console.log('Element:' + element.byType);
+      console.log('Element: ' + element.byType);
     }
   }
 
@@ -101,10 +106,6 @@ const PageObject = function (name) {
       console.log(`Info: Page Element ${elementName} retrieved from Page Elements collection.`);
 
       const webElement = await elementTarget.getWebElement();
-    //   if (tempElement.frame) {
-    //     await switchFrame(tempElement.frame);
-	//   }
-	//await switchFrame(tempElement.frame);
       const tagName = await webElement.getTagName();
 
       switch (tagName.toLowerCase()) {
@@ -168,11 +169,19 @@ const PageObject = function (name) {
   that.populateWebObject = populateWebObject;
   that.getElement = getElement;
   that.hasElement = hasElement;
-  that.setDriver = setDriver;
   that.getDriver = getDriver;
   that.populate = populateElement;
   that.populateElement = populateElement;
   loadPageDefinitionFile(that.pageDefinitionFileName)
   return that;
 }
-module.exports = PageObject;
+
+var getDriver = function () {
+  return driver;
+}
+
+const getWebDriver = function () {
+  return webdriver;
+}
+
+module.exports = { PageObject, getDriver, getWebDriver };

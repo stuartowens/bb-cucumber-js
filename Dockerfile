@@ -14,7 +14,8 @@ RUN apk add --no-cache make python && \
 
 EXPOSE 3000
 
-COPY ./features ./
-COPY ./report ./
-#CMD ["npm", "run", "test"]
-CMD ["./node_modules/cucumber/bin/cucumber-js"]
+COPY ./app ./app
+COPY ./features ./features
+COPY ./report ./report
+CMD ["npm", "run", "test"]
+#CMD ["./node_modules/cucumber/bin/cucumber-js"]
