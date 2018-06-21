@@ -8,7 +8,7 @@ const PARAM_END = ')';
 
 const VARIABLE_PREFIX = '$';
 const FUNCTION_PREFIX = '@';
-const ScenarioData = require('./ScenarioData');
+const ScenarioData = require('./scenarioData');
 
 const StringProcessing = function (ScenarioDataInput) {
   let my = {};

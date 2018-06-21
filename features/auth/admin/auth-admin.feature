@@ -1,8 +1,8 @@
 Feature: Authentication for Achieve Admin via IAM
 
 Background:
-    Given That I have opened the Achieve <$env> in the <$browser>
-    And I have logged in as <$login_admin_user1>
+    Given That I have opened the Achieve "baseURL"
+    And I have logged in as "adminUser"
     
 Scenario Outline: Admin able to grant a specified role to a newly created user 
     When I elect to manage the role of <email_address>
@@ -12,11 +12,9 @@ Scenario Outline: Admin able to grant a specified role to a newly created user
     Examples: 
     |email_address            |role                         |
     |testuser+ad01@gmail.com  | "Admin"                     |
-    |testuser+cs01@gmail.com  | "Customer Support"          |
-    |testuser+cs02@gmail.com  | "Customer Support"          |
-    |testuser+mp01@gmail.com  | "Media Producer"            |
-    |testuser+mp02@gmail.com  | "Media Producer"            |
-    |testuser+in01@gmail.com  | "Instructor"                |
-    |testuser+pacc01@gmail.com| "Paid Access Code Creator"  |
+#    |testuser+ad02@gmail.com  | "Customer Support"          |
+#    |testuser+ad03@gmail.com  | "Media Producer"            |
+#    |testuser+ad04@gmail.com  | "Instructor"                |
+#    |testuser+ad05@gmail.com  | "Paid Access Code Creator"  |
 
 ##Change the emails to what ever you are using.

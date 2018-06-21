@@ -1,15 +1,17 @@
 // features/support/steps.js
 const { Given, When, Then } = require('cucumber');
 const path = require('path');
+const assert = require('assert');
 
-const { PageObject, getDriver, getWebDriver } = require('../../../app/PageObject');
+const { PageObject } = require('../../../app/pageObject');
+const { getDriver } = require('../../../app/driver');
+const { loadConfig, loadLogin } = require('../../../app/util');
 /*
 var webdriver = require('selenium-webdriver');
 var chrome = require('selenium-webdriver/chrome');
 var firefox = require('selenium-webdriver/firefox');
 */
 
-const assert = require('assert');
 
 let pages = {
   mainPage: new PageObject('mainPage.json', path.join(__dirname, '/')),
@@ -17,7 +19,9 @@ let pages = {
 };
 
 Given('I am on MacMillanLearning.com', async function () {
-  await getDriver().get('https:\\macmillanlearning.com');
+  const config = await loadConfig('config');
+  console.log(`Loading URL ${config.baseURL}`);
+  await getDriver().get(config.baseURL);
 });
 
 Then(/^Switch to IFrame "(.*)"$/, async function (iframe) {
@@ -49,10 +53,11 @@ Then('I should be on the login screen', async function () {
 });
 
 When(/^I enter "(.*)" and "(.*)"$/, async function (username, password) {
-  console.log('Enter username and password');
+  const loginFile = await loadLogin('failed');
+  console.log(`Entering username: ${loginFile.username} and password`);
   // Write code here that turns the phrase above into concrete actions
-  await pages.login.populate('txt_loginemail', username);
-  await pages.login.populate('txt_password', password);
+  await pages.login.populate('txt_loginemail', loginFile.username);
+  await pages.login.populate('txt_password', loginFile.password);
 });
 
 When(/^I save a variable "(.*)"$/, async function (saveVariable) {

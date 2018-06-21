@@ -3,12 +3,12 @@
  */
 'use strict';
 
-const HashTable = require('./HashTable');
+const HashTable = require('./hashtable');
 
-var CoreData = function (ScenarioName) {
-  let that = {};
+const ScenarioData = function (ScenarioName) {
+  let that = Object.assign({});
 
-  that.data = HashTable();
+  that.data = new HashTable();
 
   let storeData = async function (key, value) {
     that.data.setItem(key, value);
@@ -37,4 +37,4 @@ var CoreData = function (ScenarioName) {
   return that;
 };
 
-module.exports = CoreData;
+module.exports = ScenarioData;

@@ -3,25 +3,14 @@
  */
 'use strict';
 
-const HashTable = require('./HashTable');
+const HashTable = require('./hashtable');
 const StringProcessing = require('./StringProcessing');
-const ScenarioData = require('./ScenarioData');
+const ScenarioData = require('./scenariodata');
 const WebElement = require('./WebElement');
-const fs = require('fs');
+const { loadJSONFile } = require('./util');
+const { getDriver, getWebDriver } = require('./driver');
+
 const { populateInput, populateClick, populateSelect, populateTextField } = require('./Populate');
-
-
-// ------------ Start up the chrome server ------------
-const webdriver = require('selenium-webdriver');
-const chrome = require('selenium-webdriver/chrome');
-const chromePath = require('chromedriver').path;
-
-const service = new chrome.ServiceBuilder(chromePath).build();
-chrome.setDefaultService(service);
-
-const driver = new webdriver.Builder()
-  .withCapabilities(webdriver.Capabilities.chrome())
-  .build();
 
 const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   var that = {};
@@ -33,8 +22,8 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   that.pageDefinitionFileName = pageNameDirectoryInput + pageNameInput;
   that.pageElements = new HashTable({}); // a hash of all of the web elements for this page.
 
-  that.driver = driver;
-  that.webdriver = webdriver;
+  that.driver = getDriver();
+  that.webdriver = getWebDriver();
 
   console.log('New PageObject: ' + pageNameInput);
 
@@ -52,8 +41,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
 
   const loadPageDefinitionFile = async function (fullFileName) {
     console.log(`Opening file ${fullFileName} from ${__filename} `);
-    var contents = fs.readFileSync(fullFileName);
-    var jsonContent = JSON.parse(contents);
+    var jsonContent = await loadJSONFile(fullFileName);
 
     for (var i in jsonContent.webElements) {
       var element = jsonContent.webElements[i];
@@ -66,9 +54,6 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
     let element = await getElement(elementName);
     let newValue = await sp.strEval(value);
     console.log(`Populating Element: ${element.name} with value ${newValue}`);
-  }
-  var getWebObjectValue = async function (elementName) {
-
   }
 
   const switchFrame = async function (elementName) {
@@ -137,7 +122,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
           console.log(`ERROR: We tried to populate an unknown tag(${elementName}) with data in populateGenericElement()\n\tWe failed.`);
       }
     } else {
-      console.log(`ERROR: WebElement ${elementName} not found in PageElements during PopulateELement() attempt.`);	
+      console.log(`ERROR: WebElement ${elementName} not found in PageElements during PopulateElement() attempt.`);
     }
   }
   const populateElement = async function (strName, strValue) {
@@ -165,7 +150,6 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
     }
   }
   that.assertText = assertText;
-  that.getWebObjectValue = getWebObjectValue;
   that.populateWebObject = populateWebObject;
   that.getElement = getElement;
   that.hasElement = hasElement;
@@ -176,12 +160,4 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   return that;
 }
 
-var getDriver = function () {
-  return driver;
-}
-
-const getWebDriver = function () {
-  return webdriver;
-}
-
-module.exports = { PageObject, getDriver, getWebDriver };
+module.exports = { PageObject };

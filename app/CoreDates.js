@@ -1,6 +1,6 @@
-const DateProcessing = function (worldData) {
+const dateProcessing = function (worldData) {
   let that = {};
   that.worldData = worldData;
 };
 
-module.exports = DateProcessing;
+module.exports = dateProcessing;

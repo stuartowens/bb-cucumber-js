@@ -2,7 +2,8 @@
   "requires": true,
   "lockfileVersion": 1,
   "scripts": {
-    "test": "node ./node_modules/cucumber/bin/cucumber-js"
+    "test-dev": "node ./node_modules/cucumber/bin/cucumber-js --world-parameters='{\"config\": \"e2e\"}'",
+    "test-prod": "node ./node_modules/cucumber/bin/cucumber-js --world-parameters='{\"config\": \"prod\"}'"
   },
   "dependencies": {
     "any-promise": {

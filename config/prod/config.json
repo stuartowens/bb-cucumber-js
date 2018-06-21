@@ -1,0 +1,6 @@
+{
+	"baseURL": "https://macmillanlearning.com",
+	"loaddriver": "chrome",
+	"chromeDriver_location_windows": "NA",
+	"timeout": "60"
+}
