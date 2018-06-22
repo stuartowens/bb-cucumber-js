@@ -1,37 +1,23 @@
 {
 	"webElements": [
 		{
-			"name": "iframe_login",
+			"name": "txt_username",
 			"byType": "id",
-			"definition": "ctl00_cphContent_ifLogin",
-			"frame": "default",
-			"specialInstr": "NA"
-		},
-		{
-			"name": "txt_loginemail",
-			"byType": "id",
-			"definition": "ctl00_cphContent_txtLoginEmail",
-			"frame": "iframe_login",
-			"specialInstr": "NA"
-		},
-		{
-			"name": "btn_login",
-			"byType": "id",
-			"definition": "ctl00_ucHeaderContactUsToolBar_aLoginLink",
+			"definition": "username",
 			"frame": "default",
 			"specialInstr": "NA"
 		},
 		{
 			"name": "txt_password",
 			"byType": "id",
-			"definition": "ctl00_cphContent_txtLoginPassword",
+			"definition": "password",
 			"frame": "default",
-			"specialInstr": "overwrite"
+			"specialInstr": "NA"
 		},
 		{
-			"name": "btn_login_second",
+			"name": "signin_button",
 			"byType": "id",
-			"definition": "ctl00_cphContent_btnLogin",
+			"definition": "signin",
 			"frame": "default",
 			"specialInstr": "NA"
 		}

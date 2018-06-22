@@ -17,11 +17,17 @@ let pages = {
 Given(/^That I have opened the Achieve "(.*)"$/, async function (urlKey) {
   const url = config[urlKey];
   console.log(`Loading URL ${url}`);
-  await getDriver().get(config.baseURL);
+  await getDriver().get(url);
 });
 
-When(/^I have logged in as "(.*)"$/, function (adminUser) {
-  console.log(`Using user ${config.adminUser}`);
+When(/^I have logged in as "(.*)"$/, async function (userFile) {
+  const user = loadLogin(userFile);
+  console.log(`Using user ${user.username}`);
+  await pages.authAdmin.populate('txt_username', user.username);
+  await pages.authAdmin.populate('txt_password', user.password);
+
+  const clickedButton = await pages.authAdmin.populate('signin_button', 'click');
+  console.log(`Login button was clicked: ${clickedButton}`);
 });
 
 When(/^I elect to manage the role of "(.*)"$/, function (username) {

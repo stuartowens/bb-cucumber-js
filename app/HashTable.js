@@ -1,4 +1,4 @@
-var HashTable = function HashTable(obj) {
+const HashTable = function HashTable (obj) {
   this.length = 0;
   this.items = {};
   for (var p in obj) {

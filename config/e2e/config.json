@@ -1,5 +1,6 @@
 {
 	"baseURL": "https://int-e2e-courseware-frontend.mldev.cloud/start",
+	"loginURL": "https://int-e2e-iam.mldev.cloud/login?retURL=https://int-e2e-courseware-frontend.mldev.cloud/courses",
 	"loaddriver": "chrome",
 	"chromeDriver_location_windows": "NA",
 	"timeout": "60"

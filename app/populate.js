@@ -13,7 +13,7 @@ const populateInput = async function (eleTarget, strValue, specialInstr) {
         console.log('By passing radio button click');
       }
       break;
-
+    case 'email':
     case 'text':
       await populateTextField(eleTarget, strValue, specialInstr);
       break;

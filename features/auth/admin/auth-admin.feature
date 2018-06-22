@@ -1,8 +1,8 @@
 Feature: Authentication for Achieve Admin via IAM
 
 Background:
-    Given That I have opened the Achieve "baseURL"
-    And I have logged in as "adminUser"
+    Given That I have opened the Achieve "loginURL"
+    And I have logged in as "admin"
     
 Scenario Outline: Admin able to grant a specified role to a newly created user 
     When I elect to manage the role of <email_address>

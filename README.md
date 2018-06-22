@@ -1,11 +1,16 @@
-https://github.com/ronasher/bb-cucumber-js.git
+## GitHub
+[Link](https://github.com/ronasher/bb-cucumber-js.git)
 
+## Run subdirectories
+[Example directory structure](https://makandracards.com/makandra/4971-how-to-organize-and-execute-cucumber-features-e-g-in-subdirectories)
 
-Run subdirectories
-https://makandracards.com/makandra/4971-how-to-organize-and-execute-cucumber-features-e-g-in-subdirectories
+# Windows package.json, for scripts:  npm run test-dev
+```
+"test-dev": "node ./node_modules/cucumber/bin/cucumber-js --world-parameters=\"{\"\"config\"\": \"\"e2e\"\"}\"",
+```
 
-VS Code configuration to debug
-
+## VS Code configuration to debug
+```
 {
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
@@ -20,3 +25,4 @@ VS Code configuration to debug
         }
     ]
 }
+```

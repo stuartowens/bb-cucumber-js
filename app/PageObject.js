@@ -25,7 +25,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   that.driver = getDriver();
   that.webdriver = getWebDriver();
 
-  console.log('New PageObject: ' + pageNameInput);
+  console.log(`New PageObject: ${pageNameInput}`);
 
   const addElement = async function (elementName, elements) {
     that.pageElements.setItem(elementName, elements);
@@ -75,7 +75,8 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       }
     }
   }
-  var genericPopulateElement = async function (elementName, value) {
+
+  const genericPopulateElement = async function (elementName, value) {
     let elementTarget = '';
     let specialInstr = '';
     let tempElement = {};
@@ -87,7 +88,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
 
       specialInstr = tempElement.specialInstr;
       elementTarget = await WebElement(that.driver, that.webdriver, tempElement);
-      console.log('****genericPopulateElement: ' + elementName)
+      console.log(`****genericPopulateElement: ${elementName}`);
       console.log(`Info: Page Element ${elementName} retrieved from Page Elements collection.`);
 
       const webElement = await elementTarget.getWebElement();
@@ -138,7 +139,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       throw err;
     }
   }
-  var assertText = async function (strName, strValue) {
+  const assertText = async function (strName, strValue) {
     try {
       console.log(`INFO: Starting text assertion: ${strName} with value ${strValue}`);
       console.log('INFO++: WorldData: ' + this.worldData);
