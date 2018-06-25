@@ -9,6 +9,9 @@
 "test-dev": "node ./node_modules/cucumber/bin/cucumber-js --world-parameters=\"{\"\"config\"\": \"\"e2e\"\"}\"",
 ```
 
+# Testing Strategies
+[Exmaple testing strategies](http://www.seleniumeasy.com/selenium-tutorials/selenium-locators)
+
 ## VS Code configuration to debug
 ```
 {

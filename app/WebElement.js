@@ -15,8 +15,7 @@ var WebElement = function (driver, webdriver, element) {
   my.by = my.webdriver.By;
 
   that.getWebElement = async function () {
-    const webElement = my.element;
-    const elementDef = webdriver.By.id(webElement.definition);
+    const elementDef = await this.getBy();
     const returnElement = await driver.findElement(elementDef);
     return returnElement;
   };

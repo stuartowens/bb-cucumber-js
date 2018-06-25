@@ -34,7 +34,8 @@ When(/^I elect to manage the role of "(.*)"$/, function (username) {
   console.log(`Elected email: ${username}`);
 });
 
-When('I elect to manage the role of testuser+ad{int}@gmail.com', function (int) {
+When('I elect to manage the role of testuser+ad{int}@gmail.com', async function (int) {
+  await pages.authAdmin.populate('menuSystem', 'click');
   console.log(`Elected int: ${int}`);
 });
 

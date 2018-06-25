@@ -20,6 +20,13 @@
 			"definition": "signin",
 			"frame": "default",
 			"specialInstr": "NA"
+		},
+		{
+			"name": "menuSystem",
+			"byType": "classname",
+			"definition": "_12-z",
+			"frame": "default",
+			"specialInstr": "NA"
 		}
 	]
 }
