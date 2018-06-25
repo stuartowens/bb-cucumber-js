@@ -21,18 +21,22 @@ Given(/^That I have opened the Achieve "(.*)"$/, async function (urlKey) {
 });
 
 When(/^I have logged in as "(.*)"$/, async function (userFile) {
-  const user = loadLogin(userFile);
-  console.log(`Using user ${user.username}`);
-  await pages.authAdmin.populate('txt_username', user.username);
-  await pages.authAdmin.populate('txt_password', user.password);
-
-  const clickedButton = await pages.authAdmin.populate('signin_button', 'click');
-  console.log(`Login button was clicked: ${clickedButton}`);
+  try {
+    const user = loadLogin(userFile);
+    console.log(`Using user ${user.username}`);
+    await pages.authAdmin.populate('txt_username', user.username);
+    await pages.authAdmin.populate('txt_password', user.password);
+  
+    await pages.authAdmin.populate('signin_button', 'click');
+    console.log(`Login button was clicked:`);
+  } catch (err) {
+    console.error(err);
+  }
 });
 
-When(/^I elect to manage the role of "(.*)"$/, function (username) {
+/*When('I elect to manage the role of {string}', async function (username) {
   console.log(`Elected email: ${username}`);
-});
+});*/
 
 When('I elect to manage the role of testuser+ad{int}@gmail.com', async function (int) {
   await pages.authAdmin.populate('menuSystem', 'click');

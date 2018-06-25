@@ -23,6 +23,7 @@ var WebElement = function (driver, webdriver, element) {
   that.getBy = async function () {
     let byReturn = null;
     const classType = my.byType.toLowerCase().trim();
+    console.log(`Getting By: ${classType}`);
     switch (classType) {
       case 'xpath':
         byReturn = my.by.xpath(my.definition);
@@ -50,12 +51,10 @@ var WebElement = function (driver, webdriver, element) {
         break;
       default:
         console.log(`ERROR: The data asked to identify the element ${my.name}  by the type ${my.byType} and that type is not valid.  Please review the data and try again.`);
-        console.log('ERROR: Valid types are [xpath, cssSelector, id, name, linkText, partialLinkText, className, tagName');
+        console.log('ERROR: Valid types are [xpath, cssSelector, id, name, linkText, partialLinkText, className, tagName]');
     }
-
     return byReturn;
   };
-
   return that;
 };
 

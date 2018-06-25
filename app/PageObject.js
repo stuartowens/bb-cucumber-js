@@ -149,7 +149,8 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       console.error(err.stack);
       throw err;
     }
-  }
+  };
+
   that.assertText = assertText;
   that.populateWebObject = populateWebObject;
   that.getElement = getElement;

@@ -19,7 +19,7 @@
 			"byType": "id",
 			"definition": "signin",
 			"frame": "default",
-			"specialInstr": "NA"
+			"specialInstr": "container"
 		},
 		{
 			"name": "menuSystem",

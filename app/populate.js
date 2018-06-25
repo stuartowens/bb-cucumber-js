@@ -1,6 +1,5 @@
-/**
- * http://usejsdoc.org/
- */
+
+const { getDriver, getWebDriver, onPageLoaded, sleep } = require('./driver');
 
 const populateInput = async function (eleTarget, strValue, specialInstr) {
   const type = await eleTarget.getAttribute('type');
@@ -95,7 +94,7 @@ const populateSelect = async function (eleTarget, value, specialInstr) {
 	* 		overWrite - Selects the values in the field before over writing with the new value.  Does not clear the field.
 	* 
 	*/
-const populateTextField = async function(eleTarget, strValue, specialInstr) {
+const populateTextField = async function (eleTarget, strValue, specialInstr) {
   let localSpecialInstr = '';
   const eleValue = await eleTarget.getAttribute('value');
   if (specialInstr != null) {
@@ -145,15 +144,24 @@ const populateClick = async function (eleTarget, strValue, specialInstr) {
 
   if (strValue.toLowerCase() === 'click') {
     await eleTarget.click();
-    console.log('Clicking web element');
+
+    if (!localSpecialInstr || localSpecialInstr !== 'NA') {
+      console.log('Sleeping 1000ms');
+      await sleep(1000);
+      console.log('Waiting until page loads');
+      await onPageLoaded(localSpecialInstr);
+      console.log('Sleeping 1000ms');
+      await sleep(1000);
+    }
+    console.log('Clicked web element');
   }
   if (
     localSpecialInstr &&
     localSpecialInstr.toLowerCase().indexOf('waitAfter2secs') > -1
   ) {
     try {
-      console.log('Sleeping 2 seconds: Click - waitAfter2secs');
-      await sleep(3000);
+      console.log(`Sleeping 2 seconds: Click - waitAfter2secs ${localSpecialInstr.toLowerCase().indexOf('waitAfter2secs')}`);
+      await sleep(2000);
       console.log('Waking up.');
     } catch (e) {
       console.error(e);
@@ -161,9 +169,7 @@ const populateClick = async function (eleTarget, strValue, specialInstr) {
   }
 };
 
-function sleep (ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+
 
 module.exports = {
   populateInput,
