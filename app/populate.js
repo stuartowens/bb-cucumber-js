@@ -38,54 +38,20 @@ const populateInput = async function (eleTarget, strValue, specialInstr) {
   }
 };
 
-const populateCheckbox = async function (eleTarget, strValue, specialInstr) {
-  let elementValue = eleTarget.getAttribute('checked');
-  if (elementValue) {
-    elementValue = 'notchecked';
-  }
+const populateSelect = async function (selector, item, specialInstr) {
+  const webDriver = getWebDriver();
+  if (!selector) return;
+  await selector.click();
+  await sleep(500);
 
-  switch (strValue.toLowerCase()) {
-    case 'check':
-      if (!elementValue === 'check') {
-        await eleTarget.click();
-      }
-      break;
-    case 'uncheck':
-      if (elementValue.equalsIgnoreCase('check')) {
-        await eleTarget.click();
-      }
-      break;
-    case 'click':
-      await eleTarget.click();
-  }
-};
-
-const populateSelect = async function (eleTarget, value, specialInstr) {
-  let dropDown = new Select(eleTarget);
-  let noClick = false;
-
-  if (specialInstr == null) {
-    specialInstr = '';
-  }
-  if (specialInstr.toLowerCase().contains('noclick')) noClick = true;
-
-  if (specialInstr.toLowerCase().contains('byValue'.toLowerCase())) {
-    try {
-      if (!noClick) eleTarget.click();
-      await dropDown.selectByValue(value);
-    } catch (e) {
-      if (!noClick) eleTarget.click();
-      await dropDown.selectByVisibleText(value);
+  const options = await selector.findElements(webDriver.By.tagName('option'));
+  await options.forEach(async function (option) {
+    const optionText = await option.getText();
+    console.log(`Item: ${item} - ${optionText}`);
+    if (item === optionText) {
+      option.click();
     }
-  } else {
-    try {
-      if (!noClick) eleTarget.click();
-      await dropDown.selectByVisibleText(value);
-    } catch (e) {
-      if (!noClick) eleTarget.click();
-      await dropDown.selectByValue(value);
-    }
-  }
+  });
 };
 
 /* specialInstr values: 

@@ -3,30 +3,81 @@
 		{
 			"name": "txt_username",
 			"byType": "id",
-			"definition": "username",
+			"definition": "email",
 			"frame": "default",
 			"specialInstr": "NA"
 		},
 		{
 			"name": "txt_password",
 			"byType": "id",
-			"definition": "password",
+			"definition": "Password",
 			"frame": "default",
 			"specialInstr": "NA"
 		},
 		{
 			"name": "signin_button",
 			"byType": "id",
-			"definition": "signin",
+			"definition": "__signIn",
 			"frame": "default",
 			"specialInstr": "container"
 		},
 		{
-			"name": "menuSystem",
+			"name": "menu_system",
 			"byType": "classname",
 			"definition": "_12-z",
 			"frame": "default",
 			"specialInstr": "NA"
+		},
+		{
+			"name": "admin_panel",
+			"byType": "xpath",
+			"definition": "/html/body/div[3]/div/div/div/div/div/div[2]/span/div/div/div[2]",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "manage_roles",
+			"byType": "xpath",
+			"definition": "/html/body/div[4]/div/div/div/div/div/div[10]/span/div/div/div/span",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "enter_email_address",
+			"byType": "id",
+			"definition": "__manageRoles_emailInput",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "choose_role",
+			"byType": "classname",
+			"definition": "_1ogr",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "grant_role",
+			"byType": "xpath",
+			"definition": "/html/body/div[3]/div/div/div[2]/button[1]/div/span",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "revoke_role",
+			"byType": "xpath",
+			"definition": "/html/body/div[3]/div/div/div[2]/button[2]/div/span",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "logout",
+			"byType": "xpath",
+			"definition": "/html/body/div[3]/div/div/div/div/div/div[3]/span/div/div/div",
+			"frame": "default",
+			"specialInstr": "NA"
 		}
+		
+		
 	]
 }

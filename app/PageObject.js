@@ -10,7 +10,7 @@ const WebElement = require('./WebElement');
 const { loadJSONFile } = require('./util');
 const { getDriver, getWebDriver } = require('./driver');
 
-const { populateInput, populateClick, populateSelect, populateTextField } = require('./Populate');
+const { populateInput, populateClick, populateSelect, populateTextField } = require('./populate');
 
 const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   var that = {};
@@ -57,14 +57,14 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   }
 
   const switchFrame = async function (elementName) {
-    console.log('Checking need to switch to iframe');
+    // console.log('Checking need to switch to iframe');
     let isNumber = true;
     if (typeof elementName !== 'number') {
       isNumber = false;
     }
     // elementName is the name of the frame element in the json file. if it is default, switch to frame(0)
     if ((!isNumber && !elementName) || elementName === 'default') {
-      console.log('Do nothing, no frame set: ' + elementName);
+      // console.log('Do nothing, no frame set: ' + elementName);
     } else { // else , look up the frame element in the hash table. get the webElement for the frame switch to the frame.
       if (isNumber) {
         console.log('Switching Frame to frame via number(' + elementName + ')');
@@ -129,7 +129,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   const populateElement = async function (strName, strValue) {
     try {
       console.log(`INFO: Starting populate the web element: ${strName} with value ${strValue}`);
-      console.log(`INFO++: WorldData: ${this.worldData}`);
+      // console.log(`INFO++: WorldData: ${this.worldData}`);
 
       strValue = await sp.strEval(strValue);
 
