@@ -9,6 +9,7 @@ const ScenarioData = require('./scenariodata');
 const WebElement = require('./WebElement');
 const { loadJSONFile } = require('./util');
 const { getDriver, getWebDriver } = require('./driver');
+const { log } = require('./logger');
 
 const { populateInput, populateClick, populateSelect, populateTextField } = require('./populate');
 
@@ -25,7 +26,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   that.driver = getDriver();
   that.webdriver = getWebDriver();
 
-  console.log(`New PageObject: ${pageNameInput}`);
+  log.debug(`New PageObject: ${pageNameInput}`);
 
   const addElement = async function (elementName, elements) {
     that.pageElements.setItem(elementName, elements);
@@ -40,34 +41,28 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   }
 
   const loadPageDefinitionFile = async function (fullFileName) {
-    console.log(`Opening file ${fullFileName} from ${__filename} `);
+    log.debug(`Opening file ${fullFileName} from ${__filename} `);
     var jsonContent = await loadJSONFile(fullFileName);
 
     for (var i in jsonContent.webElements) {
       var element = jsonContent.webElements[i];
       await addElement(element.name, element)
-      console.log('Element: ' + element.byType);
+      log.debug('Element: ' + element.byType);
     }
   }
 
-  const populateWebObject = async function (elementName, value) {
-    let element = await getElement(elementName);
-    let newValue = await sp.strEval(value);
-    console.log(`Populating Element: ${element.name} with value ${newValue}`);
-  }
-
   const switchFrame = async function (elementName) {
-    // console.log('Checking need to switch to iframe');
+    // log.debug('Checking need to switch to iframe');
     let isNumber = true;
     if (typeof elementName !== 'number') {
       isNumber = false;
     }
     // elementName is the name of the frame element in the json file. if it is default, switch to frame(0)
     if ((!isNumber && !elementName) || elementName === 'default') {
-      // console.log('Do nothing, no frame set: ' + elementName);
+      // log.debug('Do nothing, no frame set: ' + elementName);
     } else { // else , look up the frame element in the hash table. get the webElement for the frame switch to the frame.
       if (isNumber) {
-        console.log('Switching Frame to frame via number(' + elementName + ')');
+        log.debug('Switching Frame to frame via number(' + elementName + ')');
         that.driver.switchTo().frame(elementName);
       } else {
         var frameElementObj = await getElement(elementName);
@@ -78,81 +73,91 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
 
   const genericPopulateElement = async function (elementName, value) {
     let elementTarget = '';
-    let specialInstr = '';
     let tempElement = {};
 
     if (await hasElement(elementName)) {
       tempElement = await getElement(elementName);
+      const actionElement = Object.assign({});
+
+      // Setup all underlying required objects to take action on for this action
+      actionElement.element = tempElement;
+      if (tempElement && tempElement.waitForElementToBeInvisible) {
+        if (await hasElement(tempElement.waitForElementToBeInvisible)) {
+          const elementToWaitToBeInvisible = await getElement(elementName);
+          actionElement.elementToWaitToBeInvisible = elementToWaitToBeInvisible;
+        }
+      }
       // If need to hit a iframe, do it
       await switchFrame(tempElement.frame);
 
-      specialInstr = tempElement.specialInstr;
-      elementTarget = await WebElement(that.driver, that.webdriver, tempElement);
-      console.log(`****genericPopulateElement: ${elementName}`);
-      console.log(`Info: Page Element ${elementName} retrieved from Page Elements collection.`);
+      elementTarget = await WebElement(tempElement);
+      actionElement.webElement = elementTarget;
+
+      log.debug(`****genericPopulateElement: ${elementName}`);
+      log.info(`Info: Page Element ${elementName} retrieved from Page Elements collection.`);
 
       const webElement = await elementTarget.getWebElement();
       const tagName = await webElement.getTagName();
 
       switch (tagName.toLowerCase()) {
         case 'input':
-          await populateInput(webElement, value, specialInstr);
+          await populateInput(webElement, value, actionElement);
           break;
         case 'textarea':
-          await populateTextField(webElement, value, specialInstr);
+          await populateTextField(webElement, value, actionElement);
           break;
         case 'a':
-          await populateClick(webElement, value, specialInstr);
+          await populateClick(webElement, value, actionElement);
           break;
         case 'button':
-          await populateClick(webElement, value, specialInstr);
+          await populateClick(webElement, value, actionElement);
           break;
         case 'div':
-          await populateClick(webElement, value, specialInstr);
+          await populateClick(webElement, value, actionElement);
           break;
         case 'span':
-          await populateClick(webElement, value, specialInstr);
+          await populateClick(webElement, value, actionElement);
           break;
         case 'ul':
-          await populateClick(webElement, value, specialInstr);
+          await populateClick(webElement, value, actionElement);
           break;
         case 'select':
-          await populateSelect(webElement, value, specialInstr);
+          await populateSelect(webElement, value, actionElement);
           break;
         default:
-          console.log(`ERROR: We tried to populate an unknown tag(${elementName}) with data in populateGenericElement()\n\tWe failed.`);
+          log.error(`ERROR: We tried to populate an unknown tag(${elementName}) with data in populateGenericElement()\n\tWe failed.`);
       }
     } else {
-      console.log(`ERROR: WebElement ${elementName} not found in PageElements during PopulateElement() attempt.`);
+      log.error(`ERROR: WebElement ${elementName} not found in PageElements during PopulateElement() attempt.`);
     }
-  }
+  };
+
   const populateElement = async function (strName, strValue) {
     try {
-      console.log(`INFO: Starting populate the web element: ${strName} with value ${strValue}`);
+      log.info(`INFO: Starting populate the web element: ${strName} with value ${strValue}`);
       // console.log(`INFO++: WorldData: ${this.worldData}`);
 
       strValue = await sp.strEval(strValue);
 
       await genericPopulateElement(strName, strValue);
     } catch (err) {
-      console.error(err.stack);
+      log.error(err.stack);
       throw err;
     }
   }
   const assertText = async function (strName, strValue) {
     try {
-      console.log(`INFO: Starting text assertion: ${strName} with value ${strValue}`);
-      console.log('INFO++: WorldData: ' + this.worldData);
+      log.info(`INFO: Starting text assertion: ${strName} with value ${strValue}`);
+      log.info('INFO++: WorldData: ' + this.worldData);
 
       strValue = await sp.strEval(strValue);
     } catch (err) {
-      console.error(err.stack);
+      log.error(err.stack);
       throw err;
     }
   };
 
   that.assertText = assertText;
-  that.populateWebObject = populateWebObject;
   that.getElement = getElement;
   that.hasElement = hasElement;
   that.getDriver = getDriver;

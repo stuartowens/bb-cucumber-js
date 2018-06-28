@@ -8,6 +8,11 @@
 2. [Reliable Tests](https://medium.freecodecamp.org/how-to-write-reliable-browser-tests-using-selenium-and-node-js-c3fdafdca2a9)
 3. [Just Enough Regular Expressions for Cucumber](https://agileforall.com/just-enough-regular-expressions-for-cucumber/)
 
+# Run a specific feature file
+```
+node_modules/cucumber/bin/cucumber-js features/main/login_failed.feature --world-parameters='{"config": "e2e"}'
+```
+
 ## Run subdirectories
 [Example directory structure](https://makandracards.com/makandra/4971-how-to-organize-and-execute-cucumber-features-e-g-in-subdirectories)
 
@@ -57,6 +62,7 @@ And I guess I could come up with another flawed solution soon. The fact is - the
         {
             "type": "node",
             "request": "launch",
+            "outputCapture": "std",
             "name": "Launch Program",
             "program": "${workspaceFolder}/node_modules/cucumber/bin/cucumber-js"
         }

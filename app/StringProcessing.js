@@ -1,6 +1,9 @@
 /**
  * http://usejsdoc.org/
  */
+
+const { log } = require('./logger');
+
 const EVAL_BEGIN = '<';
 const EVAL_END = '>';
 const PARAM_BEGIN = '(';
@@ -42,7 +45,7 @@ const StringProcessing = function (ScenarioDataInput) {
     } else if (inputString.startsWith(VARIABLE_PREFIX)) {
       // return core data variable
       that.ScenarioData.get(inputString.indexOf(1));
-      console.log('retrieving variable: ' + inputString);
+      log.debug('retrieving variable: ' + inputString);
     } else {
       if (inputString.startsWith(FUNCTION_PREFIX)) {
         returnString = inputString.replace(FUNCTION_PREFIX, '');

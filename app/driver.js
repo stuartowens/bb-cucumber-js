@@ -2,6 +2,7 @@
 const webdriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const chromePath = require('chromedriver').path;
+const { log } = require('./logger');
 
 // https://stackoverflow.com/questions/49862078/protractor-and-cucumber-function-timed-out-using-async-await
 var {setDefaultTimeout} = require('cucumber');
@@ -23,23 +24,25 @@ const getWebDriver = function () {
 };
 
 const onPageLoaded = async function (elementIdOnNextPage) {
-  /**/let by = webdriver.By.id(elementIdOnNextPage);
-  await driver.wait(webdriver.until.elementLocated(by, 10000));
-  await driver.wait(webdriver.until.elementIsVisible(driver.findElement(by)), 10000);
+  let by = webdriver.By.id(elementIdOnNextPage);
+  log.debug(`Page Loaded - waited on id: ${elementIdOnNextPage}`);
+  onWaitForWebElementToBeVisible(by);
+}
 
-  /* // Didn't Work
-  await driver.wait(webdriver.until.elementLocated(webdriver.By.id(elementIdOnNextPage)), 30 * 1000);
-  let el = await driver.findElement(webdriver.By.id(elementIdOnNextPage));
-  await driver.wait(webdriver.until.elementIsVisible(el), 30 * 1000);
+const onWaitForWebElementToBeVisible = async function (element) {
+  log.debug(`Waiting for element to appear...`);
+  await driver.wait(webdriver.until.elementLocated(element, 10000));
+  await driver.wait(webdriver.until.elementIsVisible(driver.findElement(element)), 10000);
+}
 
-  // Didn't work
-  await driver.wait(async function () {
-    const state = await driver.executeScript('return document.readyState');
-    console.log('Current STATE: '+state);
-    return state === 'complete';
-  });*/
-
-  console.log(`Page Loaded - waited on id: ${elementIdOnNextPage}`);
+const onWaitForWebElementToBeInvisible = async function (element) {
+  log.debug(`Waiting for element to disappear...`);
+  try {
+    await driver.wait(webdriver.until.elementLocated(element, 1000));
+    await driver.wait(webdriver.until.elementIsNotVisible(driver.findElement(element)), 15000);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 function sleep (ms) {
@@ -48,7 +51,7 @@ function sleep (ms) {
 
 // Show Process config files
 process.argv.forEach(function (val, index, array) {
-  console.log(index + ': ' + val);
+  log.debug(index + ': ' + val);
 });
 
-module.exports = { getDriver, getWebDriver, onPageLoaded, sleep };
+module.exports = { getDriver, getWebDriver, onPageLoaded, onWaitForWebElementToBeVisible, onWaitForWebElementToBeInvisible, sleep };

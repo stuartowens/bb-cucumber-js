@@ -1,13 +1,15 @@
 /**
  * http://usejsdoc.org/
  */
+const { getDriver, getWebDriver } = require('./driver');
+const { log } = require('./logger');
 const that = {};
 
-var WebElement = function (driver, webdriver, element) {
+const WebElement = function (element) {
   let my = {};
 
-  my.driver = driver;
-  my.webdriver = webdriver;
+  my.driver = getDriver();
+  my.webdriver = getWebDriver();
   my.element = element;
   my.byType = element.byType.toLowerCase();
   my.definition = element ? element.definition : null;
@@ -16,14 +18,14 @@ var WebElement = function (driver, webdriver, element) {
 
   that.getWebElement = async function () {
     const elementDef = await this.getBy();
-    const returnElement = await driver.findElement(elementDef);
+    const returnElement = await my.driver.findElement(elementDef);
     return returnElement;
   };
 
   that.getBy = async function () {
     let byReturn = null;
     const classType = my.byType.toLowerCase().trim();
-    console.log(`Getting By: ${classType}`);
+    log.debug(`Getting By: ${classType}`);
     switch (classType) {
       case 'xpath':
         byReturn = my.by.xpath(my.definition);
@@ -50,8 +52,8 @@ var WebElement = function (driver, webdriver, element) {
         byReturn = my.by.tagName(my.definition);
         break;
       default:
-        console.log(`ERROR: The data asked to identify the element ${my.name}  by the type ${my.byType} and that type is not valid.  Please review the data and try again.`);
-        console.log('ERROR: Valid types are [xpath, cssSelector, id, name, linkText, partialLinkText, className, tagName]');
+        log.error(`The data asked to identify the element ${my.name}  by the type ${my.byType} and that type is not valid.  Please review the data and try again.`);
+        log.error('Valid types are [xpath, cssSelector, id, name, linkText, partialLinkText, className, tagName]');
     }
     return byReturn;
   };

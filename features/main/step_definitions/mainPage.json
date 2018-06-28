@@ -2,15 +2,10 @@
 	"webElements": [
 		{
 			"name": "btn_login",
-			"byType": "id",
-			"definition": "ctl00_ucHeaderContactUsToolBar_aLoginLink",
-			"specialInstr": "NA"
-		},
-		{
-			"name": "ExampleObject2",
-			"byType": "xpath",
-			"definition": "totalCost2",
-			"specialInstr": "overwrite"
+			"byType": "classname",
+			"definition": " _3GtB",
+			"specialInstr": "NA",
+			"waitIdToBeVisibleonNextPage": "username"
 		}
 	]
 }

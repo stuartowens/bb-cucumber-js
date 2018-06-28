@@ -3,23 +3,24 @@
 		{
 			"name": "txt_username",
 			"byType": "id",
-			"definition": "email",
+			"definition": "username",
 			"frame": "default",
 			"specialInstr": "NA"
 		},
 		{
 			"name": "txt_password",
 			"byType": "id",
-			"definition": "Password",
+			"definition": "password",
 			"frame": "default",
 			"specialInstr": "NA"
 		},
 		{
 			"name": "signin_button",
 			"byType": "id",
-			"definition": "__signIn",
+			"definition": "signin",
 			"frame": "default",
-			"specialInstr": "container"
+			"specialInstr": "NA",
+			"waitIdToBeVisibleonNextPage": "container"
 		},
 		{
 			"name": "menu_system",
@@ -57,18 +58,27 @@
 			"specialInstr": "NA"
 		},
 		{
+			"name": "role_window",
+			"byType": "classname",
+			"definition": "_3y07",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
 			"name": "grant_role",
 			"byType": "xpath",
 			"definition": "/html/body/div[3]/div/div/div[2]/button[1]/div/span",
 			"frame": "default",
-			"specialInstr": "NA"
+			"specialInstr": "NA",
+			"waitForElementToBeInvisible": "role_window"
 		},
 		{
 			"name": "revoke_role",
 			"byType": "xpath",
 			"definition": "/html/body/div[3]/div/div/div[2]/button[2]/div/span",
 			"frame": "default",
-			"specialInstr": "NA"
+			"specialInstr": "NA",
+			"waitForElementToBeInvisible": "role_window"
 		},
 		{
 			"name": "logout",

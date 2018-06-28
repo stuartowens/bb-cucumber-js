@@ -4,20 +4,21 @@
 'use strict';
 const webdriver = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
+const { log } = require('./logger');
 
 var coreAutomation = function (worldData) {
   let that = {};
   that.config = require('../../../config/config.json');
-  console.log('Configuration loaded');
+  log.debug('Configuration loaded');
   that.loginAccounts = {};
 
-  console.log('baseURL:' + that.config['baseURL']);
+  log.debug('baseURL:' + that.config['baseURL']);
 
   that.initChrome = function () {
     var path = require('chromedriver').path;
 
     var chromeService = new chrome.ServiceBuilder(path).build();
-    chrome.setDefaultService(ChromeService);
+    chrome.setDefaultService(chromeService);
 
     var driver = new webdriver.Builder()
       .withCapabilities(webdriver.Capabilities.chrome())
@@ -36,7 +37,7 @@ var coreAutomation = function (worldData) {
     }
   };
   that.test = function () {
-    console.log('Executing test() function in coreAutomation');
+    log.debug('Executing test() function in coreAutomation');
   };
 
   return that;

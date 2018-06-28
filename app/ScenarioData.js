@@ -25,9 +25,6 @@ const ScenarioData = function (ScenarioName) {
     //Implement me!!!
   };
 
-  that.test = async function () {
-    console.log('**CoreData.test()');
-  };
   that.storeData = storeData;
   that.get = getData;
   that.put = storeData;
