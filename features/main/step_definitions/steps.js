@@ -63,7 +63,7 @@ When('I test things', function () {
 
 Then(/^I should get a message that says "(.*)"$/, function (message) {
   pages.login.assertText(
-    'txt_loginFaled',
-    '* You need a valid e-mail address and password to log in.'
+    'txt_loginFailed',
+    'invalid username or password'
   );
 });

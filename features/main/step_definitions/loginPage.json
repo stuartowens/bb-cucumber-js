@@ -27,6 +27,13 @@
 			"definition": "signin",
 			"frame": "default",
 			"specialInstr": "NA"
+		},
+		{
+			"name": "txt_loginFailed",
+			"byType": "classname",
+			"definition": "errorText",
+			"frame": "default",
+			"specialInstr": "NA"
 		}
 	]
 }

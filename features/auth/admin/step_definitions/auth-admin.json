@@ -20,7 +20,7 @@
 			"definition": "signin",
 			"frame": "default",
 			"specialInstr": "NA",
-			"waitIdToBeVisibleonNextPage": "container"
+			"waitToBeVisibleonNextPage": "menu_system"
 		},
 		{
 			"name": "menu_system",

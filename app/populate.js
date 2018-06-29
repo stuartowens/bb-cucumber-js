@@ -1,5 +1,5 @@
 
-const { getWebDriver, onPageLoaded, onWaitForWebElementToBeInvisible, sleep } = require('./driver');
+const { getWebDriver, onWaitForWebElementToBeVisible, onPageLoadedWaitById, onWaitForWebElementToBeInvisible, sleep } = require('./driver');
 const {Key} = require('selenium-webdriver');
 const WebElement = require('./WebElement');
 const { log } = require('./logger');
@@ -115,30 +115,34 @@ const populateClick = async function (eleTarget, strValue, actionElement) {
 
   if (strValue.toLowerCase() === 'click') {
     await eleTarget.click();
+    await sleep(500);
 
     if (tempElement && tempElement.waitIdToBeVisibleonNextPage) {
-      log.debug('Sleeping 1000ms');
-      await sleep(1000);
       log.debug('Waiting until page loads');
-      await onPageLoaded(tempElement.waitIdToBeVisibleonNextPage);
-      log.debug('Sleeping 1000ms');
-      await sleep(1000);
+      await onPageLoadedWaitById(tempElement.waitIdToBeVisibleonNextPage);
+      await sleep(500);
+    }
+
+    if (tempElement && tempElement.waitToBeVisibleonNextPage) {
+      log.debug('Waiting until element to be visible');
+      const webElementTarget = await WebElement(actionElement.waitToBeVisibleonNextPage);
+      const webElement = await webElementTarget.getBy();
+      await onWaitForWebElementToBeVisible(webElement);
+      await sleep(500);
     }
     log.debug('Clicked web element');
   }
 
   if (actionElement && actionElement.elementToWaitToBeInvisible) {
-    log.debug('Waiting until elemet to be invisible');
+    log.debug('Waiting until element to be invisible');
     const webElementTarget = await WebElement(actionElement.elementToWaitToBeInvisible);
     const webElement = await webElementTarget.getBy();
     await onWaitForWebElementToBeInvisible(webElement);
     log.debug('Sleeping 1000ms');
-    await sleep(1000);
+    await sleep(500);
   }
-  if (
-    localSpecialInstr &&
-    localSpecialInstr.toLowerCase().indexOf('waitAfter2secs') > -1
-  ) {
+
+  if (localSpecialInstr && localSpecialInstr.toLowerCase().indexOf('waitAfter2secs') > -1) {
     try {
       log.debug(`Sleeping 2 seconds: Click - waitAfter2secs ${localSpecialInstr.toLowerCase().indexOf('waitAfter2secs')}`);
       await sleep(2000);

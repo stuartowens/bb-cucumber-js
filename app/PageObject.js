@@ -47,7 +47,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
     for (var i in jsonContent.webElements) {
       var element = jsonContent.webElements[i];
       await addElement(element.name, element)
-      log.debug('Element: ' + element.byType);
+      log.debug(`Adding Element - name: "${element.name}", type: "${element.byType}", value: "${element.definition}"`);
     }
   }
 
@@ -83,10 +83,17 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       actionElement.element = tempElement;
       if (tempElement && tempElement.waitForElementToBeInvisible) {
         if (await hasElement(tempElement.waitForElementToBeInvisible)) {
-          const elementToWaitToBeInvisible = await getElement(elementName);
+          const elementToWaitToBeInvisible = await getElement(tempElement.waitForElementToBeInvisible);
           actionElement.elementToWaitToBeInvisible = elementToWaitToBeInvisible;
         }
       }
+      if (tempElement && tempElement.waitToBeVisibleonNextPage) {
+        if (await hasElement(tempElement.waitToBeVisibleonNextPage)) {
+          const waitToBeVisibleonNextPage = await getElement(tempElement.waitToBeVisibleonNextPage);
+          actionElement.waitToBeVisibleonNextPage = waitToBeVisibleonNextPage;
+        }
+      }
+
       // If need to hit a iframe, do it
       await switchFrame(tempElement.frame);
 
@@ -144,11 +151,11 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       log.error(err.stack);
       throw err;
     }
-  }
+  };
+
   const assertText = async function (strName, strValue) {
     try {
-      log.info(`INFO: Starting text assertion: ${strName} with value ${strValue}`);
-      log.info('INFO++: WorldData: ' + this.worldData);
+      log.info(`Starting text assertion: ${strName} with value ${strValue}`);
 
       strValue = await sp.strEval(strValue);
     } catch (err) {

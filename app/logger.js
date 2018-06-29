@@ -4,7 +4,7 @@
 const { createLogger, format, transports } = require('winston');
 const { colorize, combine, timestamp, printf } = format
 
-const logger = createLogger({
+const log = createLogger({
   level: 'debug',
   format: combine(format.splat(), format.simple()),
   transports: [
@@ -40,12 +40,11 @@ const myFormat = printf(info => {
   return `${info.timestamp} ${info.level}: ${info.message}`
 });
 //
-// If we're not in production then log to the `console` with the format:
-// `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
+// If we're not in production then log to the `console`
 //
 console.log(`Environment: ${process.env.NODE_ENV}`);
 if (process.env.NODE_ENV !== 'production') {
-  logger.add(
+  log.add(
     new transports.Console({
       format: combine(
         timestamp(),
@@ -56,8 +55,4 @@ if (process.env.NODE_ENV !== 'production') {
   );
 }
 
-// Global Logger
-// const log = new WrapperLogger();
-
-const log = logger;
 module.exports = { log };

@@ -8,7 +8,6 @@ Feature: Test on MacMillan.com
     When I click the login button
     Then I should be on the login screen
     When I enter "testUsername" and "testPassword"
-    # When I save a variable "<@save(loginfail, * You need a valid e-mail address and password to log in.)>"
     When I click by id "btn_signin" button
     Then I should get a message that says "<$loginfail>"
 
