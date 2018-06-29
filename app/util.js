@@ -62,4 +62,8 @@ const loadLogin = function (login) {
   }
 };
 
-module.exports = { loadJSONFile, loadConfig, loadLogin };
+const getRandomInt = function (max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+module.exports = { loadJSONFile, loadConfig, loadLogin, getRandomInt };

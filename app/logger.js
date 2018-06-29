@@ -42,7 +42,6 @@ const myFormat = printf(info => {
 //
 // If we're not in production then log to the `console`
 //
-console.log(`Environment: ${process.env.NODE_ENV}`);
 if (process.env.NODE_ENV !== 'production') {
   log.add(
     new transports.Console({

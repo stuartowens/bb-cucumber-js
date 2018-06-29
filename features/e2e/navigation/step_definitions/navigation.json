@@ -1,0 +1,49 @@
+{
+	"webElements": [
+		{
+			"name": "txt_username",
+			"byType": "id",
+			"definition": "username",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "txt_password",
+			"byType": "id",
+			"definition": "password",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "signin_button",
+			"byType": "id",
+			"definition": "signin",
+			"frame": "default",
+			"specialInstr": "NA",
+			"waitToBeVisible": "menu_system"
+		},
+		{
+			"name": "menu_system",
+			"byType": "classname",
+			"definition": "_12-z",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "admin_panel",
+			"byType": "xpath",
+			"definition": "/html/body/div[3]/div/div/div/div/div/div[2]/span/div/div/div[2]",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "logout",
+			"byType": "xpath",
+			"definition": "/html/body/div[3]/div/div/div/div/div/div[3]/span/div/div/div",
+			"frame": "default",
+			"specialInstr": "NA"
+		}
+		
+		
+	]
+}

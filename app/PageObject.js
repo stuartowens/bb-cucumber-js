@@ -87,10 +87,10 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
           actionElement.elementToWaitToBeInvisible = elementToWaitToBeInvisible;
         }
       }
-      if (tempElement && tempElement.waitToBeVisibleonNextPage) {
-        if (await hasElement(tempElement.waitToBeVisibleonNextPage)) {
-          const waitToBeVisibleonNextPage = await getElement(tempElement.waitToBeVisibleonNextPage);
-          actionElement.waitToBeVisibleonNextPage = waitToBeVisibleonNextPage;
+      if (tempElement && tempElement.waitToBeVisible) {
+        if (await hasElement(tempElement.waitToBeVisible)) {
+          const waitToBeVisible = await getElement(tempElement.waitToBeVisible);
+          actionElement.waitToBeVisible = waitToBeVisible;
         }
       }
 
@@ -142,7 +142,6 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   const populateElement = async function (strName, strValue) {
     try {
       log.info(`INFO: Starting populate the web element: ${strName} with value ${strValue}`);
-      // console.log(`INFO++: WorldData: ${this.worldData}`);
 
       strValue = await sp.strEval(strValue);
 

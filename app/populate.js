@@ -1,5 +1,5 @@
 
-const { getWebDriver, onWaitForWebElementToBeVisible, onPageLoadedWaitById, onWaitForWebElementToBeInvisible, sleep } = require('./driver');
+const { getWebDriver, onWaitForElementToBeVisible, onPageLoadedWaitById, onWaitForElementToBeLocated, onWaitForWebElementToBeEnabled, onWaitForElementToBeInvisible, sleep } = require('./driver');
 const {Key} = require('selenium-webdriver');
 const WebElement = require('./WebElement');
 const { log } = require('./logger');
@@ -123,11 +123,11 @@ const populateClick = async function (eleTarget, strValue, actionElement) {
       await sleep(500);
     }
 
-    if (tempElement && tempElement.waitToBeVisibleonNextPage) {
+    if (tempElement && tempElement.waitToBeVisible) {
       log.debug('Waiting until element to be visible');
-      const webElementTarget = await WebElement(actionElement.waitToBeVisibleonNextPage);
+      const webElementTarget = await WebElement(actionElement.waitToBeVisible);
       const webElement = await webElementTarget.getBy();
-      await onWaitForWebElementToBeVisible(webElement);
+      await onWaitForElementToBeVisible(webElement);
       await sleep(500);
     }
     log.debug('Clicked web element');
@@ -137,7 +137,7 @@ const populateClick = async function (eleTarget, strValue, actionElement) {
     log.debug('Waiting until element to be invisible');
     const webElementTarget = await WebElement(actionElement.elementToWaitToBeInvisible);
     const webElement = await webElementTarget.getBy();
-    await onWaitForWebElementToBeInvisible(webElement);
+    await onWaitForElementToBeInvisible(webElement);
     log.debug('Sleeping 1000ms');
     await sleep(500);
   }

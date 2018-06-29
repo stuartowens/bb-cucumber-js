@@ -3,10 +3,10 @@ const { Given, When, Then } = require('cucumber');
 const path = require('path');
 const assert = require('assert');
 
-const { PageObject } = require('../../../app/pageObject');
-const { getDriver, sleep } = require('../../../app/driver');
-const { loadConfig, loadLogin } = require('../../../app/util');
-const { log } = require('../../../app/logger');
+const { PageObject } = require('../../../../app/pageObject');
+const { getDriver, sleep } = require('../../../../app/driver');
+const { loadConfig, loadLogin } = require('../../../../app/util');
+const { log } = require('../../../../app/logger');
 /*
 var webdriver = require('selenium-webdriver');
 var chrome = require('selenium-webdriver/chrome');

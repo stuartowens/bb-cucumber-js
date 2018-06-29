@@ -26,10 +26,10 @@ const getWebDriver = function () {
 const onPageLoadedWaitById = async function (elementIdOnNextPage) {
   let by = webdriver.By.id(elementIdOnNextPage);
   log.debug(`Page Loaded - waited on id: ${elementIdOnNextPage}`);
-  onWaitForWebElementToBeVisible(by);
+  onWaitForElementToBeVisible(by);
 }
 
-const onWaitForWebElementToBeVisible = async function (element) {
+const onWaitForElementToBeVisible = async function (element) {
   log.debug(`Waiting for element to appear...`);
   try {
     await driver.wait(webdriver.until.elementLocated(element, 10000));
@@ -39,11 +39,29 @@ const onWaitForWebElementToBeVisible = async function (element) {
   }
 }
 
-const onWaitForWebElementToBeInvisible = async function (element) {
+const onWaitForElementToBeInvisible = async function (element) {
   log.debug(`Waiting for element to disappear...`);
   try {
-    await driver.wait(webdriver.until.elementLocated(element, 1000));
+    await driver.wait(webdriver.until.elementLocated(element, 10000));
     await driver.wait(webdriver.until.elementIsNotVisible(driver.findElement(element)), 15000);
+  } catch (err) {
+    log.error(err.stack);
+  }
+}
+
+const onWaitForWebElementToBeEnabled = async function (webElement) {
+  log.debug(`Waiting for webElement to become enabled...`);
+  try {
+    await driver.wait(webdriver.until.elementIsEnabled(webElement, 10000));
+  } catch (err) {
+    log.error(err.stack);
+  }
+}
+
+const onWaitForElementToBeLocated = async function (element) {
+  log.debug(`Waiting for element to become located...`);
+  try {
+    await driver.wait(webdriver.until.elementLocated(element, 10000));
   } catch (err) {
     log.error(err.stack);
   }
@@ -58,4 +76,13 @@ process.argv.forEach(function (val, index, array) {
   log.debug(index + ': ' + val);
 });
 
-module.exports = { getDriver, getWebDriver, onPageLoadedWaitById, onWaitForWebElementToBeVisible, onWaitForWebElementToBeInvisible, sleep };
+module.exports = {
+  getDriver,
+  getWebDriver,
+  onPageLoadedWaitById,
+  onWaitForElementToBeLocated,
+  onWaitForWebElementToBeEnabled,
+  onWaitForElementToBeVisible,
+  onWaitForElementToBeInvisible,
+  sleep
+};
