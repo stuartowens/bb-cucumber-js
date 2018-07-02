@@ -3,7 +3,7 @@
   "lockfileVersion": 1,
   "scripts": {
     "test-dev": "node ./node_modules/cucumber/bin/cucumber-js --world-parameters='{\"config\": \"e2e\"}'",
-    "test-feature": "node ./node_modules/cucumber/bin/cucumber-js features/main/login_failed.feature --world-parameters='{\"config\": \"e2e\"}'",
+    "test-feature": "node ./node_modules/cucumber/bin/cucumber-js features/e2e/admin/auth-admin-role.feature:23 --world-parameters='{\"config\": \"e2e\"}'",
     "test-prod": "node ./node_modules/cucumber/bin/cucumber-js --world-parameters='{\"config\": \"prod\"}'"
   },
   "dependencies": {
@@ -519,6 +519,7 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
-    "winston": "^3.0.0"
+    "winston": "^3.0.0",
+    "faker": "^4.1.0"
   }
 }

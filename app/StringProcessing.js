@@ -3,6 +3,9 @@
  */
 
 const { log } = require('./logger');
+const faker = require('faker');
+
+const ScenarioData = require('./scenarioData');
 
 const EVAL_BEGIN = '<';
 const EVAL_END = '>';
@@ -11,10 +14,8 @@ const PARAM_END = ')';
 
 const VARIABLE_PREFIX = '$';
 const FUNCTION_PREFIX = '@';
-const ScenarioData = require('./scenarioData');
 
 const StringProcessing = function (ScenarioDataInput) {
-  let my = {};
   let that = {};
   that.ScenarioData = ScenarioDataInput || ScenarioData;
 
@@ -23,6 +24,9 @@ const StringProcessing = function (ScenarioDataInput) {
     var end = endString || EVAL_END;
 
     let firstOccurance = inputString.indexOf(begin);
+    if (firstOccurance >= 0) {
+      firstOccurance += 1;
+    }
     let lastOccurance = inputString.lastIndexOf(end);
     return inputString.slice(firstOccurance, lastOccurance);
   };
@@ -33,10 +37,7 @@ const StringProcessing = function (ScenarioDataInput) {
     let string3 = '';
     let returnString = inputString || '';
 
-    if (
-      returnString.indexOf(EVAL_BEGIN) > 0 &&
-      returnString.indexOf(EVAL_END) > 0
-    ) {
+    if (returnString.indexOf(EVAL_BEGIN) >= 0 && returnString.indexOf(EVAL_END) > 0) {
       string1 = returnString.slice(0, returnString.indexOf(EVAL_BEGIN));
       string2 = getEvalSection(returnString);
       string3 = returnString.substr(returnString.lastIndexOf(EVAL_BEGIN));
@@ -48,23 +49,51 @@ const StringProcessing = function (ScenarioDataInput) {
       log.debug('retrieving variable: ' + inputString);
     } else {
       if (inputString.startsWith(FUNCTION_PREFIX)) {
-        returnString = inputString.replace(FUNCTION_PREFIX, '');
-        my.func.name = returnString.slice(0, returnString.indexOf(PARAM_BEGIN));
-        my.func.data = getEvalSection(returnString, PARAM_BEGIN, PARAM_END);
-        my.func.after = returnString.substr(
-          returnString.lastIndexOf(PARAM_END)
-        );
 
-        switch (my.func.name.trim()) {
-          case 'save':
-            my.func.params = returnString.split(',');
-            that.ScenarioData.put(my.func.params[0], my.func.params[1]);
-            break;
+        // Get function name
+        let functionName;
+        if (inputString.indexOf(PARAM_BEGIN) > -1) {
+          functionName = inputString.slice(1, inputString.indexOf(PARAM_BEGIN));
+        } else {
+          functionName = inputString.slice(1);
         }
+
+        // Get parameters
+        let parameters = [];
+        if (inputString.indexOf(PARAM_BEGIN) > -1) {
+          const parameterString = getEvalSection(returnString, PARAM_BEGIN, PARAM_END);
+          parameters = parameterString.indexOf(',') > -1 ? parameterString.split(',') : [ parameterString ];
+        }
+        returnString = functionEval(functionName, parameters);
       }
     }
-    return inputString;
+    return returnString;
   };
+
+  const functionEval = function (functionName, parameters) {
+    switch (functionName.trim()) {
+      case 'faker.user':
+        let fakeName = faker.name.findName();
+        return fakeName;
+      case 'faker.email':
+        let fakeEmail = faker.internet.email();
+        return fakeEmail;
+      case 'faker.card':
+        let fakeCard = faker.helpers.createCard();
+        return fakeCard;
+      case 'rnd':
+      case 'randomInt':
+        if (parameters && parameters.length === 2) {
+          return faker.random.number({min: parseInt(parameters[0]), max: parseInt(parameters[1])});
+        } else if (parameters && parameters.length === 1) {
+          return faker.random.number({max: parseInt(parameters[0])});
+        } else {
+          return faker.random.number({min: 50, max: 100000});
+        }
+      default:
+        return '';
+    }
+  }
   that.strEval = strEval;
 
   return that;

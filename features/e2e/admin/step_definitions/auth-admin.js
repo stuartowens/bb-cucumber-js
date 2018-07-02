@@ -1,6 +1,8 @@
 // features/support/steps.js
-const { When, Then } = require('cucumber');
+
 const path = require('path');
+
+const { When, Then } = require('cucumber');
 
 const { PageObject } = require('../../../../app/pageObject');
 const { log } = require('../../../../app/logger');
@@ -12,6 +14,11 @@ let pages = {
 };
 
 When(/^I elect to manage the role of (.*)$/, async function (email) {
+   // Rowan Nikolaus
+   // Kassandra.Haley@erich.biz
+   // random contact card containing many properties
+  log.debug(`FAKER - ${randomName} - ${randomEmail} - ${randomCard}`);
+
   await pages.authAdmin.populate('menu_system', 'click');
   await pages.authAdmin.populate('admin_panel', 'click');
   await pages.authAdmin.populate('manage_roles', 'click');

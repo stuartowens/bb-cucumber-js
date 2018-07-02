@@ -4,7 +4,7 @@ Background:
     Given That I have opened the Achieve "loginURL"
     And I have logged in as "admin"
 
-Scenario Outline: Admin able to revoke and then grant a specified role to a newly created user 
+Scenario Outline: Admin able to revoke and then grant a specified role to a newly created user
     When I elect to manage the role of <email_address>
     When I revoke the role of <role>
     When I elect to manage the role of <email_address>

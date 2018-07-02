@@ -4,8 +4,8 @@
 'use strict';
 
 const HashTable = require('./hashtable');
-const StringProcessing = require('./StringProcessing');
-const ScenarioData = require('./scenariodata');
+const StringProcessing = require('./stringProcessing');
+const ScenarioData = require('./scenarioData');
 const WebElement = require('./WebElement');
 const { loadJSONFile } = require('./util');
 const { getDriver, getWebDriver } = require('./driver');
