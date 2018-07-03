@@ -29,7 +29,18 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
 
   log.debug(`New PageObject: ${pageNameInput}`);
 
-  const addElement = async function (elementName, elements) {
+  const loadPageDefinitionFile = function (fullFileName) {
+    log.debug(`Opening file ${fullFileName} from ${__filename} `);
+    var jsonContent = loadJSONFile(fullFileName);
+
+    for (var i in jsonContent.webElements) {
+      var element = jsonContent.webElements[i];
+      addElement(element.name, element)
+      log.debug(`Adding Element - name: "${element.name}", type: "${element.byType}", value: "${element.definition}"`);
+    }
+  }
+
+  const addElement = function (elementName, elements) {
     that.pageElements.setItem(elementName, elements);
   }
 
@@ -39,17 +50,6 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
 
   const hasElement = async function (elementName) {
     return that.pageElements.hasItem(elementName);
-  }
-
-  const loadPageDefinitionFile = async function (fullFileName) {
-    log.debug(`Opening file ${fullFileName} from ${__filename} `);
-    var jsonContent = await loadJSONFile(fullFileName);
-
-    for (var i in jsonContent.webElements) {
-      var element = jsonContent.webElements[i];
-      await addElement(element.name, element)
-      log.debug(`Adding Element - name: "${element.name}", type: "${element.byType}", value: "${element.definition}"`);
-    }
   }
 
   const switchFrame = async function (elementName) {
@@ -140,9 +140,25 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
     }
   };
 
+  const getElementValue = async function (elementName) {
+    if (await hasElement(elementName)) {
+      let tempElement = {};
+      tempElement = await getElement(elementName);
+      // If need to hit a iframe, do it
+      await switchFrame(tempElement.frame);
+
+      const elementTarget = await WebElement(tempElement);
+      const webElement = await elementTarget.getWebElement();
+      const returnValue = await webElement.getText();
+      return returnValue;
+    } else {
+      throw new Error(`Element ${elementName} not found.`);
+    }
+  }
+
   const populateElement = async function (strName, strValue) {
     try {
-      log.info(`INFO: Starting populate the web element: ${strName} with value ${strValue}`);
+      log.info(`Starting populate the web element: ${strName} with value ${strValue}`);
 
       strValue = await sp.strEval(strValue);
 
@@ -153,11 +169,11 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
     }
   };
 
-  const assertText = async function (strValue, expectedValue) {
+  const assertText = async function (elementName, expectedValue) {
     try {
-      const evalString = await sp.strEval(strValue);
-      log.debug(`Expected "${strValue}" -> "${evalString}" to equal "${expectedValue}"`);
-      assert(evalString === expectedValue, `Expected ${strValue} -> ${evalString} to equal ${expectedValue}`);
+      const evalString = await getElementValue(elementName);
+      log.debug(`Expected "${elementName}" -> "${evalString}" to equal "${expectedValue}"`);
+      assert(evalString === expectedValue, `Expected ${elementName} -> ${evalString} to equal ${expectedValue}`);
     } catch (err) {
       log.error(err.stack);
       throw err;
@@ -169,8 +185,9 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   that.hasElement = hasElement;
   that.getDriver = getDriver;
   that.populate = populateElement;
+  that.getElementValue = getElementValue;
   that.populateElement = populateElement;
-  loadPageDefinitionFile(that.pageDefinitionFileName)
+  loadPageDefinitionFile(that.pageDefinitionFileName);
   return that;
 }
 

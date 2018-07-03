@@ -61,9 +61,9 @@ When('I test things', function () {
   log.debug('test steps:' + pages.mainPage.name);
 });
 
-Then(/^I should get a message that says "(.*)"$/, function (message) {
-  pages.login.assertText(
+Then(/^I should get a message that says "(.*)"$/, async function (message) {
+  await pages.login.assertText(
     'txt_loginFailed',
-    'invalid username or password'
+    message
   );
 });

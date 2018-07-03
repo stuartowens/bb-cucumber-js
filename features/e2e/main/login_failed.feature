@@ -9,7 +9,7 @@ Feature: Test on MacMillan.com
     Then I should be on the login screen
     When I enter "testUsername" and "testPassword"
     When I click by id "btn_signin" button
-    Then I should get a message that says "<$loginfail>"
+    Then I should get a message that says "Invalid username or password"
 
  # Scenario: navigate macmillanLearning.com
  #   Given I am on MacMillanLearning.com

@@ -14,11 +14,6 @@ let pages = {
 };
 
 When(/^I elect to manage the role of (.*)$/, async function (email) {
-   // Rowan Nikolaus
-   // Kassandra.Haley@erich.biz
-   // random contact card containing many properties
-  log.debug(`FAKER - ${randomName} - ${randomEmail} - ${randomCard}`);
-
   await pages.authAdmin.populate('menu_system', 'click');
   await pages.authAdmin.populate('admin_panel', 'click');
   await pages.authAdmin.populate('manage_roles', 'click');
@@ -38,5 +33,5 @@ When(/^I revoke the role of (.*)$/, async function (role) {
 });
 
 Then('Verify Successful permission grant message', async function () {
-
+  await pages.authAdmin.assertText('choose_role', 'Admin');
 });
