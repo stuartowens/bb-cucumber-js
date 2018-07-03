@@ -2,10 +2,11 @@
  * http://usejsdoc.org/
  */
 
-const { log } = require('./logger');
 const faker = require('faker');
 
 const ScenarioData = require('./scenarioData');
+const { log } = require('./logger');
+const { loadData } = require('./util');
 
 const EVAL_BEGIN = '<';
 const EVAL_END = '>';
@@ -49,7 +50,6 @@ const StringProcessing = function (ScenarioDataInput) {
       log.debug('retrieving variable: ' + inputString);
     } else {
       if (inputString.startsWith(FUNCTION_PREFIX)) {
-
         // Get function name
         let functionName;
         if (inputString.indexOf(PARAM_BEGIN) > -1) {
@@ -90,6 +90,17 @@ const StringProcessing = function (ScenarioDataInput) {
         } else {
           return faker.random.number({min: 50, max: 100000});
         }
+      case 'data':
+        if (parameters.length !== 2) {
+          throw new Error('Must have 2 parameters for @data funciton');
+        }
+        const dataFileName = parameters[0];
+        const dataJson = loadData(dataFileName);
+        if (!dataJson) {
+          throw new Error(`No Data file found for ${dataFileName}`);
+        }
+        const value = dataJson[parameters[1]];
+        return value;
       default:
         return '';
     }
