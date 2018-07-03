@@ -9,3 +9,5 @@ Scenario: Test StringProcessing code
     When I want to load @data(example,test) from json
     When I want to load @data(example,timeout) from json
     When I want to load @data(example,someDataField) from json
+    When I want to load @data(example,someDataField) from json
+    Then I want assert @data(example,test) matches "Testing"

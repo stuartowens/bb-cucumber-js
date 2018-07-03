@@ -2,6 +2,7 @@
  * http://usejsdoc.org/
  */
 'use strict';
+const { assert } = require('chai');
 
 const HashTable = require('./hashtable');
 const StringProcessing = require('./stringProcessing');
@@ -152,11 +153,11 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
     }
   };
 
-  const assertText = async function (strName, strValue) {
+  const assertText = async function (strValue, expectedValue) {
     try {
-      log.info(`Starting text assertion: ${strName} with value ${strValue}`);
-
-      strValue = await sp.strEval(strValue);
+      const evalString = await sp.strEval(strValue);
+      log.debug(`Expected "${strValue}" -> "${evalString}" to equal "${expectedValue}"`);
+      assert(evalString === expectedValue, `Expected ${strValue} -> ${evalString} to equal ${expectedValue}`);
     } catch (err) {
       log.error(err.stack);
       throw err;
