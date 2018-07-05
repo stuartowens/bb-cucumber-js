@@ -4,6 +4,8 @@ Scenario: Test StringProcessing code
     When I want to test @faker.user and @randomInt
     When I want to test @faker.user and @rnd(100)
     When I want to test @faker.email and @rnd(50,100)
+    When I want to test @faker.lorem.word and @rnd
+    When I want to test @faker.lorem.paragraph and @rnd
     # @data(fileName, fieldName) - fileName must be under config/${environment}/data
     When I want to load @data(example,test) from json
     When I want to load @data(example,timeout) from json

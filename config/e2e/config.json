@@ -1,7 +1,10 @@
 {
 	"baseURL": "https://dev-achieve-courseware-frontend.mldev.cloud/",
 	"loginURL": "https://dev-achieve-iam.mldev.cloud/login?retURL=https://dev-achieve-courseware-frontend.mldev.cloud/courses",
-	"loaddriver": "chrome",
+	"driver": {
+		"type": "chrome",
+		"headless": true
+	},
 	"chromeDriver_location_windows": "NA",
 	"timeout": "60"
 }

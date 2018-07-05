@@ -73,13 +73,19 @@ const StringProcessing = function (ScenarioDataInput) {
   const functionEval = function (functionName, parameters) {
     switch (functionName.trim()) {
       case 'faker.user':
-        let fakeName = faker.name.findName();
+        const fakeName = faker.name.findName();
         return fakeName;
+      case 'faker.lorem.word':
+        const fakeWord = faker.lorem.word();
+        return fakeWord;
+      case 'faker.lorem.paragraph':
+        const fakeParagraph = faker.lorem.paragraph();
+        return fakeParagraph;
       case 'faker.email':
-        let fakeEmail = faker.internet.email();
+        const fakeEmail = faker.internet.email();
         return fakeEmail;
       case 'faker.card':
-        let fakeCard = faker.helpers.createCard();
+        const fakeCard = faker.helpers.createCard();
         return fakeCard;
       case 'rnd':
       case 'randomInt':
