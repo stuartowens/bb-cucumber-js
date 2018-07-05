@@ -4,6 +4,7 @@
   "scripts": {
     "test-dev": "node ./node_modules/cucumber/bin/cucumber-js --world-parameters='{\"config\": \"e2e\"}'",
     "test-feature": "node ./node_modules/cucumber/bin/cucumber-js features/e2e/admin/auth-admin-role.feature:23 --world-parameters='{\"config\": \"e2e\"}'",
+    "test-example": "node ./node_modules/cucumber/bin/cucumber-js features/example.feature --world-parameters='{\"config\": \"e2e\"}'",
     "test-prod": "node ./node_modules/cucumber/bin/cucumber-js --world-parameters='{\"config\": \"prod\"}'"
   },
   "dependencies": {

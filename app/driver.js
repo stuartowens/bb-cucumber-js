@@ -11,15 +11,6 @@ const { loadConfig } = require('./util');
 var {setDefaultTimeout} = require('cucumber');
 setDefaultTimeout(60 * 1000);
 
-//const options = new chrome.Options();
-//options.addArguments('--headless');
-
-
-
-/*const driver = new webdriver.Builder()
-  .withCapabilities(webdriver.Capabilities.chrome())
-  .build();*/
-
 let service;
 const buildDriver = function () {
   const config = loadConfig('config');
