@@ -361,6 +361,7 @@
       "resolved": "https://registry.npmjs.org/pad-right/-/pad-right-0.2.2.tgz",
       "version": "0.2.2"
     },
+    "parse-duration": "^0.1.1",
     "path-is-absolute": {
       "integrity": "sha1-F0uSaHNVNP+8es5r9TpanhtcX18=",
       "resolved": "https://registry.npmjs.org/path-is-absolute/-/path-is-absolute-1.0.1.tgz",

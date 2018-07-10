@@ -1,6 +1,13 @@
 Feature: Testing
 
-Scenario: Test StringProcessing code
+  Scenario: Test DateProcessing code
+    Then I visually confirm that date @date(3 weeks from now) will be 3 weeks in the future
+    Then I visually confirm that date @date(1 day 12 hours 30 minutes ago) will be 36.5 hours in the past
+    Then I visually confirm that date @date(18 months from now) will be 1.5 years in the future
+    Then I visually confirm that date @date(1.5 years from now) will be 18 months in the future
+    Then I visually confirm that date @date(3 weeks) will fail with an understandable error
+
+  Scenario: Test StringProcessing code
     When I want to test @faker.user and @randomInt
     When I want to test @faker.user and @rnd(100)
     When I want to test @faker.email and @rnd(50,100)
@@ -12,6 +19,6 @@ Scenario: Test StringProcessing code
     When I want to load @data(example,someDataField) from json
     When I want to load @data(example,someDataField) from json
 
-Scenario: Test Assertion works
+  Scenario: Test Assertion works
     Given I am on MacMillanLearning.com
     Then I want assert "btn_login" matches "SIGN IN"

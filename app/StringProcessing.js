@@ -3,7 +3,7 @@
  */
 
 const faker = require('faker');
-
+const parseDate = require('./DateProcessing');
 const ScenarioData = require('./scenarioData');
 const { log } = require('./logger');
 const { loadData } = require('./util');
@@ -72,6 +72,8 @@ const StringProcessing = function (ScenarioDataInput) {
 
   const functionEval = function (functionName, parameters) {
     switch (functionName.trim()) {
+      case 'date':
+        return parseDate.simple(parameters);
       case 'faker.user':
         const fakeName = faker.name.findName();
         return fakeName;

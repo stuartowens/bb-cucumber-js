@@ -44,3 +44,12 @@ Then(/^I want assert "(.*)" matches "(.*)"$/, async function (dataFileAndField, 
     log.error(err.stack);
   }
 });
+
+Then(/^I visually confirm that date (.*) will /, async function(date) {
+  let that = {ScenarioData};
+  let sp = StringProcessing(that.ScenarioData);
+  let datetime = new Date(sp.strEval(date))
+  console.log(`-----`);
+  console.log(datetime)
+  console.log(`-----`);
+});
