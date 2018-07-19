@@ -1,6 +1,6 @@
 {
-	"baseURL": "https://dev-achieve-courseware-frontend.mldev.cloud/",
-	"loginURL": "https://dev-achieve-iam.mldev.cloud/login?retURL=https://dev-achieve-courseware-frontend.mldev.cloud/courses",
+	"baseURL": "https://int-achieve-courseware-frontend.mldev.cloud/",
+	"loginURL": "https://int-achieve-iam.mldev.cloud/login?retURL=https://int-achieve-courseware-frontend.mldev.cloud/courses",
 	"driver": {
 		"type": "chrome",
 		"headless": false

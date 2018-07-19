@@ -114,6 +114,14 @@ const populateClick = async function (eleTarget, strValue, actionElement) {
   }
 
   if (strValue.toLowerCase() === 'click') {
+    if (tempElement && tempElement.waitForElementToBeEnabled) {
+      log.debug('Waiting until element to be enabled');
+      const webElementTarget = await WebElement(tempElement);
+      const webElement = await webElementTarget.getWebElement();
+      await onWaitForWebElementToBeEnabled(webElement);
+      await sleep(500);
+    }
+
     await eleTarget.click();
     await sleep(500);
 
@@ -130,6 +138,7 @@ const populateClick = async function (eleTarget, strValue, actionElement) {
       await onWaitForElementToBeVisible(webElement);
       await sleep(500);
     }
+
     log.debug('Clicked web element');
   }
 

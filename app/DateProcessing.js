@@ -5,7 +5,7 @@
 const parse = require('parse-duration');
 
 module.exports = {
-  simple: function(str) {
+  simple: function (str) {
     str = str[0];
     let now = Date.now();
     let out = null;

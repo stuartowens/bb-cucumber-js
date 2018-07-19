@@ -6,7 +6,7 @@ const faker = require('faker');
 const parseDate = require('./DateProcessing');
 const ScenarioData = require('./scenarioData');
 const { log } = require('./logger');
-const { loadData } = require('./util');
+const { loadData, loadLogin } = require('./util');
 
 const EVAL_BEGIN = '<';
 const EVAL_END = '>';
@@ -72,6 +72,11 @@ const StringProcessing = function (ScenarioDataInput) {
 
   const functionEval = function (functionName, parameters) {
     switch (functionName.trim()) {
+      case 'login':
+        if (!parameters || parameters.length !== 2) {
+          throw new Error('Parameters either don\'t exist, or there is not 2 available.');
+        }
+        return loadLogin(parameters[0])[parameters[1]];
       case 'date':
         return parseDate.simple(parameters);
       case 'faker.user':

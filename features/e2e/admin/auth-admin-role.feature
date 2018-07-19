@@ -9,11 +9,11 @@ Scenario Outline: Admin able to revoke and then grant a specified role to a newl
     When I revoke the role of <role>
     When I elect to manage the role of <email_address>
     When I grant the role of <role>
-    Then Verify Successful permission grant message
+    #Then Verify Successful permission grant message
     And I sign out of Achieve
     Examples: 
     |email_address            |role                         |
-    |michael.pasko@macmillan.com  | Admin                     |
+    |testachievepasko@macmillan.com  | Admin                     |
 #    |testuser+ad02@gmail.com  | "Customer Support"          |
 #    |testuser+ad03@gmail.com  | "Media Producer"            |
 #    |testuser+ad04@gmail.com  | "Instructor"                |

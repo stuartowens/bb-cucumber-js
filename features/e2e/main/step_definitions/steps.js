@@ -20,8 +20,8 @@ let pages = {
 
 Given('I am on MacMillanLearning.com', async function () {
   const config = await loadConfig('config');
-  log.debug(`Loading URL ${config.baseURL}`);
-  await getDriver().get(config.baseURL);
+  log.debug(`Loading URL ${config.loginURL}`);
+  await getDriver().get(config.loginURL);
   await sleep(2000);
 });
 

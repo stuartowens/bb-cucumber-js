@@ -45,11 +45,36 @@ Then(/^I want assert "(.*)" matches "(.*)"$/, async function (dataFileAndField, 
   }
 });
 
-Then(/^I visually confirm that date (.*) will /, async function(date) {
+Then(/^I visually confirm that date (.*) will /, async function (date) {
+  try {
+    let that = {ScenarioData};
+    let sp = StringProcessing(that.ScenarioData);
+    let datetime = new Date(sp.strEval(date))
+    log.debug(`-----`);
+    log.debug(datetime)
+    log.debug(`-----`);
+  } catch (err) {
+    log.error(err.stack);
+  }
+});
+
+Then(/^I visually confirm it failed that login data is bad (.*) has error /, async function (login) {
+  try {
+    let that = {ScenarioData};
+    let sp = StringProcessing(that.ScenarioData);
+    let username = sp.strEval(login);
+    if (!username) {
+      throw new Error(`Nothing was found for: ${login}`);
+    }
+    log.debug(`Found username ${username} from ${login}`);
+  } catch (err) {
+    log.error(err.stack);
+  }
+});
+
+Then(/^I visually confirm that login data (.*) /, async function (login) {
   let that = {ScenarioData};
   let sp = StringProcessing(that.ScenarioData);
-  let datetime = new Date(sp.strEval(date))
-  console.log(`-----`);
-  console.log(datetime)
-  console.log(`-----`);
+  let username = sp.strEval(login);
+  log.debug(`Found username ${username} from ${login}`);
 });

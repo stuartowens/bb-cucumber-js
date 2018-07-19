@@ -49,6 +49,7 @@
 			"definition": "/html/body/div[3]/div/div/div[2]/button[1]/div/span",
 			"frame": "default",
 			"specialInstr": "NA",
+			"waitForElementToBeEnabled": true,
 			"waitForElementToBeInvisible": "role_window"
 		},
 		{
@@ -57,6 +58,7 @@
 			"definition": "/html/body/div[3]/div/div/div[2]/button[2]/div/span",
 			"frame": "default",
 			"specialInstr": "NA",
+			"waitForElementToBeEnabled": true,
 			"waitForElementToBeInvisible": "role_window"
 		}
 		

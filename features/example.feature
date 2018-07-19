@@ -22,3 +22,9 @@ Feature: Testing
   Scenario: Test Assertion works
     Given I am on MacMillanLearning.com
     Then I want assert "btn_login" matches "SIGN IN"
+
+  Scenario: Test Login data retreival code
+    Then I visually confirm that login data @login(admin,username) is the username stored
+    Then I visually confirm it failed that login data is bad @login(badFilename,username) has error because of bad filename
+    Then I visually confirm it failed that login data is bad @login(admin,badUsername) has error because of variable name
+    Then I visually confirm it failed that login data is bad @login(admin) has error because of only 1 parameter
