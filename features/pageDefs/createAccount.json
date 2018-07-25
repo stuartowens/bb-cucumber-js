@@ -1,0 +1,141 @@
+{
+	"webElements": [
+		{
+			"name": "headerLogo",
+			"byType": "id",
+			"definition": "headerLogo",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+				
+		{
+			"name": "firstName",
+			"byType": "id",
+			"definition": "firstName",
+			"frame": "default",
+			"waitToBeVisible": "headerLogo",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "lastName",
+			"byType": "id",
+			"definition": "lastName",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "email",
+			"byType": "id",
+			"definition": "email",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "password",
+			"byType": "id",
+			"definition": "password",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "confirmPassword",
+			"byType": "id",
+			"definition": "confirmPassword",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "firstName",
+			"byType": "id",
+			"definition": "firstName",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "Security_Question_1__c",
+			"byType": "id",
+			"definition": "Security_Question_1__c",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "Security_Question_1_Answer__c",
+			"byType": "id",
+			"definition": "Security_Question_1_Answer__c",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "Security_Question_2__c",
+			"byType": "id",
+			"definition": "Security_Question_2__c",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "Security_Question_2_Answer__c",
+			"byType": "id",
+			"definition": "Security_Question_2_Answer__c",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "Security_Question_3__c",
+			"byType": "id",
+			"definition": "Security_Question_3__c",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "Security_Question_3_Answer__c",
+			"byType": "id",
+			"definition": "Security_Question_3_Answer__c",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "institution",
+			"byType": "id",
+			"definition": "institution",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "OptIn",
+			"byType": "id",
+			"definition": "OptIn__c",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "termsOfService",
+			"byType": "id",
+			"definition": "Terms_of_Service__c",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "errorText",
+			"byType": "xpath",
+			"definition": "//*[@id='frm1']/div[15]",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		
+		{
+			"name": "signUp_btn",
+			"byType": "id",
+			"definition": "signup",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "signIn_btn",
+			"byType": "id",
+			"definition": "signin",
+			"frame": "default",
+			"specialInstr": "NA"
+		}		
+		
+	]
+}

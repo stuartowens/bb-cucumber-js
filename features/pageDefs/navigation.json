@@ -23,6 +23,21 @@
 			"waitToBeVisible": "menu_system"
 		},
 		{
+			"name": "create_account_button",
+			"byType": "id",
+			"definition": "createAccount",
+			"frame": "default",
+			"specialInstr": "NA",
+			"waitToBeVisible": "headerLogo"
+		},
+		{
+			"name": "headerLogo",
+			"byType": "id",
+			"definition": "headerLogo",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+			{
 			"name": "menu_system",
 			"byType": "classname",
 			"definition": "_12-z",
@@ -33,6 +48,13 @@
 			"name": "admin_panel",
 			"byType": "xpath",
 			"definition": "/html/body/div[3]/div/div/div/div/div/div[2]/span/div/div/div[2]",
+			"frame": "default",
+			"specialInstr": "NA"
+		},	
+		{
+			"name": "main_signin",
+			"byType": "xpath",
+			"definition": "//*[@id='container']/div/div/div/div[2]/a/button",
 			"frame": "default",
 			"specialInstr": "NA"
 		},

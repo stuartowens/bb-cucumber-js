@@ -1,10 +1,10 @@
- 
+
 var reporter = require('cucumber-html-reporter');
  
 var options = {
-        theme: 'bootstrap',
-        jsonFile: './report/cucumber_report.json',
-        output: './report/cucumber_report.html',
+        theme: 'foundation',
+        jsonDir: './report/',
+        output: './report/cucumber_report-f.html',
         reportSuiteAsScenarios: true,
         launchReport: true,
         metadata: {
@@ -23,4 +23,5 @@ var options = {
     //more info on `metadata` is available in `options` section below.
  
     //to generate consodilated report from multi-cucumber JSON files, please use `jsonDir` option instead of `jsonFile`. More info is available in `options` section below.
+ //https://www.npmjs.com/package/cucumber-html-reporter
  

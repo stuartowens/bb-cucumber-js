@@ -22,10 +22,16 @@ const WebElement = function (element) {
     return returnElement;
   };
 
+  that.elementExists = async function () {
+    const elementDef = await this.getBy();
+    const returnExists = await my.driver.findElements(elementDef).size != 0;
+    return returnExists;
+  };
+
   that.getBy = async function () {
     let byReturn = null;
     const classType = my.byType.toLowerCase().trim();
-    log.debug(`Getting By: ${classType}`);
+    log.debug(`Getting element ${element.name} By: ${classType}`);
     switch (classType) {
       case 'xpath':
         byReturn = my.by.xpath(my.definition);

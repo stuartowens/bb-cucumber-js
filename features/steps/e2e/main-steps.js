@@ -3,10 +3,11 @@ const { Given, When, Then } = require('cucumber');
 const path = require('path');
 const assert = require('assert');
 
-const { PageObject } = require('../../../../app/pageObject');
-const { getDriver, sleep } = require('../../../../app/driver');
-const { loadConfig, loadLogin } = require('../../../../app/util');
-const { log } = require('../../../../app/logger');
+const stepsPath = process.cwd() + '/features/pageDefs/';
+const { PageObject } = require('../../../app/pageObject');
+const { getDriver, sleep } = require('../../../app/driver');
+const { loadConfig, loadLogin } = require('../../../app/util');
+const { log } = require('../../../app/logger');
 /*
 var webdriver = require('selenium-webdriver');
 var chrome = require('selenium-webdriver/chrome');
@@ -14,8 +15,8 @@ var firefox = require('selenium-webdriver/firefox');
 */
 
 let pages = {
-  mainPage: new PageObject('mainPage.json', path.join(__dirname, '/')),
-  login: new PageObject('loginPage.json', path.join(__dirname, '/'))
+  mainPage: new PageObject('mainPage.json', stepsPath),
+  login: new PageObject('loginPage.json', stepsPath)
 };
 
 Given('I am on MacMillanLearning.com', async function () {

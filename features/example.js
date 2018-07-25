@@ -1,6 +1,7 @@
 'use strict';
 const { When, Then } = require('cucumber');
 const path = require('path');
+const stepsPath = process.cwd() + '/features/stepDefs/';
 
 const { log } = require('../app/logger');
 const { PageObject } = require('../app/pageObject');
@@ -37,7 +38,7 @@ When(/^I want to load (.*) from json$/, async function (dataFileAndField) {
 
 Then(/^I want assert "(.*)" matches "(.*)"$/, async function (dataFileAndField, assertValue) {
   try {
-    const authAdmin = new PageObject('mainPage.json', path.join(__dirname, '/e2e/main/step_definitions/'))
+    const authAdmin = new PageObject('mainPage.json', stepsPath)
     await authAdmin.assertText(dataFileAndField, assertValue);
     log.debug(`Asserted Data Field ${dataFileAndField} - ${assertValue}`);
   } catch (err) {

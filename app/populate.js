@@ -19,12 +19,19 @@ const populateInput = async function (eleTarget, strValue, actionElement) {
     case 'text':
       await populateTextField(eleTarget, strValue, actionElement);
       break;
+
     case 'password':
       await populateTextField(eleTarget, strValue, actionElement);
       break;
+
     case 'checkbox':
-      await populateCheckbox(eleTarget, strValue, actionElement);
+      if (strValue.toLowerCase() === 'click') {
+        await populateClick(eleTarget, strValue, actionElement);
+      } else {
+        log.debug('Bypassing the checkbox click');
+      }
       break;
+
     case 'button':
       if (strValue.toLowerCase() === 'click') {
         await populateClick(eleTarget, strValue, actionElement);
@@ -43,18 +50,35 @@ const populateInput = async function (eleTarget, strValue, actionElement) {
 
 const populateSelect = async function (selector, item, tempElement) {
   const webDriver = getWebDriver();
+  const localSpecialInstr = tempElement.specialInstr || "";
+
   if (!selector) return;
   await selector.click();
   await sleep(500);
 
   const options = await selector.findElements(webDriver.By.tagName('option'));
-  await options.forEach(async function (option) {
-    const optionText = await option.getText();
-    log.debug(`Item: ${item} - ${optionText}`);
-    if (item === optionText) {
-      option.click();
+
+  
+  if (localSpecialInstr.toLowerCase().includes('selectByVisibleText'.toLowerCase())){
+    selector.selectByVisibleText(item);
+  } else if (localSpecialInstr.toLowerCase().includes('selectByValue'.toLowerCase())) {
+    selector.selectByValue(item);
+  }
+    else {  
+      await options.forEach(async function (option) {
+        const optionText = await option.getText();
+        log.debug(`Item: ${item} - ${optionText}`);
+          
+        if (item === optionText) {
+          option.click();
+        }  
+      });
     }
-  });
+  
+  if(tempElement.specialInstr === 'tabAfter') {
+    selector.sendKeys(Keys.TAB);
+  }
+
 };
 
 /* specialInstr values: 
@@ -126,13 +150,13 @@ const populateClick = async function (eleTarget, strValue, actionElement) {
     await sleep(500);
 
     if (tempElement && tempElement.waitIdToBeVisibleonNextPage) {
-      log.debug('Waiting until page loads');
+      log.debug('Waiting until page loads after click');
       await onPageLoadedWaitById(tempElement.waitIdToBeVisibleonNextPage);
       await sleep(500);
     }
 
     if (tempElement && tempElement.waitToBeVisible) {
-      log.debug('Waiting until element to be visible');
+      log.debug(`Waiting until tempElement (${tempElement}) to be visible`);
       const webElementTarget = await WebElement(actionElement.waitToBeVisible);
       const webElement = await webElementTarget.getBy();
       await onWaitForElementToBeVisible(webElement);
@@ -143,7 +167,7 @@ const populateClick = async function (eleTarget, strValue, actionElement) {
   }
 
   if (actionElement && actionElement.elementToWaitToBeInvisible) {
-    log.debug('Waiting until element to be invisible');
+    log.debug(`Waiting until actionElement (${actionElement}) to be invisible`);
     const webElementTarget = await WebElement(actionElement.elementToWaitToBeInvisible);
     const webElement = await webElementTarget.getBy();
     await onWaitForElementToBeInvisible(webElement);

@@ -9,7 +9,10 @@ const { loadConfig } = require('./util');
 
 // https://stackoverflow.com/questions/49862078/protractor-and-cucumber-function-timed-out-using-async-await
 var {setDefaultTimeout} = require('cucumber');
-setDefaultTimeout(60 * 1000);
+
+const config = loadConfig('config');
+
+setDefaultTimeout(60 * 500);
 
 let service;
 const buildDriver = function () {
@@ -59,7 +62,7 @@ const onPageLoadedWaitById = async function (elementIdOnNextPage) {
 }
 
 const onWaitForElementToBeVisible = async function (element) {
-  log.debug(`Waiting for element to appear...`);
+  log.debug(`Waiting for element (${element}) to appear...`);
   try {
     await driver.wait(webdriver.until.elementLocated(element, 10000));
     await driver.wait(webdriver.until.elementIsVisible(driver.findElement(element)), 10000);
@@ -115,5 +118,6 @@ module.exports = {
   onWaitForWebElementToBeEnabled,
   onWaitForElementToBeVisible,
   onWaitForElementToBeInvisible,
+  config,
   sleep
 };

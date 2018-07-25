@@ -101,7 +101,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       elementTarget = await WebElement(tempElement);
       actionElement.webElement = elementTarget;
 
-      log.debug(`****genericPopulateElement: ${elementName}`);
+      //log.debug(`****genericPopulateElement: ${elementName}`);
       log.info(`Info: Page Element ${elementName} retrieved from Page Elements collection.`);
 
       const webElement = await elementTarget.getWebElement();
@@ -168,6 +168,55 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       throw err;
     }
   };
+  const elementExists = async function (strName) {
+    try {
+      log.info(`Starting to check if web element exists on the page: ${strName}`);
+
+      return await checkWebElementExists(strName);
+    } catch (err) {
+      log.error(err.stack);
+      throw err;
+    }
+  };
+
+  const checkWebElementExists = async function (elementName) {
+    let elementTarget = '';
+    let tempElement = {};
+    log.debug(`Checking to see if element: ${elementName} exists.`)
+    if (await hasElement(elementName)) {
+      tempElement = await getElement(elementName);
+      const actionElement = Object.assign({});
+
+      // Setup all underlying required objects to take action on for this action
+      actionElement.element = tempElement;
+     /* if (tempElement && tempElement.waitForElementToBeInvisible) {
+        if (await hasElement(tempElement.waitForElementToBeInvisible)) {
+          const elementToWaitToBeInvisible = await getElement(tempElement.waitForElementToBeInvisible);
+          actionElement.elementToWaitToBeInvisible = elementToWaitToBeInvisible;
+        }
+      }
+      if (tempElement && tempElement.waitToBeVisible) {
+        if (await hasElement(tempElement.waitToBeVisible)) {
+          const waitToBeVisible = await getElement(tempElement.waitToBeVisible);
+          actionElement.waitToBeVisible = waitToBeVisible;
+        }
+      }
+*/
+      // If need to hit a iframe, do it
+      await switchFrame(tempElement.frame);
+
+      elementTarget = await WebElement(tempElement);
+      actionElement.webElement = elementTarget;
+
+      //log.debug(`****genericPopulateElement: ${elementName}`);
+      log.info(`Info: Page Element ${elementName} retrieved from Page Elements collection for exists check.`);
+
+      //const webElement = await elementTarget.getWebElement();
+      return elementTarget.elementExists();
+    } else {
+      log.error(`ERROR: WebElement ${elementName} not found in PageElements during checkWebElementExists() attempt.`);
+    }
+  };
 
   const assertText = async function (elementName, expectedValue) {
     try {
@@ -187,6 +236,8 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   that.populate = populateElement;
   that.getElementValue = getElementValue;
   that.populateElement = populateElement;
+  that.elementExists = elementExists;
+  that.checkWebElementExists = checkWebElementExists;
   loadPageDefinitionFile(that.pageDefinitionFileName);
   return that;
 }

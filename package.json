@@ -2,9 +2,12 @@
   "requires": true,
   "lockfileVersion": 1,
   "scripts": {
-    "test-dev": "node ./node_modules/cucumber/bin/cucumber-js --world-parameters='{\"config\": \"e2e\"}'",
-    "test-feature": "node ./node_modules/cucumber/bin/cucumber-js features/e2e/admin/auth-admin-role.feature:23 --world-parameters='{\"config\": \"e2e\"}'",
-    "test-example": "node ./node_modules/cucumber/bin/cucumber-js features/example.feature --world-parameters='{\"config\": \"e2e\"}'",
+    "test-dev": "node ./node_modules/cucumber/bin/cucumber-js --world-parameters='{\"config\": \"dev\"}'",
+    "test-int": "node ./node_modules/cucumber/bin/cucumber-js --world-parameters='{\"config\": \"int\"}'",
+    "test-int-rpt": "node ./node_modules/cucumber/bin/cucumber-js --world-parameters='{\"config\": \"int\"}' -f 'json:./report/cucumber_report_1.json'",
+    "test-dev-feature": "node ./node_modules/cucumber/bin/cucumber-js features/dev/admin/auth-admin-role.feature:23 --world-parameters='{\"config\": \"dev\"}'",
+    "test-int-feature": "node ./node_modules/cucumber/bin/cucumber-js features/tests/TIE/create-test-accounts.feature --world-parameters='{\"config\": \"int\"}'",
+    "test-example": "node ./node_modules/cucumber/bin/cucumber-js features/example.feature --world-parameters='{\"config\": \"int\"}'",
     "test-prod": "node ./node_modules/cucumber/bin/cucumber-js --world-parameters='{\"config\": \"prod\"}'"
   },
   "dependencies": {
@@ -515,13 +518,14 @@
     }
   },
   "devDependencies": {
-    "cucumber-html-reporter": "^4.0.2",
+    "cucumber-html-reporter": "^4.0.3",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
-    "winston": "^3.0.0",
-    "faker": "^4.1.0"
+    "faker": "^4.1.0",
+    "node-dir": "^0.1.17",
+    "winston": "^3.0.0"
   }
 }
