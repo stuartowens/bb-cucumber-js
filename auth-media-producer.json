@@ -1,0 +1,239 @@
+{
+	"webElements": [
+		{
+			"name": "menu_system",
+			"byType": "classname",
+			"definition": "_12-z",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "admin_panel",
+			"byType": "xpath",
+			"definition": "/html/body/div[3]/div/div/div/div/div/div[2]/span/div/div/div[2]",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "manage_roles",
+			"byType": "xpath",
+			"definition": "/html/body/div[4]/div/div/div/div/div/div[10]/span/div/div/div/span",
+			"frame": "default",
+			"specialInstr": "NA",
+			"waitToBeVisible": "enter_email_address"
+		},
+		{
+			"name": "enter_email_address",
+			"byType": "id",
+			"definition": "__manageRoles_emailInput",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "choose_role",
+			"byType": "classname",
+			"definition": "_1ogr",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "role_window",
+			"byType": "classname",
+			"definition": "_3y07",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "grant_role",
+			"byType": "xpath",
+			"definition": "/html/body/div[3]/div/div/div[2]/button[1]/div/span",
+			"frame": "default",
+			"specialInstr": "NA",
+			"waitForElementToBeInvisible": "role_window"
+		},
+		{
+			"name": "revoke_role",
+			"byType": "xpath",
+			"definition": "/html/body/div[3]/div/div/div[2]/button[2]/div/span",
+			"frame": "default",
+			"specialInstr": "NA",
+			"waitForElementToBeInvisible": "role_window"
+        },
+        {
+            "name":"create_course",
+            "byType":"xpath",
+            "definition":"/html/body/div/div/div[2]/div/div/div/div/div[3]/div/button",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"course_type",
+            "byType":"name",
+            "definition":"courseType",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"product_model",
+            "byType":"name",
+            "definition":"productModel",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"course_name",
+            "byType":"id",
+            "definition":"__createCourse_nameInput",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"course_code",
+            "byType":"id",
+            "definition":"__createCourse_codeInput",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"save_button",
+            "byType":"classname",
+            "definition":"_1tkc undefined",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"isbn_number",
+            "byType":"id",
+            "definition":"__createCourse_isbnInput",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"course_status",
+            "byType":"name",
+            "definition":"courseStatus",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"course_node",
+            "byType":"???",
+            "definition":"???",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"resources_button",
+            "byType":"id",
+            "definition":"react-tabs-20",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"add_folder",
+            "byType":"classname",
+            "definition":"_1tkc _1C6k",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"folder_name",
+            "byType":"id",
+            "definition":"0757b5da-e0a6-48e3-becd-ad4fc96c4bea",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"card_name",
+            "byType":"classname",
+            "definition":"DOD8 CourseCard_draft CourseCard_product_1 CourseCard_template",
+            "frame":"default",
+            "specialInstr":"NA",
+            "waitToBeVisible":"resources_tab"
+        },
+        {
+            "name":"resources_tab",
+            "byType":"xpath",
+            "definition":"/html/body/div/div/div/div/div[4]/div/p[2]/button",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"folder_name",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div/input",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"add_folder_button",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[3]/div[2]/button",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"options_button",
+            "byType":"xpath",
+            "definition":"/html/body/div/div/div/div/div[4]/div/div/div/div[2]/div[2]/div[1]/div/div/div[3]/div/button",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"move_item_button",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div/div/div/div[2]/span/div/div/div/span",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"chapter_2",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div/div/div/div/div[2]/div[5]/div/div/div[2]/button/span",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"place_item_button",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[3]/div[2]/button",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"chapter_1_3",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div/div/div/div/div[2]/div[4]/div/div/div[2]/button",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"chapter_1_4",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div/div/div/div/div[2]/div[3]/div/div/div[2]/button",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"reorder_button",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div/div/div/div[3]/span/div/div/div",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"move_down_button",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div/div[2]/button[3]",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"save_reordered_button",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[3]/div[2]/button",
+            "frame":"default",
+            "specialInstr":"NA"
+        }
+	]
+}
