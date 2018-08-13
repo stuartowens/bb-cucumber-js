@@ -29,7 +29,7 @@ When(/^I have logged in as "(.*)"$/, async function (userFile) {
     await pages.navigation.populate('txt_password', user.password);
 
     await pages.navigation.populate('signin_button', 'click');
-    log.debug(`Login button was clicked:`);
+    log.debug(`Login button was clicked`);
   } catch (err) {
     log.error(err.stack);
     throw err;

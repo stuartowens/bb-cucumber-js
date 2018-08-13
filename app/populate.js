@@ -50,7 +50,7 @@ const populateInput = async function (eleTarget, strValue, actionElement) {
 
 const populateSelect = async function (selector, item, tempElement) {
   const webDriver = getWebDriver();
-  const localSpecialInstr = tempElement.specialInstr || "";
+  const localSpecialInstr = tempElement.specialInstr || '';
 
   if (!selector) return;
   await selector.click();
@@ -58,31 +58,25 @@ const populateSelect = async function (selector, item, tempElement) {
 
   const options = await selector.findElements(webDriver.By.tagName('option'));
 
-  
-  if (localSpecialInstr.toLowerCase().includes('selectByVisibleText'.toLowerCase())){
-    selector.selectByVisibleText(item);
+  if (localSpecialInstr.toLowerCase().includes('selectByVisibleText'.toLowerCase())) {
+    await selector.selectByVisibleText(item);
   } else if (localSpecialInstr.toLowerCase().includes('selectByValue'.toLowerCase())) {
-    selector.selectByValue(item);
+    await selector.selectByValue(item);
+  } else {
+    await options.forEach(async function (option) {
+      const optionText = await option.getText();
+      log.debug(`Item: ${item} - ${optionText}`);
+      if (item === optionText) {
+        await option.click();
+      }
+    });
   }
-    else {  
-      await options.forEach(async function (option) {
-        const optionText = await option.getText();
-        log.debug(`Item: ${item} - ${optionText}`);
-          
-        if (item === optionText) {
-          option.click();
-        }  
-      });
-    }
-  
-  if(tempElement.specialInstr === 'tabAfter') {
-    selector.sendKeys(Keys.TAB);
+  if (tempElement.specialInstr === 'tabAfter') {
+    await selector.sendKeys(Keys.TAB);
   }
-  if(tempElement.specialInstr === 'enterAfter') {
-    selector.sendKeys(Keys.RETURN);
+  if (tempElement.specialInstr === 'enterAfter') {
+    await selector.sendKeys(Keys.RETURN);
   }
-  
-
 };
 
 /* specialInstr values: 

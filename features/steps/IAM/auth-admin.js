@@ -15,18 +15,8 @@ let pages = {
   authInstructor: new PageObject('auth-instructor.json', stepsPath),
   checkAccount: new PageObject('checkAccount.json', stepsPath)
 };
-When(/^I elect to manage the role of user (.*) and grant the role of (.*)$/, async function (userLogin, role) {
-  const login = await loadLogin(userLogin);
-  log.debug(`Grant Role ${userLogin}: ${role}`);
-  await pages.authAdmin.populate('menu_system', 'click');
-  await pages.authAdmin.populate('admin_panel', 'click');
-  await pages.authAdmin.populate('manage_roles', 'click');
-  await pages.authAdmin.populate('choose_role', role);
-  await pages.authAdmin.populate('enter_email_address', login.username);
-  await pages.authAdmin.populate('grant_role', 'click');
-});
 
-When(/^I elect to manage the role of userX (.*)$/, async function (userLogin) {
+When(/^I elect to manage the role of user (.*)$/, async function (userLogin) {
   const login = await loadLogin(userLogin);
   await pages.authAdmin.populate('menu_system', 'click');
   await pages.authAdmin.populate('admin_panel', 'click');

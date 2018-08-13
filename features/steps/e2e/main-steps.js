@@ -32,14 +32,18 @@ When('I click the login button', async function () {
     const clickedButton = await pages.mainPage.populate('btn_login', 'click');
     log.debug(`Login button was clicked: ${clickedButton}`);
   } catch (err) {
-    log.error(err);
+    log.error(err.stack);
   }
 });
 
 When(/^I click by id "(.*)" button$/, async function (buttonLabel) {
-  log.debug('Clicking on login button');
-  const clickedButton = await pages.login.populate(buttonLabel, 'click');
-  log.debug(`Login button was clicked: ${clickedButton}`);
+  try {
+    log.debug('Clicking on login button');
+    const clickedButton = await pages.login.populate(buttonLabel, 'click');
+    log.debug(`Clicked button was clicked: ${clickedButton}`);
+  } catch (err) {
+    log.error(err.stack);
+  }
 });
 
 Then('I should be on the login screen', async function () {
