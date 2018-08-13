@@ -43,7 +43,7 @@
 			"byType": "name",
 			"definition": "role",
 			"frame": "default",
-			"specialInstr":  "NA"
+			"specialInstr":  "enterAfter"
 		},
 		{
 			"name": "role_window",

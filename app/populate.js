@@ -78,6 +78,10 @@ const populateSelect = async function (selector, item, tempElement) {
   if(tempElement.specialInstr === 'tabAfter') {
     selector.sendKeys(Keys.TAB);
   }
+  if(tempElement.specialInstr === 'enterAfter') {
+    selector.sendKeys(Keys.RETURN);
+  }
+  
 
 };
 
