@@ -4,6 +4,13 @@ const fs = require('fs');
 // login as student testachievestudent+02018073001@gmail.com
 // with pass One2ka$4
 // close the 'enroll in this course' popup if necessary
+// * check for assignment ${name} exists
+// - this is horrible, a pile of nested divs with NO distinguishing ids, and only dynamically generated classes.
+// - selector will be something like '//a[text(${TestName})]'
+// * check its label is 'LearningCurve'
+// - which makes this thing something like '//a[text(${TestName})]/../../div/div[text("LearningCurve")]'
+// * check 'assignment status', expect 'open' ?
+// * check 'completion status', expect ??
 // click 'READ & PRACTICE' for the appropriate course
 // (note that almost none of these seem to have any sort of useful id, data-test-id, any appropriate selector,
 //  so the order of the day is fie a bug with whoever and use some clunky-ass xpath until they have names.)
@@ -22,26 +29,26 @@ const fs = require('fs');
 // prepend https://int-achieve-learningcurve.mldev.cloud/learningcurve_activity_config/ to it
 // grab that url - it's the answer file for the quiz in question. super secure. :rolleyes:
 // feed that file to the below parser to build a set of questions and answers.
+// this should be exactly what the below parser uses as 'demo.lc.txt', which should work the same for any other quiz file.
 //
 // then click 'Begin Activity'
+// * data-test-id="beginActivityBtn"
+//
+// now, the annoying part.
 // then, because LC randomizes question order, for each question, youl'l have to get the ?text on the page
-// and run it through your built bank to see which one it is (hopefully only 1 matches), find what the
-// correct answer should be, and then ignore the {{}} and [[]] style templatings to try and click the right one.
+// and run it through your built bank to see which one it is (hopefully only 1 matches).
+// you can find the question by looking for data-test-id="question"
+// and you can tell what type it is by looking for the contained data-test-id="SentenceClick" for SC, etc.
+//
+// so, our question parser here will have all the questions available in `section[i].questions[j].data`
+// this copy of the questions has things that will NOT be displayed directly in the browser:
+// - [[foo]] is shown as tooltips or hints
+// - {{bla}} has more rendering done, maybe containing <i> tags or similar
+// so, unless you can think of a better way, i recommend:
+// - take each local question, and split it into chunks, ignoring everything within [[]] or {{}}
+// - check if the currently displayed question in the browser does a successful match to ALL of these chunks for any of our local questions.  once it does, you know what question the browser is currently looking at, and you should already have the correct answer available locally.
 
 
-  // * go to https://int-achieve-courseware-frontend.mldev.cloud/courses/77ax4w/overview
-  // * login as student:
-  // - testachievestudent+02018073001@gmail.com
-  // - One2ka$4
-  // * check for assignment ${name} exists
-  // - this is horrible, a pile of nested divs with NO distinguishing ids, and only dynamically generated classes.
-  // - selector will be something like '//a[text(${TestName})]'
-  // * check its label is 'LearningCurve'
-  // - which makes this thing something like '//a[text(${TestName})]/../../div/div[text("LearningCurve")]'
-  // * check 'assignment status', expect 'open' ?
-  // * check 'completion status', expect ??
-  // * click... something, missed it
-  // * data-test-id="beginActivityBtn"
 
 
 let lcfull = fs.readFileSync(`./demo.lc.txt`, `utf8`);
@@ -95,6 +102,7 @@ function getQuestions(section) {
           questions[counter].fq_uid = line.match(rgx.uid)[1];
         } else {
           questions[counter].data += line
+          questions[counter].data += '\n'
           if (rgx.correctAnswer.test(line)) {
             // this does assume there will only be one correct answer per question,
             // which might not always be true.
