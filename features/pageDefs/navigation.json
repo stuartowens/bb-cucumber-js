@@ -42,7 +42,8 @@
 			"byType": "classname",
 			"definition": "_12-z",
 			"frame": "default",
-			"specialInstr": "NA"
+			"specialInstr": "NA",
+			"waitToBeVisible": "logout"
 		},
 		{
 			"name": "admin_panel",
@@ -61,7 +62,7 @@
 		{
 			"name": "logout",
 			"byType": "xpath",
-			"definition": "/html/body/div[3]/div/div/div/div/div/div[3]/span/div/div/div",
+			"definition": "//div[contains(text(),'Sign Out')]",
 			"frame": "default",
 			"specialInstr": "NA"
 		}

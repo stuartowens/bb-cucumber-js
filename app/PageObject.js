@@ -101,7 +101,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       elementTarget = await WebElement(tempElement);
       actionElement.webElement = elementTarget;
 
-      //log.debug(`****genericPopulateElement: ${elementName}`);
+      // log.debug(`****genericPopulateElement: ${elementName}`);
       log.info(`Info: Page Element ${elementName} retrieved from Page Elements collection.`);
 
       const webElement = await elementTarget.getWebElement();
@@ -130,6 +130,9 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
           await populateClick(webElement, value, actionElement);
           break;
         case 'select':
+          await populateSelect(webElement, value, actionElement);
+          break;
+        case 'svg':
           await populateSelect(webElement, value, actionElement);
           break;
         default:
@@ -189,7 +192,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
 
       // Setup all underlying required objects to take action on for this action
       actionElement.element = tempElement;
-     /* if (tempElement && tempElement.waitForElementToBeInvisible) {
+      /* if (tempElement && tempElement.waitForElementToBeInvisible) {
         if (await hasElement(tempElement.waitForElementToBeInvisible)) {
           const elementToWaitToBeInvisible = await getElement(tempElement.waitForElementToBeInvisible);
           actionElement.elementToWaitToBeInvisible = elementToWaitToBeInvisible;
@@ -208,10 +211,10 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       elementTarget = await WebElement(tempElement);
       actionElement.webElement = elementTarget;
 
-      //log.debug(`****genericPopulateElement: ${elementName}`);
+      // log.debug(`****genericPopulateElement: ${elementName}`);
       log.info(`Info: Page Element ${elementName} retrieved from Page Elements collection for exists check.`);
 
-      //const webElement = await elementTarget.getWebElement();
+      // const webElement = await elementTarget.getWebElement();
       return elementTarget.elementExists();
     } else {
       log.error(`ERROR: WebElement ${elementName} not found in PageElements during checkWebElementExists() attempt.`);

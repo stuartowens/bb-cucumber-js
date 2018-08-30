@@ -77,6 +77,79 @@
 			"frame": "default",
 			"specialInstr": "NA",
 			"waitForElementToBeInvisible": "role_window"
+		},
+		{
+			"name": "search_button",
+			"byType": "xpath",
+			"definition": "//button[contains(@class,'_1Kr1')",
+			"frame": "default",
+			"specialInstr": "NA"
+			
+		},
+		{
+			"name": "search_course",
+			"byType": "classname",
+			"definition": "_3dMU _3Gh- ",
+			"frame": "default",
+			"specialInstr": "NA"
+			
+		},
+		{
+			"name":"open_menu",
+            "byType":"classname",
+            "definition":"_1plU _1j68",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"copy_course",
+            "byType":"xpath",
+            "definition":"/html/body/div[3]/div/div/div/div/div/div[2]/span/div/div/div/span",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"copy_course_name",
+            "byType":"id",
+            "definition":"copyCourseName",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"save_button",
+            "byType":"classname",
+            "definition":"_1tkc undefined",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"Manage_Instructor",
+            "byType":"xpath",
+            "definition":"/html/body/div[3]/div/div/div/div/div/div[2]/span/div/div/div/span",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"Instructor_Email",
+            "byType":"id",
+            "definition":"addInstructor",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"Add_instructor",
+            "byType":"classname",
+            "definition":"_1tkc _3ASk",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"sign_in",
+            "byType":"classname",
+            "definition":"_3GtB",
+            "frame":"default",
+            "specialInstr":"NA"
 		}
+		
 	]
 }
