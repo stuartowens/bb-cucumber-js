@@ -6,13 +6,45 @@
 			"definition": "_12-z",
 			"frame": "default",
 			"specialInstr": "NA"
+			
 		},
 		{
 			"name": "admin_panel",
 			"byType": "xpath",
-			"definition": "/html/body/div[3]/div/div/div/div/div/div[2]/span/div/div/div[2]",
+			"definition": "//*[text()='Admin Panel']",
 			"frame": "default",
 			"specialInstr": "NA"
+			
+
+		},
+		{
+			"name": "password_reset",
+			"byType": "xpath",
+			"definition": "/html/body/div[4]/div/div/div/div/div/div[7]/span/div/div/div/span",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "password_reset_input",
+			"byType": "id",
+			"definition": "__passwordReset_emailInput",
+			"frame": "default",
+			"specialInstr": "NA"
+		}, 
+		{
+			"name": "reset_button",
+			"byType": "classname",
+			"definition": "_1tkc undefined",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "close",
+			"byType": "xpath",
+			"definition": ".//*[@class='e1ZR']",
+			"frame": "default",
+			"specialInstr": "NA"
+
 		},
 		{
 			"name": "manage_roles",
@@ -88,19 +120,13 @@
 		},
 		{
 			"name": "search_course",
-			"byType": "classname",
-			"definition": "_3dMU _3Gh- ",
+			"byType": "xpath",
+			"definition": ".//*[@class='_3dMU _3Gh- ']",
 			"frame": "default",
 			"specialInstr": "NA"
 			
 		},
-		{
-			"name":"open_menu",
-            "byType":"classname",
-            "definition":"_1plU _1j68",
-            "frame":"default",
-            "specialInstr":"NA"
-		},
+	
 		{
 			"name":"copy_course",
             "byType":"xpath",
@@ -127,29 +153,105 @@
             "byType":"xpath",
             "definition":"/html/body/div[3]/div/div/div/div/div/div[2]/span/div/div/div/span",
             "frame":"default",
-            "specialInstr":"NA"
+			"specialInstr":"NA",
+			"waitToBeVisible":"Instructor_Email"
 		},
 		{
 			"name":"Instructor_Email",
             "byType":"id",
             "definition":"addInstructor",
             "frame":"default",
-            "specialInstr":"NA"
+			"specialInstr":"NA"
+			
 		},
 		{
 			"name":"Add_instructor",
             "byType":"classname",
             "definition":"_1tkc _3ASk",
             "frame":"default",
+			"specialInstr":"NA",
+			"waitToBeVisible":"copy_link"
+		},
+		{
+			"name":"copy_link",
+            "byType":"xpath",
+            "definition":".//*[@class='_1tkc _6KWa']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+		{
+			"name":"close",
+            "byType":"xpath",
+            "definition":".//*[@class='e1ZR']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+		{
+			"name":"course_card",
+            "byType":"xpath",
+            "definition":"//*[@id='container']/div/div[2]/div[1]/div/div/div[3]/div",
+            "frame":"default",
+			"specialInstr":"NA", 
+			"waitToBeVisible": "menu_system"
+		
+		},
+		{
+			"name":"refresh",
+            "byType":"xpath",
+            "definition":"//*[@id='click-to-refresh']/span",
+            "frame":"default",
             "specialInstr":"NA"
 		},
 		{
-			"name":"sign_in",
-            "byType":"classname",
-            "definition":"_3GtB",
+			"name":"temp_username",
+            "byType":"xpath",
+            "definition":".//*[@id='identifierId']",
             "frame":"default",
             "specialInstr":"NA"
+		},
+		{
+			"name":"temp_password",
+            "byType":"xpath",
+            "definition":"//*[@jsname='YPqjbf']",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"temp_next",
+            "byType":"xpath",
+            "definition":"//*[@id='identifierNext']/content/span",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+		{
+			"name":"temp_password_next",
+            "byType":"xpath",
+            "definition":"//*[text()='Next']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+		{
+			"name":"create_access_code",
+            "byType":"xpath",
+            "definition":".//*[text()='Create Access Code']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+
+		{
+			"name":"users",
+            "byType":"xpath",
+            "definition":"//*[@class='_1qpH']",
+            "frame":"default",
+            "specialInstr":"NA"
+
 		}
-		
+
+
 	]
 }

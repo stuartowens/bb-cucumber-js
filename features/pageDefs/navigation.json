@@ -39,8 +39,8 @@
 		},
 			{
 			"name": "menu_system",
-			"byType": "classname",
-			"definition": "_12-z",
+			"byType": "xpath",
+			"definition": "//button[@aria-label='Toggle User Menu']",
 			"frame": "default",
 			"specialInstr": "NA",
 			"waitToBeVisible": "logout"
@@ -65,8 +65,28 @@
 			"definition": "//div[contains(text(),'Sign Out')]",
 			"frame": "default",
 			"specialInstr": "NA"
-		}
-		
+		},
+		{
+			"name":"sign_in",
+            "byType":"classname",
+            "definition":"_3GtB",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"forgot_button",
+            "byType":"xpath",
+            "definition":"//*[@id='RegisterForm']/div[2]/div[1]/span[2]/a",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+		    "name":"open_menu",
+			"byType":"classname",
+			"definition":"_1plU _1j68",
+			"frame":"default",
+			"specialInstr":"NA"
+		}	
 		
 	]
 }

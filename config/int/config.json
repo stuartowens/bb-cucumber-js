@@ -1,7 +1,8 @@
 {
-	"baseURL": "https://int-achieve-courseware-frontend.mldev.cloud/",
+	"baseURL": "https://int-achieve-courseware-frontend.mldev.cloud",
 	"signURL":  "https://int-achieve-courseware-frontend.mldev.cloud/start",
 	"loginURL": "https://int-achieve-iam.mldev.cloud/login?retURL=https://int-achieve-courseware-frontend.mldev.cloud/courses",
+	"ThirdpartyURL":"http://accounts.google.com/signin/v2",
 	"driver": {
 		"type": "chrome",
 		"headless": false

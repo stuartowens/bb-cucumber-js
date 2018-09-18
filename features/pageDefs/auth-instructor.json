@@ -11,6 +11,121 @@
 			"byType": "xpath",
 			"definition": "totalCost2",
 			"specialInstr": "overwrite"
+		},
+		{
+			"name":"Template_status",
+            "byType":"classname",
+            "definition":"_2oIm _1bTe",
+            "frame":"default",
+			"specialInstr":"enterAfter", 
+			"waitToBeVisible":"Template_status_DD_value"
+
+		},
+		{
+			"name":"Active_Date",
+            "byType":"xpath",
+            "definition":"(.//*[@class='_52qp'])[1]",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"course_end_date",
+            "byType":"xpath",
+            "definition":"(.//*[@class='_52qp'])[2]",
+            "frame":"default",
+            "specialInstr":"NA"
+
+
+		},
+		{
+			"name":"course_end_date1",
+            "byType":"xpath",
+            "definition":"(.//*[@class='EVUx '])[2]",
+            "frame":"default",
+            "specialInstr":"NA"
+
+
+		},
+		{
+			"name":"Active_Date1",
+            "byType":"xpath",
+            "definition":"(.//*[@class='EVUx '])[1]",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+		{
+			"name":"Next_Month",
+            "byType":"classname",
+            "definition":"_2eGJ wbLx",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"Select_Date",
+            "byType":"xpath",
+            "definition":"//div[contains(text(),'12')]",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"course_end",
+            "byType":"xpath",
+            "definition":"/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/div[4]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/button[1] ",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"Invite_Students",
+            "byType":"xpath",
+            "definition":"/html/body/div[3]/div/div/div/div/div/div[4]/span/div/div/div/span",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+
+		{
+			"name":"Invite_Link",
+            "byType":"xpath",
+            "definition":".//*[@class='_3aLi _3tRc']",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"copy_button",
+            "byType":"xpath",
+            "definition":".//*[@class='QNU9 _3QzZ']",
+            "frame":"default",
+            "specialInstr":"NA"
+		}, 
+		{
+			"name":"Send_Invite",
+            "byType":"xpath",
+            "definition":".//*[@class='_1JFt']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+		
+		{
+			"name":"enter_emailid",
+            "byType":"xpath",
+            "definition":".//*[@name='emailInput']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+
+		{
+			"name":"send_button",
+            "byType":"xpath",
+            "definition":".//*[@class='_1tkc undefined']",
+            "frame":"default",
+            "specialInstr":"NA"
 		}
+		
+
+	
+		
 	]
 }

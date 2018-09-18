@@ -270,6 +270,15 @@
             "definition":"_52qp",
             "frame":"default",
             "specialInstr":"NA"
+        },
+
+        { 
+            "name":"course_end",
+            "byType":"xpath",
+            "definition":".//*[@class='_52qp']",
+            "frame":"default",
+            "specialInstr":"NA"
+
         }
 	]
 }

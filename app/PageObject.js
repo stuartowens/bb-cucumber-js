@@ -135,6 +135,9 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
         case 'svg':
           await populateSelect(webElement, value, actionElement);
           break;
+        case 'placeholder':
+          await populateSelect(webElement, value, actionElement);
+          break;
         default:
           log.error(`ERROR: We tried to populate an unknown tag(${elementName}) with data in populateGenericElement()\n\tWe failed.`);
       }
