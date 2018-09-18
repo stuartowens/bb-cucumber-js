@@ -28,3 +28,7 @@ Feature: Testing
     Then I visually confirm it failed that login data is bad @login(badFilename,username) has error because of bad filename
     Then I visually confirm it failed that login data is bad @login(admin,badUsername) has error because of variable name
     Then I visually confirm it failed that login data is bad @login(admin) has error because of only 1 parameter
+
+  Scenario: Test generating a datatable.
+    Then I generate a dataTabe for this page Object
+    

@@ -48,6 +48,20 @@ const HashTable = function HashTable (obj) {
     return keys;
   };
 
+  this.keyList = function (delimiter, padLength) {
+    var localPadLength = padLength || 0;
+    var localDelimiter = delimiter || "";
+    returnList = "";
+
+    //var keys = [];
+    for (var k in this.items) {
+      if (this.hasItem(k)) {
+        returnList = returnList + k.padEnd(padLength) + localDelimiter;
+      }
+    }
+    return returnList;
+  };
+
   this.values = function () {
     var values = [];
     for (var k in this.items) {
@@ -72,3 +86,4 @@ const HashTable = function HashTable (obj) {
   };
 };
 module.exports = HashTable;
+
