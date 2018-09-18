@@ -168,6 +168,32 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       throw err;
     }
   };
+
+  const generateDataTable = async function (padLength) {
+    var localPadLength = padLength || 0;
+    const _NA = "| NA".padEnd(localPadLength + 1);
+    console.log(`\nGenerating data table for ${that.pageName} \n`);
+    try {
+      //Return a | delimited list of the field names in the pageDefs file for this pageObject
+      console.log("|" + that.pageElements.keyList("|", localPadLength));
+
+      //Generate a list of NA for the page object.
+      var NAList = "";
+      var i;
+      var elementCount = that.pageElements.length; 
+      for (i = 0; i < elementCount; i++) { 
+          NAList += _NA;
+      }
+      console.log(`${NAList}|`);
+
+    } catch (err) {
+        log.error(err.stack);
+        throw err;
+    }
+  }
+
+  
+
   const elementExists = async function (strName) {
     try {
       log.info(`Starting to check if web element exists on the page: ${strName}`);
@@ -238,6 +264,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   that.populateElement = populateElement;
   that.elementExists = elementExists;
   that.checkWebElementExists = checkWebElementExists;
+  that.generateDataTable = generateDataTable;
   loadPageDefinitionFile(that.pageDefinitionFileName);
   return that;
 }
