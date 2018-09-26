@@ -48,7 +48,7 @@ When(/^I revoke the role of (.*)$/, async function (role) {
 });
 
 Then('Verify Successful permission grant message', async function () {
-  await pages.authAdmin.populate('choose_role', 'Admin');
+  await pages.authAdmin.assertText('choose_role', 'Admin');
 });
 
 When(/^I elect to check the account for (.*)$/, async function (account) {

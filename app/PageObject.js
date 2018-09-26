@@ -135,7 +135,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
         case 'svg':
           await populateSelect(webElement, value, actionElement);
           break;
-        case 'placeholder':
+        case 'p':
           await populateSelect(webElement, value, actionElement);
           break;
         default:
@@ -150,7 +150,6 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
     if (await hasElement(elementName)) {
       let tempElement = {};
       tempElement = await getElement(elementName);
-      // If need to hit a iframe, do it
       await switchFrame(tempElement.frame);
 
       const elementTarget = await WebElement(tempElement);
@@ -234,7 +233,6 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       throw err;
     }
   };
-
   that.assertText = assertText;
   that.getElement = getElement;
   that.hasElement = hasElement;

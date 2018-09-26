@@ -112,7 +112,8 @@
             "byType":"xpath",
             "definition":".//*[@name='emailInput']",
             "frame":"default",
-            "specialInstr":"NA"
+			"specialInstr":"NA",
+			"waitToBeVisible":"send_button"
 
 		},
 
@@ -123,6 +124,7 @@
             "frame":"default",
             "specialInstr":"NA"
 		}
+
 		
 
 	

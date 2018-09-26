@@ -3,8 +3,7 @@ Feature: R&P happy path workflow 1
    Media Producer creates a course
 Background:
     Given I have opened Achieve "loginURL"
-
-    Scenario: Create course in Achieve for "Bookname??"
+Scenario: Create course in Achieve for "Bookname??"
     When I have logged in as "media_producer_1"
     When I click the create_course button to create course
     When save the value to variable
@@ -51,7 +50,7 @@ Background:
     And I click on open menu
     When I elect to edit the course named "course1.templatename"
     When save the value to variables 
-    |variablesname     | value          |
+    |variablesname      | value |
     |Template_status   | Active On Date |
     |Active_Date       | @Date('now')   |
     When I elect to edit the course with the following data:
@@ -73,7 +72,7 @@ Background:
     And I close the Manage Instructors page
     And I sign out of Achieve
 
-    
+
     Scenario: As an instructor, login and mange the course settings and invite students
     When I have logged in as "instructor_1"
     And I click on open menu
@@ -88,18 +87,20 @@ Background:
     #| Active On Date      | @Date('now')   | @Date('+1m')  | Click   |
     And I click on open menu
     Then I capture the invite link and store to variable "inviteLink"
-    Then I populate the Invite Students page 
+    Then I populate the Invite Students "student" page 
     #| inviteBtn | sendEmailBtn | emailList                     | cancelBtn | sendInvitesBtn |
     #| NA        | Click        | "$loginStudent1.email_address"| NA        | Click          |
+    And I sign out of Achieve
 
     Scenario: Initiating the access code
-    When I have logged in as "admin" 
-    And I search for "E2E101"
-    And I click on course card "E2E101"
+    When I have logged in as "paid_accessCC" 
+    And I search for "Testcourse"
+    And I click on course card "Testcourse" template
     And I click on user menu
     And I click on Admin Panel 
     Then I click on create access code
-    And I select number of user and click on create button
+    And I select number of use codes
+    And length of the Access code
     And I sign out of Achieve
 
     Scenario: Enroll into course with link and access code

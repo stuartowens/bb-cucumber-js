@@ -16,9 +16,9 @@ let pages = {
 
 When('I click on create an account button', async function () {
   try {
-    console.log('Clicking on create_account button');
+    log.debug('Clicking on create_account button');
     await pages.navigation.populate('create_account_button', 'click');
-    console.log(`create_account button was clicked: ${clickedButton}`);
+    log.debug(`create_account button was clicked: ${clickedButton}`);
   } catch (err) {
     log.error(err);
   }
@@ -26,19 +26,68 @@ When('I click on create an account button', async function () {
 
 Then('I hover on icon "i"', async function () {
   try {
-    console.log('Clicking on view_box button');
+    log.debug('Clicking on view_box button');
     await pages.login.populate('view_box', 'click');
-    console.log(`view box button was clicked: ${clickedButton}`);
-  }catch (err) {
+    log.debug(`view box button was clicked: ${clickedButton}`);
+  } catch (err) {
     log.error(err);
+  }
+});
+Then('I verify that password info icon tooltip Information is consistent to application behavior', async function () {
+  console.log('Verify that password info icon tooltip Information is consistent to application behavior')
+  if (await pages.login.checkWebElementExists('Tooltip_verifiaction')) {
+    console.log('passed');
+  } else {
+    console.log('failed');
   }
 });
 
 Then('I click on forgot password link above password field text field', async function () {
   try {
-    console.log('clicking on forgot button');
+    log.debug('clicking on forgot button');
     await pages.login.populate('forgot_password', 'click');
-    console.log(`forgot button was clicked: ${clickedButton}`);
+    log.debug(`forgot button was clicked: ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+});
+Then('I Verify Application should display forgot password page', async function () {
+  console.log('Verify Forgot Link is redirecting to forgot password page')
+  if (await pages.login.checkWebElementExists('forgot_check')) {
+    console.log('passed');
+  } else {
+    console.log('failed');
+  }
+});
+Then('I Verify User Sign In with existing registered account appropriately', async function () {
+  console.log('Verify that Existing registered account Sign In appropriately')
+  if (await pages.login.checkWebElementExists('existinguser_check')) {
+    console.log('passed');
+  } else {
+    console.log('failed');
+  }
+});
+When('I enter invalid username and password', async function () {
+  try {
+    log.debug('clicking on username and password  button');
+    await pages.login.populate('txt_username', 'user');
+    await pages.login.populate('txt_password', 'user');
+    await pages.login.populate('sign_in', 'click');
+    log.debug(`forgot button was clicked: ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+});
+Then('I Verify "Invalid user name and password" message should be displayed', async function () {
+  try {
+    console.log('Invalid user name and password')
+    const errorText = await pages.login.getElementValue('error_sign');
+    if (errorText === 'Invalid username or password') {
+      console.log('passed');
+    } else {
+      console.log('failed');
+      throw new Error('failed');
+    }
   } catch (err) {
     log.error(err);
   }
@@ -53,66 +102,47 @@ Then('I login with following credentials:', async function () {
     log.info(invalid.rows().length);
     var e;
     for (e = 0; e < invalid.rows().length; e++) {
-      log.info(invalid.hashes()[e].UserName );
+      log.info(invalid.hashes()[e].UserName);
       log.info(invalid.hashes()[e].Password);
-      await pages.login.populate(invalid.hashes()[e].UserName , invalid.hashes()[e].Password );
+      await pages.login.populate(invalid.hashes()[e].UserName, invalid.hashes()[e].Password);
     }
   } catch (err) {
     log.error(err.stack);
   }
+  await sleep(5000);
 });
-
-Then(/^I Verify that it is able to login with valid "(.*)" details$/, async function (user) {
-  try{
-    const account = await loadLogin(user);
-    log.debug('Validating the account details');
-    await pages.login.populate('txt_username', account.username);
-    await pages.login.populate('txt_password', account.password);
-   } catch (err) {
-   log.error(err);
-   }
+Then('I Verify that "Too many login attempts. Wait 15 minutes and try again" message is displayed', async function () {
+  try {
+    console.log('Verify that invalid username and password attempt for more than 3 times will now allow user to login for 15 minutes using any browser or system')
+    const errorText = await pages.login.getElementValue('userinvalid_errortext');
+    if (errorText === 'Too many login attempts. Wait 15 minutes and try again') {
+      console.log('passed');
+    } else {
+      console.log('failed');
+      throw new Error('failed');
+    }
+  } catch (err) {
+    log.error(err);
+  }
 });
-
- Then('I click on help Link', async function () {
-  try{
+Then('I click on help Link', async function () {
+  try {
+    const hyperlink = await getDriver().findElement(By.xpath("//*[text()='Help']")).getAttribute('href');
+    log.debug(hyperlink + 'hyperlink');
     log.debug('clicking on help link');
-    await pages.login.populate('help_link', 'click');
+    await getDriver().get(hyperlink);
+    // await pages.login.populate('help_link', 'click');
     log.debug(`help_link was clicked: ${clickedButton}`);
   } catch (err) {
     log.error(err);
   }
- });
+});
 
-/* Then('I click on help Link', async function () {
-  try {
-    parent = getDriver().getWindowHandle();
-    getDriver().getWindowHandle().then(function (mainWindowHandle) {
-      console.log('Main window handle is ' + mainWindowHandle);
-      getDriver().findElement(By.partialLinkText('Help')).click();
-
-      getDriver().getAllWindowHandles().then(function (windowHandles) {
-        console.log('Total number of windows ' + windowHandles.length);
-        // Here you can switch to the another window using windowHandles variable
-        windowHandles.forEach(function (handle) {
-          if (!(handle === mainWindowHandle)) {
-            // Switch to new browser window
-            console.log('Switching to other window');
-            getDriver().switchTo().window(handle);
-            getDriver().getTitle().then(function (title) {
-              console.log('Title of new window -> ' + title);
-            });
-          }
-        });
-      });
-      // Switch to original window
-      // getDriver().switchTo().window(mainWindowHandle);
-      getDriver().switchTo().window(parent);
-      console.log(getDriver().getTitle());
-      getDriver().getTitle().then(function (title) {
-        console.log('Title of original window -> ' + title);
-      });
-    });
-  } catch (err) {
-    log.error(err);
+Then('I verify the help page is displayed', async function () {
+  console.log('Verify Help Link is present on the Sign In page and redirecting to appropriate page')
+  if (await pages.login.checkWebElementExists('help_check')) {
+    console.log('passed');
+  } else {
+    console.log('failed');
   }
-}); */
+});
