@@ -146,3 +146,12 @@ Then('I verify the help page is displayed', async function () {
     console.log('failed');
   }
 });
+
+Then('I verify that user must not able to login', async function () {
+  console.log('Verify whether user able to login without waiting for 15minutes')
+  if (await pages.login.checkWebElementExists('existinguser_check')) {
+    console.log('failed');
+  } else {
+    console.log('passed');
+  }
+});

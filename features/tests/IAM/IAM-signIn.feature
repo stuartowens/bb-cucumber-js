@@ -21,11 +21,11 @@ And I sign out of Achieve
 Then I Verify User Sign In with existing registered account appropriately
 
 
-Scenario: Verify that invalid username and password attempt for more than 3 times will now allow user to login for 15 minutes using any browser or system
+Scenario: Verify Help Link is present on the Sign In page and redirecting to appropriate page
 Given I have opened Achieve "signURL"
-When I click on sign In button on top right corner
-And I enter invalid username and password
-Then I Verify "Invalid user name and password" message should be displayed 
+When I click on sign In button on top right corner 
+Then I click on help Link
+Then I verify the help page is displayed
 
 Scenario: Verify that invalid username and password attempt for more than 3 times will now allow user to login for 15 minutes using any browser or system
 Given I have opened Achieve "signURL"
@@ -50,18 +50,15 @@ And I login using invalid login credentials for 6 times
 |txt_username    | coursewareachieve@gmail.com  |
 |txt_password    | password6   |
 |sign_in         | click       |
-|txt_username    | coursewareachieve@gmail.com  |
-|txt_password    |  ABCabc@123  |
-|sign_in         | click       |
 Then I login with following credentials:
-And I sign out of Achieve 
 Then I Verify that "Too many login attempts. Wait 15 minutes and try again" message is displayed
-
-Scenario: Verify Help Link is present on the Sign In page and redirecting to appropriate page
+ 
+Scenario:Verify whether user able to login without waiting for 15minutes
 Given I have opened Achieve "signURL"
-When I click on sign In button on top right corner 
-Then I click on help Link
-Then I verify the help page is displayed
+When I click on sign In button on top right corner
+And I have logged in as "admin"
+Then I verify that user must not able to login
+
 
 
 
