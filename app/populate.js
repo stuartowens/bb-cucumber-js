@@ -31,7 +31,6 @@ const populateInput = async function (eleTarget, strValue, actionElement) {
         log.debug('Bypassing the checkbox click');
       }
       break;
-
     case 'button':
       if (strValue.toLowerCase() === 'click') {
         await populateClick(eleTarget, strValue, actionElement);
@@ -79,11 +78,11 @@ const populateSelect = async function (selector, item, tempElement) {
   }
 };
 
-/* specialInstr values: 
+/* specialInstr values:
 	* 		noClick - does not click on the field first
 	* 		noClear - Does not clear the field of before sending  values to it.
 	* 		overWrite - Selects the values in the field before over writing with the new value.  Does not clear the field.
-	* 
+	*
 	*/
 const populateTextField = async function (eleTarget, strValue, actionElement) {
   let localSpecialInstr = '';

@@ -8,6 +8,7 @@ const { loadConfig, loadLogin } = require('../../../app/util');
 const stepsPath = process.cwd() + '/features/pageDefs/';
 const { PageObject } = require('../../../app/pageObject');
 const { log } = require('../../../app/logger');
+const {getDriver, sleep} = require('../../../app/driver');
 
 // Scenario setup
 let pages = {
@@ -17,11 +18,21 @@ let pages = {
 };
 
 When(/^I elect to manage the role of user (.*)$/, async function (userLogin) {
-  const login = await loadLogin(userLogin);
-  await pages.authAdmin.populate('menu_system', 'click');
-  await pages.authAdmin.populate('admin_panel', 'click');
-  await pages.authAdmin.populate('manage_roles', 'click');
-  await pages.authAdmin.populate('enter_email_address', login.username);
+  try {
+    console.log('before usrlogin');
+    //const login = await loadLogin(userLogin);
+   // console.log('login' + login)
+    await sleep(10000);
+    console.log(' befor menusystem');
+    await pages.authAdmin.populate('menu_system', 'click');
+    console.log('after menusystem');
+    await sleep(10000);
+    await pages.authAdmin.populate('admin_panel', 'click');
+    await pages.authAdmin.populate('manage_roles', 'click');
+   // await pages.authAdmin.populate('enter_email_address', login.username);
+  } catch (err) {
+    log.error(err)
+  }
 });
 
 When(/^I grant the role of (.*)$/, async function (role) {
@@ -49,6 +60,4 @@ When(/^I elect to check the account for (.*)$/, async function (account) {
   await pages.authAdmin.populate('check_account', 'click');
   await pages.checkAccount.populate('email_field', loginFile.username);
   await pages.checkAccount.populate('search_btn', 'click');
-
 });
-

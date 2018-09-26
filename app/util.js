@@ -83,9 +83,24 @@ const getRandomInt = function (max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+const loadDataTable = function (dataTable) {
+  try {
+    const configDirectory = getConfigDirectory() || 'e2e';
+    const dataPath = `./config/${configDirectory}/data/${dataTable}.json`;
+    log.debug(`Opening data ${dataPath}`);
+    const contents = fs.readFileSync(dataPath);
+    const jsonContent = JSON.parse(contents);
+    currentData[dataTable] = jsonContent;
+    return jsonContent;
+  } catch (err) {
+    log.error(err);
+    throw err;
+  }
+};
 module.exports = {
   loadJSONFile,
   loadConfig,
   loadLogin,
   loadData,
+  loadDataTable,
   getRandomInt };

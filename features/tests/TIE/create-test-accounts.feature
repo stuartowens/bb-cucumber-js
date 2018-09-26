@@ -13,7 +13,7 @@ Scenario Outline: Admin able to revoke and then grant a specified role to a newl
     And I sign out of Achieve
     Examples:
     |login             | role              |
-    | admin_alt        | "Admin"          |
+    |admin_alt         | "Admin"           |
     |customer_support_1| "Customer Support" |
     |media_producer_1  | "Media Producer"   |
     |instructor_1      | "Instructor"       |

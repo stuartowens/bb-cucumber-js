@@ -101,7 +101,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       elementTarget = await WebElement(tempElement);
       actionElement.webElement = elementTarget;
 
-      //log.debug(`****genericPopulateElement: ${elementName}`);
+      // log.debug(`****genericPopulateElement: ${elementName}`);
       log.info(`Info: Page Element ${elementName} retrieved from Page Elements collection.`);
 
       const webElement = await elementTarget.getWebElement();
@@ -132,6 +132,12 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
         case 'select':
           await populateSelect(webElement, value, actionElement);
           break;
+        case 'svg':
+          await populateSelect(webElement, value, actionElement);
+          break;
+        case 'p':
+          await populateSelect(webElement, value, actionElement);
+          break;
         default:
           log.error(`ERROR: We tried to populate an unknown tag(${elementName}) with data in populateGenericElement()\n\tWe failed.`);
       }
@@ -144,7 +150,6 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
     if (await hasElement(elementName)) {
       let tempElement = {};
       tempElement = await getElement(elementName);
-      // If need to hit a iframe, do it
       await switchFrame(tempElement.frame);
 
       const elementTarget = await WebElement(tempElement);
@@ -215,7 +220,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
 
       // Setup all underlying required objects to take action on for this action
       actionElement.element = tempElement;
-     /* if (tempElement && tempElement.waitForElementToBeInvisible) {
+      /* if (tempElement && tempElement.waitForElementToBeInvisible) {
         if (await hasElement(tempElement.waitForElementToBeInvisible)) {
           const elementToWaitToBeInvisible = await getElement(tempElement.waitForElementToBeInvisible);
           actionElement.elementToWaitToBeInvisible = elementToWaitToBeInvisible;
@@ -234,10 +239,10 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       elementTarget = await WebElement(tempElement);
       actionElement.webElement = elementTarget;
 
-      //log.debug(`****genericPopulateElement: ${elementName}`);
+      // log.debug(`****genericPopulateElement: ${elementName}`);
       log.info(`Info: Page Element ${elementName} retrieved from Page Elements collection for exists check.`);
 
-      //const webElement = await elementTarget.getWebElement();
+      // const webElement = await elementTarget.getWebElement();
       return elementTarget.elementExists();
     } else {
       log.error(`ERROR: WebElement ${elementName} not found in PageElements during checkWebElementExists() attempt.`);
@@ -254,7 +259,6 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       throw err;
     }
   };
-
   that.assertText = assertText;
   that.getElement = getElement;
   that.hasElement = hasElement;

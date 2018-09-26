@@ -75,7 +75,7 @@
       "resolved": "https://registry.npmjs.org/check-error/-/check-error-1.0.2.tgz",
       "version": "1.0.2"
     },
-    "chromedriver": "^2.39.0",
+    "chromedriver": "^2.41.0",
     "cli-table": {
       "dependencies": {
         "colors": {
@@ -241,7 +241,7 @@
       "resolved": "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz",
       "version": "1.0.0"
     },
-    "geckodriver": "^1.11.0",
+    "geckodriver": "^1.12.2",
     "get-func-name": {
       "integrity": "sha1-6td0q+5y4gQJQzoGY2YCPdaIekE=",
       "resolved": "https://registry.npmjs.org/get-func-name/-/get-func-name-2.0.0.tgz",
@@ -518,9 +518,9 @@
     }
   },
   "devDependencies": {
-    "cucumber-html-reporter": "^4.0.3",
+    "cucumber-html-reporter": "^4.0.4",
     "eslint-config-standard": "^11.0.0",
-    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",

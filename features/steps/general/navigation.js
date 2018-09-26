@@ -2,7 +2,8 @@
 const { Given, When, Then } = require('cucumber');
 const path = require('path');
 const { loadConfig, loadLogin } = require('../../../app/util');
-const { getDriver } = require('../../../app/driver');
+const { getDriver, sleep} = require('../../../app/driver');
+const { By} = require('selenium-webdriver');
 
 const stepsPath = process.cwd() + '/features/pageDefs/';
 const { PageObject } = require('../../../app/pageObject');
@@ -19,6 +20,16 @@ Given(/^I have opened Achieve "(.*)"$/, async function (urlKey) {
   const url = config[urlKey];
   log.debug(`Loading URL ${url}`);
   await getDriver().get(url);
+});
+
+When('I click on sign In button on top right corner', async function () {
+  try {
+    await sleep(5000);
+    log.debug('clicking on sigin button');
+    await pages.navigation.populate('sign_in', 'click');
+  } catch (err) {
+    log.error(err.stack);
+  }
 });
 
 When(/^I have logged in as "(.*)"$/, async function (userFile) {
@@ -39,4 +50,14 @@ When(/^I have logged in as "(.*)"$/, async function (userFile) {
 Then('I sign out of Achieve', async function () {
   await pages.navigation.populate('menu_system', 'click');
   await pages.navigation.populate('logout', 'click');
+});
+
+When('I click on open menu', async function () {
+  try {
+    log.debug('Clicking open_menu button');
+    await pages.navigation.populate('open_menu', 'click');
+    log.debug(`open_menu was clicked: ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
 });

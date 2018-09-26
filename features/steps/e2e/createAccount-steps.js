@@ -15,7 +15,7 @@ var firefox = require('selenium-webdriver/firefox');
 
 let pages = {
   createAccount: new PageObject('createAccount.json', stepsPath),
- // login: new PageObject('loginPages.json', stepsPath),
+  // login: new PageObject('loginPages.json', stepsPath),
   navigation: new PageObject('navigation.json', stepsPath)
 };
 /*
@@ -54,24 +54,19 @@ When(/^I create an account for '(.*)' user$/, async function (account) {
   await pages.createAccount.populate('termsOfService', 'click');
   await pages.createAccount.populate('signUp_btn', 'click');
   await log.debug(`Clicked Sign Up button`);
-
 });
 
 When('If the account exists, log out of Achieve', async function () {
   log.debug(`Checking to see if account exists for the email already and recover.`);
   // if the account exists, reset to login
-  if (await pages.createAccount.checkWebElementExists('errorText')){
+  if (await pages.createAccount.checkWebElementExists('errorText')) {
     const email = await pages.createAccount.getElementValue('email');
     log.info(`Account already exists for ${email}.  Continuing...`)
-  }
-  else {
-    //reset to login again
+  } else {
+    // reset to login again
     log.info(`Account created.  Logging out.`);
     pages.navigation.populate('menu_system', 'click');
     pages.navigation.populate('logout', 'click');
     pages.navigation.populate('main_signin', 'click');
-    
   }
-
 });
-
