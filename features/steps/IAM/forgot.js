@@ -239,8 +239,11 @@ Then('I Enter incorrect Security question answer 3', async function () {
 
 When('I click on help', async function () {
   try {
+    const hyperlink = await getDriver().findElement(By.xpath("//*[text()='Help']")).getAttribute('href');
+    log.debug(hyperlink + 'hyperlink');
     log.debug('clicking on help link');
-    await pages.login.populate('help_link', 'click');
+    await getDriver().get(hyperlink);
+    // await pages.login.populate('help_link', 'click');
     log.debug(`help_link was clicked: ${clickedButton}`);
   } catch (err) {
     log.error(err);
