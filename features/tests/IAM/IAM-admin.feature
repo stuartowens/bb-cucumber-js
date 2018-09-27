@@ -10,7 +10,7 @@ And I click on Password reset
 And I enter Invalid E-mail Address not regitered in macmillan account
 And I click on Reset button
 Then I click on Close Icon
-#Then I Verify message 
+
 And I sign out of Achieve
 
 Scenario:Verifying password reset functionality is working fine
@@ -21,7 +21,6 @@ And I click on Admin Panel
 And I click on Password reset
 Then I enter "admin" account details which is registered in macmillan account
 And I click on Reset button
-Then I Verify error message " "
 And I click on Close Icon
 And I sign out of Achieve
 
@@ -38,7 +37,6 @@ Then I click on login button to return to login page
 Scenario: Verify that user is able to Sign In using new password
 Given I have opened Achieve "loginURL"
 When I have logged in as "admin"
-Then Verify that user is able to login using newly created password
 
 
 

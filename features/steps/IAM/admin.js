@@ -90,7 +90,7 @@ Then('I click on Reset button', async function () {
   } catch (err) {
     log.error(err);
   }
-});*/
+}); */
 
 When(/^I log in as "(.*)"$/, async function (Login) {
   const account = await loadLogin(Login);
@@ -128,6 +128,7 @@ When('I check E-mail Notification', async function () {
 When(/^I enter Password and confirm password from "(.*)" account for fulfilling the validation criteria$/, async function (account) {
   try {
     const mail = await loadLogin(account);
+    await sleep(5000);
     log.debug(`clicking on Password and confirm password button, ${account}`);
     await pages.createAccount.populate('password', mail.newpassword);
     await pages.createAccount.populate('confirmPassword', mail.newpassword);
@@ -137,7 +138,8 @@ When(/^I enter Password and confirm password from "(.*)" account for fulfilling 
 });
 When('I click on Reset password', async function () {
   try {
-    log.debugg('Clicking on Reset password');
+    await sleep(10000);
+    console.log('Clicking on Reset password');
     await pages.authAdmin.populate('reset_password_email', 'click');
     log.debug(`mail was clicked: ${clickedButton}`);
   } catch (err) {

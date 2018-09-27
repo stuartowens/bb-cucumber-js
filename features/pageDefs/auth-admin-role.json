@@ -292,8 +292,8 @@
 		}, 
 		{
 			"name":"reset_password_email",
-            "byType":"xpath",
-            "definition":"//*[@id='update']",
+            "byType":"id",
+            "definition":"update",
             "frame":"default",
             "specialInstr":"NA"
 		},
