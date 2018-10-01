@@ -297,13 +297,13 @@ Then('I click on checkbox', async function () {
   }
 });
 Then('I verify the Sign up button is disabled when I click on check box', async function () {
-  try{
-  console.log('Verify that Checkbox "Opt IN" is selectable and E-mail notification should generate');
-  var verify = await getDriver().findElement(By.xpath(("//*[@class='pad']//button[1]"))).getAttribute('outerHTML')
+  try {
+    console.log('Verify that Checkbox "Opt IN" is selectable and E-mail notification should generate');
+    var verify = await getDriver().findElement(By.xpath(("//*[@class='pad']//button[1]"))).getAttribute('outerHTML')
     if (verify.includes('disabled')) {
-      console.log('passed');
-    } else {
       console.log('failed');
+    } else {
+      console.log('passed');
     }
   } catch (err) {
     log.error(err);
@@ -512,7 +512,7 @@ Then('I verify that piracy link is directed to piracy page', async function () {
 When('I click on macmillan learning link', async function () {
   try {
     const hyperlink = await getDriver().findElement(By.xpath("//*[text()='macmillanlearning.com']")).getAttribute('href');
-   log.debug(hyperlink + 'hyperlink');
+    log.debug(hyperlink + 'hyperlink');
     log.debug('Clickig on macmillan learning link');
     await getDriver().get(hyperlink);
     log.debug(`macmillan learning link is clicked, ${clickedButton}`);
@@ -571,3 +571,54 @@ When(/^User "(.*)" has filled all mandatory fields except password$/, async func
     log.error(err);
   }
 });
+
+When('I click on Account', async function () {
+  try {
+    log.debug('Clickig on Account ');
+    await pages.createAccount.populate('Account', 'click');
+    log.debug(`Account button is clicked, ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+});
+
+When('I verify Email- address is disabled', async function () {
+  try {
+    console.log('Verify that E-mail Address shown is disabled and it is same as user created account');
+    var verify = await getDriver().findElement(By.xpath(("//*[@id='app']/div/div/div/div/div/div[4]/div"))).getAttribute('outerHTML')
+    if (verify.includes('disabled')) {
+      console.log('passed');
+    } else {
+      console.log('failed');
+    }
+  } catch (err) {
+    log.error(err);
+  }
+});
+
+When('I click on "OPT-OUT@macmillanlearning.com"', async function () {
+  try {
+    log.debug('Clickig on OPt-outlink');
+    await pages.createAccount.populate('Opt', 'click');
+    log.debug(`Account button is clicked, ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+});
+When('I verify it redirects to E-mail', async function () {
+  console.log('Verify that on sharing e-mail to the e-mail address OPT-OUT@macmillanlearning.com link no -emial updates should be recived regarding macmillan updates')
+  if (await pages.createAccount.checkWebElementExists('compose')) {
+    console.log('passed');
+  } else {
+    console.log('failed');
+  }
+});
+ When('I click on checkbox in account', async function () {
+  try {
+    log.debug('Clickig on checkbox');
+    await pages.createAccount.populate('checkbox', 'click');
+    log.debug(`checkbox is clicked, ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+ });

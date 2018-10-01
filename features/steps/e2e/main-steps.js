@@ -67,8 +67,5 @@ When('I test things', function () {
 });
 
 Then(/^I should get a message that says "(.*)"$/, async function (message) {
-  await pages.login.assertText(
-    'txt_loginFailed',
-    message
-  );
+  await pages.login.assertText('txt_loginFailed', message);
 });

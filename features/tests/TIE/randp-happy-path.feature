@@ -46,68 +46,68 @@ Scenario: Create course in Achieve for "Bookname??"
     And I sign out of Achieve
 
     Scenario: Convert a template from a draft to a Template
-    When I have logged in as "media_producer_1"
-    And I click on open menu
-    When I elect to edit the course named "course1.templatename"
-    When save the value to variables 
-    |variablesname      | value |
-    |Template_status   | Active On Date |
-    |Active_Date       | @Date('now')   |
-    When I elect to edit the course with the following data:
-     #|courseStatus   | activeOnDate   | saveBtn |
-     #| Template      | @Date('now')   | Click   |
-     #Then I validate that the course card named "course1.templatename" exists on the course page with the status of "Template"
-    And I sign out of Achieve
+        When I have logged in as "media_producer_1"
+        And I click on open menu
+        When I elect to edit the course named "course1.templatename"
+        When save the value to variables 
+        |variablesname      | value |
+        |Template_status   | Active On Date |
+        |Active_Date       | @Date('now')   |
+        When I elect to edit the course with the following data:
+        #|courseStatus   | activeOnDate   | saveBtn |
+        #| Template      | @Date('now')   | Click   |
+        #Then I validate that the course card named "course1.templatename" exists on the course page with the status of "Template"
+        And I sign out of Achieve
 
     Scenario: Assign the course to an instructor
-    When I have logged in as "admin_alt" 
-    When I search for "Testcourse"
-    And  I click on open menu
-    Then I copy the course named "Testcourse" to the name "E2E101"
-    When I search for "E2E101"
-    And I click on open menu
-    Then I open the Manage Instructors page on the course named "$course1.name"
-    Then I manage the instructors on the course and add the "instructor_1" loginUser
-    And I validate that the Course Specific Link opens the course named "$course1.name"
-    And I close the Manage Instructors page
-    And I sign out of Achieve
+        When I have logged in as "admin_alt" 
+        When I search for "Testcourse"
+        And  I click on open menu
+        Then I copy the course named "Testcourse" to the name "E2E101"
+        When I search for "E2E101"
+        And I click on open menu
+        Then I open the Manage Instructors page on the course named "$course1.name"
+        Then I manage the instructors on the course and add the "instructor_1" loginUser
+        And I validate that the Course Specific Link opens the course named "$course1.name"
+        And I close the Manage Instructors page
+        And I sign out of Achieve
 
 
     Scenario: As an instructor, login and mange the course settings and invite students
-    When I have logged in as "instructor_1"
-    And I click on open menu
-    And I elect to edit the course named "$course1.name"
-    When save the values to course  
-    |values             | course|
-    |Template_status    | Active On Date |
-    |Active_Date        | @Date('now')   |
-    |course_end_date    | @Date('+1m')   |
-    And I elect to edit the course with the following data
-    #|courseStatus         | activeOnDate   | courseEndDate |saveBtn  |
-    #| Active On Date      | @Date('now')   | @Date('+1m')  | Click   |
-    And I click on open menu
-    Then I capture the invite link and store to variable "inviteLink"
-    Then I populate the Invite Students "student" page 
-    #| inviteBtn | sendEmailBtn | emailList                     | cancelBtn | sendInvitesBtn |
-    #| NA        | Click        | "$loginStudent1.email_address"| NA        | Click          |
-    And I sign out of Achieve
+        When I have logged in as "instructor_1"
+        And I click on open menu
+        And I elect to edit the course named "$course1.name"
+        When save the values to course  
+        |values             | course|
+        |Template_status    | Active On Date |
+        |Active_Date        | @Date('now')   |
+        |course_end_date    | @Date('+1m')   |
+        And I elect to edit the course with the following data
+        #|courseStatus         | activeOnDate   | courseEndDate |saveBtn  |
+        #| Active On Date      | @Date('now')   | @Date('+1m')  | Click   |
+        And I click on open menu
+        Then I capture the invite link and store to variable "inviteLink"
+        Then I populate the Invite Students "student" page 
+        #| inviteBtn | sendEmailBtn | emailList                     | cancelBtn | sendInvitesBtn |
+        #| NA        | Click        | "$loginStudent1.email_address"| NA        | Click          |
+        And I sign out of Achieve
 
     Scenario: Initiating the access code
-    When I have logged in as "paid_accessCC" 
-    And I search for "Testcourse"
-    And I click on course card "Testcourse" template
-    And I click on user menu
-    And I click on Admin Panel 
-    Then I click on create access code
-    And I select number of use codes
-    And length of the Access code
-    And I sign out of Achieve
+        When I have logged in as "paid_accessCC" 
+        And I search for "Testcourse"
+        And I click on course card "Testcourse" template
+        And I click on user menu
+        And I click on Admin Panel 
+        Then I click on create access code
+        And I select number of use codes
+        And length of the Access code
+        And I sign out of Achieve
 
     Scenario: Enroll into course with link and access code
-    Given That I have opened the Achieve [$inviteLink] in the <$browser>
-    Then validate that the following information is correct on the Course Access Code page
-    |courseName     | courseCode    | Instructor         | accessType      |
-    | $course1.name | $course1.code | $instructor1.email | [$course.pm] |
+        Given That I have opened the Achieve [$inviteLink] in the <$browser>
+        Then validate that the following information is correct on the Course Access Code page
+        |courseName     | courseCode    | Instructor         | accessType      |
+        | $course1.name | $course1.code | $instructor1.email | [$course.pm]    |
     
 
 

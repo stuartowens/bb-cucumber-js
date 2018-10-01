@@ -296,7 +296,50 @@
 			"definition": "//*[@disabled] ",
 			"frame": "default",
 			"specialInstr": "NA"
+		},
+		{
+			"name": "Account",
+			"byType": "xpath",
+			"definition": "/html/body/div[3]/div/div/div/div/div/div[1]/span/div/div/div",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "Email_disabled",
+			"byType": "xpath",
+			"definition": "//*[@id='app']/div/div/div/div/div/div[4]/div",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "Opt",
+			"byType": "xpath",
+			"definition": "//*[@id='frm1']/div[13]/div/label/span/a[1]",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "compose",
+			"byType": "xpath",
+			"definition": "//*[text()='Compose']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "checkbox",
+			"byType": "id",
+			"definition": "OptIn__c",
+			"frame": "default",
+			"specialInstr": "NA"
+
+
+
 		}
+		
+
+
+		
 
 	]
 }
