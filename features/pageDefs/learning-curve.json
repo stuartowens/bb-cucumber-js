@@ -10,7 +10,7 @@
         },{
             "name": "question",
             "byType": "xpath",
-			"definition": "//div[@data-test-id='FillInTheBlank']/div/div/h3",
+			"definition": "//div[@data-test-id='FillInTheBlank']/div/div/h1",
 			"frame": "default",
 			"specialInstr": "NA"
         },
@@ -36,9 +36,8 @@
             "byType": "xpath",
 			"definition": "//button[@data-test-id='nextQuestionBtn']",
 			"frame": "default",
-			"specialInstr": "NA",
-			"waitToBeVisibile":"next_question_midway"
-			
+			"specialInstr": "NA"
+
         },{
 			"name": "successful_answer",
             "byType": "xpath",
@@ -65,7 +64,8 @@
             "byType": "xpath",
 			"definition": "//button[contains(text(), 'View study plan')]",
 			"frame": "default",
-			"specialInstr": "NA"
+			"specialInstr": "NA",
+			"isObscured": true
 			
 			
         },{
@@ -73,9 +73,16 @@
             "byType": "xpath",
             "definition": "//*[text()='Go to next question']",
 			"frame": "default",
-			"specialInstr": "NA"
-			
-        }
-
+			"specialInstr": "NA",
+			"isObscured": true
+        },{
+			"name": "view_study_plan",
+            "byType": "xpath",
+			"definition": "//button[contains(text(), 'View Study Plan')]",
+			"frame": "default",
+			"specialInstr": "NA",
+			"isObscured": true
+		}
+        
     ]
 }

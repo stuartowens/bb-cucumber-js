@@ -1,7 +1,5 @@
 const { Given, When, Then } = require('cucumber');
-const path = require('path');
-const assert = require('assert');
-const { loadConfig, loadLogin } = require('../../../app/util');
+const { loadConfig } = require('../../../app/util');
 const stepsPath = process.cwd() + '/features/pageDefs/';
 const { PageObject } = require('../../../app/pageObject');
 const { log } = require('../../../app/logger');
@@ -9,7 +7,7 @@ const { getDriver, sleep } = require('../../../app/driver');
 const config = loadConfig('config');
 
 let pages = {
-  learningCurve: new PageObject('learning-curve.json', stepsPath),
+  learningCurve: new PageObject('learning-curve.json', stepsPath)
 };
 
 Given(/^I have opened LC "(.*)"$/, async function (urlKey) {
@@ -42,6 +40,26 @@ Then('the answer is correct', async function () {
   await pages.learningCurve.populate('next_question', 'click')
 });
 
+Then('get to the midway point of a test and continue', async function () {
+  while (true) {
+    const question = await pages.learningCurve.getElementValue('question')
+    if (!question.includes('alcohol')) {
+      await pages.learningCurve.populate('fill_in_the_blank', 'Chuck Norris');
+    } else {
+      await pages.learningCurve.populate('fill_in_the_blank', '1.3');
+    }
+    await pages.learningCurve.populate('submit_answer_button', 'click')
+    try {
+      await pages.learningCurve.populate('next_question_midway', 'click');
+      break;
+    } catch (err) {
+      // Do nothing
+    }
+    await pages.learningCurve.checkWebElementExists('successful_answer')
+    await pages.learningCurve.populate('next_question', 'click')
+  }
+});
+
 Then('finish the test', async function () {
   while (true) {
     const question = await pages.learningCurve.getElementValue('question')
@@ -51,14 +69,13 @@ Then('finish the test', async function () {
       await pages.learningCurve.populate('fill_in_the_blank', '1.3');
     }
     await pages.learningCurve.populate('submit_answer_button', 'click')
-    await pages.learningCurve.checkWebElementExists('successful_answer')
-    await pages.learningCurve.populate('next_question', 'click')
     try {
-      // await sleep(1000);
-      await pages.learningCurve.populate('back_to_study_plan', 'click');
+      await pages.learningCurve.populate('view_study_plan', 'click');
       break;
     } catch (err) {
-      continue;
+      // Do nothing
     }
+    await pages.learningCurve.checkWebElementExists('successful_answer')
+    await pages.learningCurve.populate('next_question', 'click')
   }
 });
