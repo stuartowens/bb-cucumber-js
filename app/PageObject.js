@@ -135,7 +135,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
         case 'svg':
           await populateSelect(webElement, value, actionElement);
           break;
-        case 'placeholder':
+        case 'p':
           await populateSelect(webElement, value, actionElement);
           break;
         default:
@@ -164,7 +164,6 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
     if (await hasElement(elementName)) {
       let tempElement = {};
       tempElement = await getElement(elementName);
-      // If need to hit a iframe, do it
       await switchFrame(tempElement.frame);
 
       const elementTarget = await WebElement(tempElement);
@@ -194,6 +193,32 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       throw err;
     }
   };
+
+  const generateDataTable = async function (padLength) {
+    var localPadLength = padLength || 0;
+    const _NA = "| NA".padEnd(localPadLength + 1);
+    console.log(`\nGenerating data table for ${that.pageName} \n`);
+    try {
+      //Return a | delimited list of the field names in the pageDefs file for this pageObject
+      console.log("|" + that.pageElements.keyList("|", localPadLength));
+
+      //Generate a list of NA for the page object.
+      var NAList = "";
+      var i;
+      var elementCount = that.pageElements.length; 
+      for (i = 0; i < elementCount; i++) { 
+          NAList += _NA;
+      }
+      console.log(`${NAList}|`);
+
+    } catch (err) {
+        log.error(err.stack);
+        throw err;
+    }
+  }
+
+  
+
   const elementExists = async function (strName) {
     try {
       log.info(`Starting to check if web element exists on the page: ${strName}`);
@@ -254,7 +279,6 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       throw err;
     }
   };
-
   that.assertText = assertText;
   that.getElement = getElement;
   that.hasElement = hasElement;
@@ -265,6 +289,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   that.elementExists = elementExists;
   that.checkWebElementExists = checkWebElementExists;
   that.getWebElements = getWebElements;
+  that.generateDataTable = generateDataTable;
   loadPageDefinitionFile(that.pageDefinitionFileName);
   return that;
 }

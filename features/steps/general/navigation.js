@@ -3,6 +3,7 @@ const { Given, When, Then } = require('cucumber');
 const path = require('path');
 const { loadConfig, loadLogin } = require('../../../app/util');
 const { getDriver, sleep} = require('../../../app/driver');
+const { By} = require('selenium-webdriver');
 
 const stepsPath = process.cwd() + '/features/pageDefs/';
 const { PageObject } = require('../../../app/pageObject');
@@ -23,8 +24,8 @@ Given(/^I have opened Achieve "(.*)"$/, async function (urlKey) {
 
 When('I click on sign In button on top right corner', async function () {
   try {
+    await sleep(5000);
     log.debug('clicking on sigin button');
-    await sleep(6000);
     await pages.navigation.populate('sign_in', 'click');
   } catch (err) {
     log.error(err.stack);

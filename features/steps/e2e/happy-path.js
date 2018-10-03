@@ -7,7 +7,9 @@ const {log} = require('../../../app/logger');
 const parse = require('parse-duration');
 const ScenarioData = require('../../../app/scenarioData');
 const StringProcessing = require('../../../app/stringProcessing');
-const {getDriver, sleep, Key, By} = require('../../../app/driver');
+const {getDriver, sleep} = require('../../../app/driver');
+const { By} = require('selenium-webdriver');
+const {Key} = require('selenium-webdriver');
 var fieldValue;
 var AssignValue;
 var CourseValue;
@@ -528,12 +530,13 @@ Then('I capture the invite link and store to variable "inviteLink"', async funct
   }
 
 });
-Then('I populate the Invite Students page', async function () {
+Then(/^I populate the Invite Students "(.*)" page$/, async function (email) {
   try {
+    const user = await loadLogin(email)
     console.log('Clicking on enter_emailid button');
-    await pages.authInstructor.populate('enter_emailid', 'kazavogoc@hubii-network.com');
+    await pages.authInstructor.populate('enter_emailid', user.username);
+    await pages.authInstructor.populate('enter_emailid', ' ');
     console.log(`enter_emailid button was clicked: ${clickedButton}`);
-    await (10000);
   } catch (err) {
     log.error(err);
   }
@@ -544,8 +547,9 @@ Then('I populate the Invite Students page', async function () {
   } catch (err) {
     log.error(err);
   }
+  await sleep(5000);
 });
-When('I click on course card "E2E101"', async function () {
+When('I click on course card "Testcourse" template', async function () {
   try {
     console.log('Clicking on course_card button');
     await pages.authAdmin.populate('course_card', 'click');
@@ -562,13 +566,7 @@ Then('I click on create access code', async function () {
   } catch (err) {
     log.error(err);
   }
-  try {
-    console.log('Clicking on users button');
-    await pages.authAdmin.populate('users', 'click');
-    await pages.authAdmin.populate('users', '2');
-    log.debug(`users button was clicked: ${clickedButton}`);
-  } catch (err) {
-    log.error(err);
-  }
-  
+});
+Then('I select number of use codes', async function () {
+  getDriver().findElement(By.xpath("//*[@aria-labelledby='mlSVG_74_Aa0' ]")).click();
 });

@@ -32,15 +32,15 @@
 		},
 		{
 			"name": "password",
-			"byType": "id",
-			"definition": "password",
+			"byType": "xpath",
+			"definition": "//*[@id='password']",
 			"frame": "default",
 			"specialInstr": "NA"
 		},
 		{
 			"name": "confirmPassword",
-			"byType": "id",
-			"definition": "confirmPassword",
+			"byType": "xpath",
+			"definition": "//*[@id='confirmPassword']",
 			"frame": "default",
 			"specialInstr": "NA"
 		},
@@ -135,7 +135,168 @@
 			"definition": "signin",
 			"frame": "default",
 			"specialInstr": "NA"
-		}		
+		},	
 		
+		{
+			"name": "first_error",
+			"byType": "xpath",
+			"definition": "//*[@id='firstName_error']",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+
+		{
+			"name": "Last_error",
+			"byType": "xpath",
+			"definition": "//*[@id='lastName_error']",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "password_error",
+			"byType": "xpath",
+			"definition": "//*[@id='password_error']",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "confirmpassword_error",
+			"byType": "xpath",
+			"definition": "//*[@id='confirmPassword_error']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+		    "name": "confirmpassword_error",
+			"byType": "xpath",
+			"definition": "//*[@id='confirmPassword_error']",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "sq1",
+			"byType": "xpath",
+			"definition": "//*[@id='Security_Question_1_Answer__c_error']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "sq2",
+			"byType": "xpath",
+			"definition": "//*[@id='Security_Question_2_Answer__c_error']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "sq3",
+			"byType": "xpath",
+			"definition": "//*[@id='Security_Question_3_Answer__c_error']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "compose",
+			"byType": "xpath",
+			"definition": "//*[text() ='Compose']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "toemail",
+			"byType": "xpath",
+			"definition": "//*[@name= 'to']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "subject",
+			"byType": "xpath",
+			"definition": "//*[@name='subjectbox']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "sendMail",
+			"byType": "xpath",
+			"definition": "//*[text ()='Send']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+
+		{
+			"name": "Privacy_notice",
+			"byType": "xpath",
+			"definition": "//*[@id='frm1']/div[13]/div/label/span/a[2]",
+			"frame": "default",
+			"specialInstr": "NA"	
+		},
+		{
+			"name": "privacy_check",
+			"byType": "xpath",
+			"definition": "//*[@class='header_mobile_text']",
+			"frame": "default",
+			"specialInstr": "NA"	
+		},
+		{
+			"name": "TermsOfUse",
+			"byType": "xpath",
+			"definition": "//*[@id='frm1']/div[14]/div/label/span/a",
+			"frame": "default",
+			"specialInstr": "NA"
+			
+		},
+
+		{
+			"name": "TermsOfUse_check",
+			"byType": "xpath",
+			"definition": "//*[@class='h-size2']",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "product_purchase",
+			"byType": "xpath",
+			"definition": "//*[text()='Physical Product Purchases']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "piracy_check",
+			"byType": "xpath",
+			"definition": "(//*[text()='Anti-Piracy Form'])[2]",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "privacy_link_check",
+			"byType": "xpath",
+			"definition": "//*[text()='Information We Collect']",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "macmillanlearning_check",
+			"byType": "xpath",
+			"definition": "//*[@id='homepage-course-callouts']/div/div[1]/div/div[1]/img",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "signup_disabled",
+			"byType": "xpath",
+			"definition": "//*[@disabled] ",
+			"frame": "default",
+			"specialInstr": "NA"
+		}
+
 	]
 }

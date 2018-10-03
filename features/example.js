@@ -8,6 +8,12 @@ const { PageObject } = require('../app/pageObject');
 const StringProcessing = require('../app/stringProcessing');
 const ScenarioData = require('../app/scenarioData');
 
+let pages = {
+  createAccount: new PageObject('createAccount.json', pagePath),
+ // login: new PageObject('loginPages.json', stepsPath),
+  navigation: new PageObject('navigation.json', pagePath)
+};
+
 When(/^I want to test (.*) and (.*)$/, async function (user, random) {
   try {
     var that = {
@@ -79,3 +85,16 @@ Then(/^I visually confirm that login data (.*) /, async function (login) {
   let username = sp.strEval(login);
   log.debug(`Found username ${username} from ${login}`);
 });
+
+Then(/^I generate a dataTabe for this page Object/, async function () {
+  try {
+    var returnString = pages.navigation.generateDataTable(25);
+
+    console.log (returnString);
+  } catch (err) {
+    log.error(err.stack); 
+  }
+
+  //log.debug(`Found username ${username} from ${login}`);
+});
+

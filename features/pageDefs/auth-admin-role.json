@@ -250,6 +250,67 @@
             "frame":"default",
             "specialInstr":"NA"
 
+		},
+		{
+			"name":"gmail",
+            "byType":"xpath",
+            "definition":"//*[@id='yDmH0d']/div[2]/c-wiz/div/div/div[5]/div[2]/c-wiz/div/div[1]/div/div[1]/div[2]/a[2]",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+		{
+			"name":"create_course_button",
+            "byType":"xpath",
+            "definition":"//*[text()='Create Accesscode']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+		{
+			"name":"mail",
+            "byType":"xpath",
+            "definition":"(//*[text()='Macmillan Learning :: Reset Password'])[2]",
+            "frame":"default",
+			"specialInstr":"NA"
+
+		},
+		{
+			"name":"temp_reset_password",
+            "byType":"xpath",
+            "definition":"//*[@id=':7h']/div/table/tbody/tr/td/center/table[2]/tbody/tr[1]/td/p[2]/a",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+		{
+			"name":"login_again",
+            "byType":"xpath",
+            "definition":"//*[@id='refererLink']",
+            "frame":"default",
+            "specialInstr":"NA"
+		}, 
+		{
+			"name":"reset_password_email",
+            "byType":"id",
+            "definition":"update",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"back_login",
+            "byType":"xpath",
+            "definition":"//*[@id='refererLink']",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+	
+		{
+			"name":"reset_check",
+            "byType":"xpath",
+            "definition":"(//*[@class='pad'])[1]",
+            "frame":"default",
+            "specialInstr":"NA"
 		}
 
 
