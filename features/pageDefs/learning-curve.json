@@ -1,6 +1,14 @@
 {
 	"webElements": [
 		{
+			"name": "reading_list",
+            "byType": "xpath",
+			"definition": "//div[@data-test-id='lcrpReadingItem']",
+			"frame": "default",
+			"specialInstr": "NA"
+			
+        },
+		{
 			"name": "start_quiz_button",
             "byType": "xpath",
 			"definition": "//*[text()='Take the Quiz!']",
@@ -19,6 +27,13 @@
 			"name": "fill_in_the_blank",
             "byType": "xpath",
 			"definition": "//input[@type='text']",
+			"frame": "default",
+			"specialInstr": "NA"
+			
+        },{
+			"name": "multiple_choice",
+            "byType": "xpath",
+			"definition": "//div[@data-test-id='MultipleChoice']/form/label",
 			"frame": "default",
 			"specialInstr": "NA"
 			
@@ -41,7 +56,7 @@
         },{
 			"name": "successful_answer",
             "byType": "xpath",
-			"definition": "//div[@  data-test-id='SuccessModal']",
+			"definition": "//div[@data-test-id='SuccessModal']",
 			"frame": "default",
 			"specialInstr": "NA"
 			

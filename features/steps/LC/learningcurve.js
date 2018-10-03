@@ -10,23 +10,50 @@ let pages = {
   learningCurve: new PageObject('learning-curve.json', stepsPath)
 };
 
-Given(/^I have opened LC "(.*)"$/, async function (urlKey) {
+Given(/^I have opened LC "(.*)" "(.*)"$/, async function (urlKey, topic) {
   var url = config[urlKey];
   const epoch = new Date().getTime();
-  url = url + 'lcrp/?user_id=fake_user_' + epoch + '&file=music%2Ftest%2Ffixtures-vitalsource-chucknorris&itemid=' + epoch + '&course_id=' + epoch;
+  if (topic === 'Norris') {
+    url = url + 'lcrp/?user_id=fake_user_' + epoch + '&file=music%2Ftest%2Ffixtures-vitalsource-chucknorris&itemid=' + epoch + '&course_id=' + epoch;
+  } else {
+    url = url + 'lcrp/?user_id=fake_user_' + epoch + '&file=music%2Ftest%2Ffixtures-vitalsource-history&itemid=' + epoch + '&course_id=' + epoch;
+  }
   log.debug(`Loading URL ${url}`);
   await getDriver().get(url);
+  await sleep(5000);
 });
 
 When('I start a quiz', async function () {
   log.debug(`Start Quiz.`);
-  await sleep(5000);
   await pages.learningCurve.populate('start_quiz_button', 'click');
 });
 
 Then('I answer a question', async function () {
   log.debug('Answer Question');
   await pages.learningCurve.populate('fill_in_the_blank', 'Chuck Norris');
+});
+
+Then('I see the reading list', async function () {
+  log.debug('Answering Mutiple Chioce question');
+  var answerList = await pages.learningCurve.getWebElements('reading_list')
+  await answerList.forEach(async function (answer) {
+    const labelText = await answer.getText();
+    console.log('label text' + labelText);
+  });
+  const elementId = await pages.learningCurve.getElementValue('reading_list', 'class')
+  console.log('Class list: ' + elementId);
+  const cssValue = await pages.learningCurve.getElementValue('reading_list', 'style')
+  console.log('Styles: ' + cssValue);
+});
+
+Then('I have a Mutiple Choice Question', async function () {
+  log.debug('Answering Mutiple Chioce question');
+  var answerList = await pages.learningCurve.getWebElements('multiple_choice')
+  console.log('elements found' + answerList.length)
+  for (var answer in answerList) {
+    const labelText = await answer.getText();
+    console.log('label text' + labelText);
+  }
 });
 
 Then('the submit answer buttons appears', async function () {

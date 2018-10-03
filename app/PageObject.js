@@ -170,7 +170,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
       const elementTarget = await WebElement(tempElement);
       const webElement = await elementTarget.getWebElement();
       var returnValue;
-      if (attributeName === undefined || attributeName === 'text') {
+      if (attributeName === undefined || attributeName.toLowerCase() === 'text') {
         returnValue = await webElement.getText();
       }
       if (attributeName) {
