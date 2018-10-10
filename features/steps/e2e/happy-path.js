@@ -567,6 +567,3 @@ Then('I click on create access code', async function () {
     log.error(err);
   }
 });
-Then('I select number of use codes', async function () {
-  getDriver().findElement(By.xpath("//*[@aria-labelledby='mlSVG_74_Aa0' ]")).click();
-});
