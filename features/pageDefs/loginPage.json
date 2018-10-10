@@ -47,17 +47,11 @@
 		{
 			"name":"view_box",
             "byType":"xpath",
-            "definition":"//*[@class='tooltip sc-gzVnrw hoyBoF']",
+            "definition":"//*[@class='tooltip sc-gzVnrw jcSgBr']",
             "frame":"default",
             "specialInstr":"NA"
 		},
-		{
-			"name":"forgot_email",
-            "byType":"xpath",
-            "definition":"//*[@id='RegisterForm']/div[1]/div[1]/span[2]/a",
-            "frame":"default",
-            "specialInstr":"NA"
-		},
+	
 		{
 			"name":"forgot_password",
             "byType":"xpath",

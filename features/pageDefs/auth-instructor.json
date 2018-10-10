@@ -123,10 +123,22 @@
             "definition":".//*[@class='_1tkc undefined']",
             "frame":"default",
             "specialInstr":"NA"
+		},
+		{
+			"name":"macmillanMail",
+            "byType":"xpath",
+            "definition":"(//*[text()='You have been invited to join a course'])[2]",
+            "frame":"default",
+            "specialInstr":"NA"
+		},
+		{
+			"name":"hyperlink",
+            "byType":"xpath",
+            "definition":"//a[contains(@href, 'https://int-achieve-courseware-frontend.mldev.cloud/courses/tdea8f')]",
+            "frame":"default",
+            "specialInstr":"NA"
+
 		}
-
-		
-
 	
 		
 	]

@@ -68,8 +68,8 @@
 		},
 		{
 			"name":"sign_in",
-            "byType":"classname",
-            "definition":"_3GtB",
+            "byType":"xpath",
+            "definition":"//*[@id='container']/div/div/div/div[2]/a/button",
             "frame":"default",
             "specialInstr":"NA"
 		},

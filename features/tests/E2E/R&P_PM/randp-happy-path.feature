@@ -104,7 +104,9 @@ Scenario: Create course in Achieve for "Bookname??"
     And I sign out of Achieve
 
     Scenario: Enroll into course with link and access code
-    Given That I have opened the Achieve [$inviteLink] in the <$browser>
+    Given I have opened Achieve "ThirdpartyURL"
+    When I log in as "admin"
+    And I open the invite link and login with "student" account details
     Then validate that the following information is correct on the Course Access Code page
     |courseName     | courseCode    | Instructor         | accessType      |
     | $course1.name | $course1.code | $instructor1.email | [$course.pm] |
