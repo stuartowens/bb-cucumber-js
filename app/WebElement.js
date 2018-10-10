@@ -22,6 +22,12 @@ const WebElement = function (element) {
     return returnElement;
   };
 
+  that.getWebElements = async function () {
+    const elementDef = await this.getBy();
+    const returnElement = await my.driver.findElements(elementDef);
+    return returnElement;
+  };
+
   that.elementExists = async function () {
     const elementDef = await this.getBy();
     const returnExists = await my.driver.findElements(elementDef).size != 0;
