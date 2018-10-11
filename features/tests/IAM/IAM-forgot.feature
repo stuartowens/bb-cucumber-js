@@ -10,6 +10,10 @@ Background:
         When I click on cancel button
         Then I Verify Sign In page should be displayed
 
+    Scenario: Verify that email info icon tooltip Information is consistent to application behavior
+        When I hover on "?" icon
+        Then I verify that forgot email info icon tooltip Information is consistent to application behavior
+
     Scenario: Verify that forgot password is showing appropriate message for not registered with macmillan account e-mail address
         When I click on forgot link
         And I enter the emailaddress of the account which is not registered in macmillan

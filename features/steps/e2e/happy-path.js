@@ -410,6 +410,16 @@ Then('I validate that the course card named "course1.templatename" exists on the
     log.error(err);
   }
 });
+
+When('I click on course card "Testcourse" template', async function () {
+  try {
+    log.debug('Clicking on course card');
+    await pages.authProducer.populate('', 'click');
+    log.debug(`create resource tab was clicked: ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+});
 When('I click on Resource tab', async function () {
   try {
     log.debug('Clicking on resources tab');

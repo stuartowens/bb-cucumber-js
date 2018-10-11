@@ -34,7 +34,7 @@
         {
             "name":"chapter_1_r&p",
             "byType":"xpath",
-            "definition":"//*[@class='_7TPz']",
+            "definition":"//*[@class='_3Jn1']",
             "frame":"default",
             "specialInstr":"NA"
         }

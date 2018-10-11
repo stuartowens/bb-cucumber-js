@@ -1,6 +1,7 @@
 Feature: R&P happy path workflow 1
 
    Media Producer creates a course
+   
 Background:
         Given I have opened Achieve "loginURL"
 
@@ -110,35 +111,14 @@ Background:
              #| NA        | Click        | "$loginStudent1.email_address"| NA        | Click          |
         And I sign out of Achieve
 
-
-    Scenario: Initiating the access code
-        When I have logged in as "paid_accessCC" 
-        And I search for "Testcourse"
-        And I click on course card "Testcourse" 
-        And I click on user menu
-        And I click on Admin Panel 
-        Then I click on create access codes
-        And I select number of use codes
-        And length of the Access code
-        And I sign out of Achieve
-
-
-    Scenario: Enroll into course with link and access code
-        Given I have opened Achieve "ThirdpartyURL"
-        When I log in as "student"
-        And I open the invite link and login with "student" account details
-        Then validate that the following information is correct on the Course Access Code page
-            |courseName     | courseCode    | Instructor         | accessType      |
-            | $course1.name | $course1.code | $instructor1.email | [$course.pm]    |
-    
-
-
     Scenario: Enroll into course with link and access code
         When I have logged in as "student"
         And I click on course card "E2E101"
         And I click on Resuource tab
         And I click on Open Folder
         Then I click on Read and Practice 
+        And I click on the content available for reading 
+   
 
     
 

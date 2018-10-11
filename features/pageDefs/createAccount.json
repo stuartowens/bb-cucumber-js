@@ -332,14 +332,56 @@
 			"definition": "OptIn__c",
 			"frame": "default",
 			"specialInstr": "NA"
+		},
+		{
+			"name": "largechar_firstname",
+			"byType": "id",
+			"definition": "firstName_message",
+			"frame": "default",
+			"specialInstr": "NA"
 
+		},
+		{
+			"name": "largechar_lastname",
+			"byType": "id",
+			"definition": "lastName_message",
+			"frame": "default",
+			"specialInstr": "NA"
 
+		},
+		{
+			"name": "Security_question_1_message",
+			"byType": "id",
+			"definition": "Security_Question_1_Answer__c_message",
+			"frame": "default",
+			"specialInstr": "NA"
 
+		},
+		{
+			"name": "Security_question_2_message",
+			"byType": "id",
+			"definition": "Security_Question_2_Answer__c_message",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "Security_question_3_message",
+			"byType": "id",
+			"definition": "Security_Question_3_Answer__c_message",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "institution_message",
+			"byType": "id",
+			"definition": "institution_length",
+			"frame": "default",
+			"specialInstr": "NA"
 		}
-		
 
 
-		
 
 	]
 }

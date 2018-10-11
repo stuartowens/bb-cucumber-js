@@ -24,7 +24,7 @@ Then('I verify validation message for first name and last name', async function 
   try {
     console.log('Verify that First Name field and last name validations are working as expected')
     const errorText = await pages.createAccount.getElementValue('first_error');
-    if (errorText === 'First name must not be blank and cannot contain numbers/special characters') {
+    if (errorText == 'First name must not be blank and cannot contain numbers/special characters') {
       console.log('passed');
     } else {
       throw new Error('failed');
@@ -34,7 +34,40 @@ Then('I verify validation message for first name and last name', async function 
   }
   try {
     const errorText = await pages.createAccount.getElementValue('Last_error');
-    if (errorText === 'Last name must not be blank and cannot contain numbers/special characters') {
+    if (errorText == 'Last name must not be blank and cannot contain numbers/special characters') {
+      console.log('passed');
+    } else {
+      throw new Error('failed');
+    }
+  } catch (err) {
+    log.error(err);
+  }
+});
+
+When('I verify the functionality of first name and lastname by entering large characters', async function () {
+  try {
+    await pages.createAccount.populate('firstName', 'abcdefghijklmnopqrstuvwxyzabcdefghijklam');
+    await pages.createAccount.populate('lastName', 'abcdefghijklmnopqrstuvwxyzabcdefghijklam');
+  } catch (err) {
+    log.error(err);
+  }
+});
+
+Then('I verify validation message in first name and last name', async function () {
+  try {
+    console.log('Verify that First Name field and last name validations are working as expected')
+    const errorText = await pages.createAccount.getElementValue('largechar_firstname');
+    if (errorText == 'Limit of 40 characters reached') {
+      console.log('passed');
+    } else {
+      throw new Error('failed');
+    }
+  } catch (err) {
+    log.error(err);
+  }
+  try {
+    const errorText = await pages.createAccount.getElementValue('largechar_lastname');
+    if (errorText == 'Limit of 40 characters reached') {
       console.log('passed');
     } else {
       throw new Error('failed');
@@ -99,7 +132,7 @@ When('I check the error message', async function () {
   try {
     console.log('Verify that password field validations are working as expected')
     const errorText = await pages.createAccount.getElementValue('password_error');
-    if (errorText === 'Not a valid password') {
+    if (errorText == 'Not a valid password') {
       console.log('passed');
     } else {
       throw new Error('failed');
@@ -134,7 +167,7 @@ When('I check the error message of confirm password', async function () {
   try {
     console.log('Verify that confirm password field validations are working as expected')
     const errorText = await pages.createAccount.getElementValue('confirmpassword_error');
-    if (errorText === 'Passwords must match') {
+    if (errorText == 'Passwords must match') {
       console.log('passed');
     } else {
       throw new Error('failed');
@@ -150,6 +183,55 @@ When(/^I enter Password and confirm password from "(.*)" account fullfiling all 
     await pages.createAccount.populate('password', user.password);
     await pages.createAccount.populate('confirmPassword', user.password);
     log.debug(`forgot button was clicked: ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+});
+
+When(/^I Select SecurityQuestions from "(.*)" account and I enter 150 character value$/, async function (account) {
+  try {
+    const user = await loadLogin(account)
+    log.debug('clicking on Security Question button');
+    await pages.createAccount.populate('Security_Question_1__c', user.sq1);
+    await pages.createAccount.populate('Security_Question_1_Answer__c', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    await pages.createAccount.populate('Security_Question_2__c', user.sq2);
+    await pages.createAccount.populate('Security_Question_2_Answer__c', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    await pages.createAccount.populate('Security_Question_3__c', user.sq3);
+    await pages.createAccount.populate('Security_Question_3_Answer__c', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    await pages.createAccount.populate('institution', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+  } catch (err) {
+    log.error(err);
+  }
+});
+
+Then('I verify the message displayed', async function () {
+  try {
+    const errorText = await pages.createAccount.getElementValue('Security_question_1_message');
+    if (errorText == 'Limit of 150 characters reached') {
+      console.log('passed')
+    } else {
+      throw new Error('failed');
+    }
+  } catch (err) {
+    log.error(err);
+  }
+  try {
+    const errorText = await pages.createAccount.getElementValue('Security_question_2_message');
+    if (errorText == 'Limit of 150 characters reached') {
+      console.log('passed')
+    } else {
+      throw new Error('failed');
+    }
+  } catch (err) {
+    log.error(err);
+  }
+  try {
+    const errorText = await pages.createAccount.getElementValue('Security_question_3_message');
+    if (errorText == 'Limit of 150 characters reached') {
+      console.log('passed')
+    } else {
+      throw new Error('failed');
+    }
   } catch (err) {
     log.error(err);
   }
@@ -174,7 +256,7 @@ Then('I Verify Error message is displayed', async function () {
   try {
     console.log('Verify that Security Question & Answer validations are working as expected without entering the question and answers');
     const errorText = await pages.createAccount.getElementValue('sq1');
-    if (errorText === 'Must not be blank') {
+    if (errorText == 'Must not be blank') {
       console.log('passed')
     } else {
       throw new Error('failed');
@@ -184,7 +266,7 @@ Then('I Verify Error message is displayed', async function () {
   }
   try {
     const errorText = await pages.createAccount.getElementValue('sq2');
-    if (errorText === 'Must not be blank') {
+    if (errorText == 'Must not be blank') {
       console.log('passed')
     } else {
       throw new Error('failed');
@@ -194,7 +276,7 @@ Then('I Verify Error message is displayed', async function () {
   }
   try {
     const errorText = await pages.createAccount.getElementValue('sq3');
-    if (errorText === 'Must not be blank') {
+    if (errorText == 'Must not be blank') {
       console.log('passed')
     } else {
       throw new Error('failed');
@@ -570,6 +652,158 @@ When(/^User "(.*)" has filled all mandatory fields except password$/, async func
   } catch (err) {
     log.error(err);
   }
+  try {
+    const Login = await loadLogin(password)
+    await pages.createAccount.populate('firstName', Login.firstName);
+    await pages.createAccount.populate('lastName', Login.lastName);
+    await pages.createAccount.populate('email', Login.username);
+    await pages.createAccount.populate('password', 'ABab@12');
+    await pages.createAccount.populate('confirmPassword', 'ABab@12');
+    await pages.createAccount.populate('Security_Question_1__c', Login.sq1);
+    await pages.createAccount.populate('Security_Question_1_Answer__c', Login.sq1_answer);
+    await pages.createAccount.populate('Security_Question_2__c', Login.sq2);
+    await pages.createAccount.populate('Security_Question_2_Answer__c', Login.sq2_answer);
+    await pages.createAccount.populate('Security_Question_3__c', Login.sq3);
+    await pages.createAccount.populate('Security_Question_3_Answer__c', Login.sq3_answer);
+    await pages.createAccount.populate('institution', Login.primarySchool);
+    await pages.createAccount.populate('OptIn', 'NA');
+    await pages.createAccount.populate('termsOfService', 'click');
+  } catch (err) {
+    log.error(err);
+  }
+  try {
+    const Login = await loadLogin(password)
+    await pages.createAccount.populate('firstName', Login.firstName);
+    await pages.createAccount.populate('lastName', Login.lastName);
+    await pages.createAccount.populate('email', Login.username);
+    await pages.createAccount.populate('password', 'ABabc@12');
+    await pages.createAccount.populate('confirmPassword', 'ABabc@12');
+    await pages.createAccount.populate('Security_Question_1__c', Login.sq1);
+    await pages.createAccount.populate('Security_Question_1_Answer__c', Login.sq1_answer);
+    await pages.createAccount.populate('Security_Question_2__c', Login.sq2);
+    await pages.createAccount.populate('Security_Question_2_Answer__c', Login.sq2_answer);
+    await pages.createAccount.populate('Security_Question_3__c', Login.sq3);
+    await pages.createAccount.populate('Security_Question_3_Answer__c', Login.sq3_answer);
+    await pages.createAccount.populate('institution', Login.primarySchool);
+    await pages.createAccount.populate('OptIn', 'NA');
+    await pages.createAccount.populate('termsOfService', 'click');
+  } catch (err) {
+    log.error(err);
+  }
+  try {
+    const Login = await loadLogin(password)
+    await pages.createAccount.populate('firstName', Login.firstName);
+    await pages.createAccount.populate('lastName', Login.lastName);
+    await pages.createAccount.populate('email', Login.username);
+    await pages.createAccount.populate('password', 'ABabc@123');
+    await pages.createAccount.populate('confirmPassword', 'ABabc@123');
+    await pages.createAccount.populate('Security_Question_1__c', Login.sq1);
+    await pages.createAccount.populate('Security_Question_1_Answer__c', Login.sq1_answer);
+    await pages.createAccount.populate('Security_Question_2__c', Login.sq2);
+    await pages.createAccount.populate('Security_Question_2_Answer__c', Login.sq2_answer);
+    await pages.createAccount.populate('Security_Question_3__c', Login.sq3);
+    await pages.createAccount.populate('Security_Question_3_Answer__c', Login.sq3_answer);
+    await pages.createAccount.populate('institution', Login.primarySchool);
+    await pages.createAccount.populate('OptIn', 'NA');
+    await pages.createAccount.populate('termsOfService', 'click');
+  } catch (err) {
+    log.error(err);
+  }
+  try {
+    const Login = await loadLogin(password)
+    await pages.createAccount.populate('firstName', Login.firstName);
+    await pages.createAccount.populate('lastName', Login.lastName);
+    await pages.createAccount.populate('email', Login.username);
+    await pages.createAccount.populate('password', 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoPQRSTUVWXYZ12345678900987654321@');
+    await pages.createAccount.populate('confirmPassword', 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoPQRSTUVWXYZ12345678900987654321@');
+    await pages.createAccount.populate('Security_Question_1__c', Login.sq1);
+    await pages.createAccount.populate('Security_Question_1_Answer__c', Login.sq1_answer);
+    await pages.createAccount.populate('Security_Question_2__c', Login.sq2);
+    await pages.createAccount.populate('Security_Question_2_Answer__c', Login.sq2_answer);
+    await pages.createAccount.populate('Security_Question_3__c', Login.sq3);
+    await pages.createAccount.populate('Security_Question_3_Answer__c', Login.sq3_answer);
+    await pages.createAccount.populate('institution', Login.primarySchool);
+    await pages.createAccount.populate('OptIn', 'NA');
+    await pages.createAccount.populate('termsOfService', 'click');
+  } catch (err) {
+    log.error(err);
+  }
+  try {
+    const Login = await loadLogin(password)
+    await pages.createAccount.populate('firstName', Login.firstName);
+    await pages.createAccount.populate('lastName', Login.lastName);
+    await pages.createAccount.populate('email', Login.username);
+    await pages.createAccount.populate('password', 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoPQRSTUVWXYZ12345678900987654321@$');
+    await pages.createAccount.populate('confirmPassword', 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoPQRSTUVWXYZ12345678900987654321@$');
+    await pages.createAccount.populate('Security_Question_1__c', Login.sq1);
+    await pages.createAccount.populate('Security_Question_1_Answer__c', Login.sq1_answer);
+    await pages.createAccount.populate('Security_Question_2__c', Login.sq2);
+    await pages.createAccount.populate('Security_Question_2_Answer__c', Login.sq2_answer);
+    await pages.createAccount.populate('Security_Question_3__c', Login.sq3);
+    await pages.createAccount.populate('Security_Question_3_Answer__c', Login.sq3_answer);
+    await pages.createAccount.populate('institution', Login.primarySchool);
+    await pages.createAccount.populate('OptIn', 'NA');
+    await pages.createAccount.populate('termsOfService', 'click');
+  } catch (err) {
+    log.error(err);
+  }
+  try {
+    const Login = await loadLogin(password)
+    await pages.createAccount.populate('firstName', Login.firstName);
+    await pages.createAccount.populate('lastName', Login.lastName);
+    await pages.createAccount.populate('email', Login.username);
+    await pages.createAccount.populate('password', 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoPQRSTUVWXYZ12345678900987654321');
+    await pages.createAccount.populate('confirmPassword', 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoPQRSTUVWXYZ12345678900987654321');
+    await pages.createAccount.populate('Security_Question_1__c', Login.sq1);
+    await pages.createAccount.populate('Security_Question_1_Answer__c', Login.sq1_answer);
+    await pages.createAccount.populate('Security_Question_2__c', Login.sq2);
+    await pages.createAccount.populate('Security_Question_2_Answer__c', Login.sq2_answer);
+    await pages.createAccount.populate('Security_Question_3__c', Login.sq3);
+    await pages.createAccount.populate('Security_Question_3_Answer__c', Login.sq3_answer);
+    await pages.createAccount.populate('institution', Login.primarySchool);
+    await pages.createAccount.populate('OptIn', 'NA');
+    await pages.createAccount.populate('termsOfService', 'click');
+  } catch (err) {
+    log.error(err);
+  }
+  try {
+    const Login = await loadLogin(password)
+    await pages.createAccount.populate('firstName', Login.firstName);
+    await pages.createAccount.populate('lastName', Login.lastName);
+    await pages.createAccount.populate('email', Login.username);
+    await pages.createAccount.populate('password', 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678900987654321');
+    await pages.createAccount.populate('confirmPassword', 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz12345678900987654321');
+    await pages.createAccount.populate('Security_Question_1__c', Login.sq1);
+    await pages.createAccount.populate('Security_Question_1_Answer__c', Login.sq1_answer);
+    await pages.createAccount.populate('Security_Question_2__c', Login.sq2);
+    await pages.createAccount.populate('Security_Question_2_Answer__c', Login.sq2_answer);
+    await pages.createAccount.populate('Security_Question_3__c', Login.sq3);
+    await pages.createAccount.populate('Security_Question_3_Answer__c', Login.sq3_answer);
+    await pages.createAccount.populate('institution', Login.primarySchool);
+    await pages.createAccount.populate('OptIn', 'NA');
+    await pages.createAccount.populate('termsOfService', 'click');
+  } catch (err) {
+    log.error(err);
+  }
+  try {
+    const Login = await loadLogin(password)
+    await pages.createAccount.populate('firstName', Login.firstName);
+    await pages.createAccount.populate('lastName', Login.lastName);
+    await pages.createAccount.populate('email', Login.username);
+    await pages.createAccount.populate('password', 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ12345678900987654321');
+    await pages.createAccount.populate('confirmPassword', 'ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ12345678900987654321');
+    await pages.createAccount.populate('Security_Question_1__c', Login.sq1);
+    await pages.createAccount.populate('Security_Question_1_Answer__c', Login.sq1_answer);
+    await pages.createAccount.populate('Security_Question_2__c', Login.sq2);
+    await pages.createAccount.populate('Security_Question_2_Answer__c', Login.sq2_answer);
+    await pages.createAccount.populate('Security_Question_3__c', Login.sq3);
+    await pages.createAccount.populate('Security_Question_3_Answer__c', Login.sq3_answer);
+    await pages.createAccount.populate('institution', Login.primarySchool);
+    await pages.createAccount.populate('OptIn', 'NA');
+    await pages.createAccount.populate('termsOfService', 'click');
+  } catch (err) {
+    log.error(err);
+  }
 });
 
 When('I click on Account', async function () {
@@ -613,7 +847,7 @@ When('I verify it redirects to E-mail', async function () {
     console.log('failed');
   }
 });
- When('I click on checkbox in account', async function () {
+When('I click on checkbox in account', async function () {
   try {
     log.debug('Clickig on checkbox');
     await pages.createAccount.populate('checkbox', 'click');
@@ -621,4 +855,27 @@ When('I verify it redirects to E-mail', async function () {
   } catch (err) {
     log.error(err);
   }
- });
+});
+
+Then('I click on Primary Institution', async function () {
+  try {
+    log.debug('Clickig on Primary Institution');
+    await pages.createAccount.populate('institution', 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    log.debug(`Primary Institution is clicked, ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+});
+
+Then('I verify the message', async function () {
+  try {
+    const errorText = await pages.createAccount.getElementValue('institution_message');
+    if (errorText == 'Limit of 150 characters reached') {
+      console.log('passed');
+    } else {
+      throw new Error('failed');
+    }
+  } catch (err) {
+    log.error(err);
+  }
+});

@@ -199,7 +199,22 @@
 			"frame":"default",
 			"specialInstr":"NA"
 
+		},
+		{
+			"name":"email_forgot",
+			"byType":"xpath",
+			"definition":"//*[@class='help_outlineIcon']",
+			"frame":"default",
+			"specialInstr":"NA"
+		},
+		{
+			"name":"email_forgot_check",
+			"byType":"xpath",
+			"definition":"//*[@class='tooltipContent']",
+			"frame":"default",
+			"specialInstr":"NA"
 		}
+
 
 	]
 }
