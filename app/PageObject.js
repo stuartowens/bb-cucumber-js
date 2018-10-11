@@ -146,7 +146,21 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
     }
   };
 
-  const getElementValue = async function (elementName) {
+  const getWebElements = async function (elementName) {
+    if (await hasElement(elementName)) {
+      let tempElement = {};
+      tempElement = await getElement(elementName);
+      // If need to hit a iframe, do it
+      await switchFrame(tempElement.frame);
+      const elementTarget = await WebElement(tempElement);
+      const elementList = await elementTarget.getWebElements();
+      return elementList
+    } else {
+      throw new Error(`Element ${elementName} not found.`);
+    }
+  }
+
+  const getElementValue = async function (elementName, attributeName) {
     if (await hasElement(elementName)) {
       let tempElement = {};
       tempElement = await getElement(elementName);
@@ -154,7 +168,13 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
 
       const elementTarget = await WebElement(tempElement);
       const webElement = await elementTarget.getWebElement();
-      const returnValue = await webElement.getText();
+      var returnValue;
+      if (attributeName === undefined || attributeName.toLowerCase() === 'text') {
+        returnValue = await webElement.getText();
+      }
+      if (attributeName) {
+        returnValue = await webElement.getAttribute(attributeName);
+      }
       return returnValue;
     } else {
       throw new Error(`Element ${elementName} not found.`);
@@ -268,6 +288,7 @@ const PageObject = function (pageNameInput, pageNameDirectoryInput) {
   that.populateElement = populateElement;
   that.elementExists = elementExists;
   that.checkWebElementExists = checkWebElementExists;
+  that.getWebElements = getWebElements;
   that.generateDataTable = generateDataTable;
   loadPageDefinitionFile(that.pageDefinitionFileName);
   return that;
