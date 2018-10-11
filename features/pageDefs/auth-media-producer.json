@@ -152,6 +152,14 @@
             "specialInstr":"NA"
         },
         {
+            "name":"course_validation",
+            "byType":"id",
+            "definition":"//*[@id='container']/div/div[2]/div[1]/div/div/div[3]/div/div/a",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
             "name":"card_name",
             "byType":"classname",
             "definition":"DOD8 CourseCard_draft CourseCard_product_1 CourseCard_template",
@@ -162,9 +170,33 @@
         {
             "name":"resources_tab",
             "byType":"xpath",
-            "definition":"//*[@id='react-tabs-14']/span ",
+            "definition":"//*[@id='react-tabs-20']/span",
             "frame":"default",
             "specialInstr":"NA"
+        },
+        {
+            "name":"Add_button",
+            "byType":"xpath",
+            "definition":"//*[@id='container']/div/div/div/div[5]/button/div/div",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"ActivitySearchInput",
+            "byType":"xpath",
+            "definition":"//*[@id='__ActivitySearchInput']",
+            "frame":"default",
+            "specialInstr":"NA",
+            "waitToBeVisible": "Adding_chapter_content"
+
+        },
+        {
+            "name":"Adding_chapter_content",
+            "byType":"classname",
+            "definition":"_2UlN _18eG",
+            "frame":"default",
+            "specialInstr":"NA"
+
         },
         {
             "name":"folder_name",
@@ -186,6 +218,23 @@
             "definition":"/html/body/div/div/div/div/div[4]/div/div/div/div[2]/div[2]/div[1]/div/div/div[3]/div/button",
             "frame":"default",
             "specialInstr":"NA"
+        
+        },
+        {
+            "name":"OpenFolder",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div[1]/div/div/div/div[2]/div[1]/div/div/div[1]/button",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"OpenFolder1",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div/div/div/div/div[2]/div[2]/div/div/div[1]/button",
+            "frame":"default",
+            "specialInstr":"NA"
+
         },
         {
             "name":"move_item_button",
@@ -212,7 +261,6 @@
             "name":"chapter_1_3",
             "byType":"xpath",
             "definition":"/html/body/div[2]/div/div/div[2]/div/div/div/div/div[2]/div[4]/div/div/div[2]/button",
-            "frame":"default",
             "specialInstr":"NA"
         },
         {
@@ -279,6 +327,82 @@
             "frame":"default",
             "specialInstr":"NA"
 
+        },
+        { 
+            "name":"Template_validate",
+            "byType":"xpath",
+            "definition":"//*[text()='Template']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"chapter1-1",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div/div/div/div/div[2]/div[1]/div[2]/div[1]/div/div/div[2]/button/span",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"chapter1-2",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div/div/div/div/div[2]/div[1]/div[2]/div[2]/div/div/div[2]/button",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"chapter1-(3)",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div/div/div/div/div[2]/div[1]/div[2]/div[3]/div/div/div[2]/button",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"chapter2-1",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div/div/div/div/div[2]/div[2]/div[2]/div/div/div/div[2]/button",
+            "frame":"default",
+            "specialInstr":"NA" 
+        },
+        {
+            "name":"AddSelectionsToResource",
+            "byType":"classname",
+            "definition":"_1tkc undefined",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"OpenActionMenuForChapter1",
+            "byType":"xpath",
+            "definition":"(//*[@class='_3xl4'])[3]",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"OpenActionMenuForChapter2",
+            "byType":"xpath",
+            "definition":"(//*[@class='_3xl4'])[4]",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"OpenActionMenuForChapter3",
+            "byType":"xpath",
+            "definition":"(//*[@class='_3xl4'])[5]",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"OpenActionMenuForChapter4",
+            "byType":"xpath",
+            "definition":"(//*[@class='_3xl4'])[6]",
+            "frame":"default",
+            "specialInstr":"NA"
         }
+       
+       
+
 	]
 }

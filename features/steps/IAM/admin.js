@@ -169,8 +169,8 @@ Then(/^I verify Message is displayed as "(.*)"$/, async function (verify) {
   }
 });
 Then('Verify that user is able to login using newly created password', async function () {
-  console.log(' Verify that user is able to Sign In using new password')
-  if (await pages.login.checkWebElementExists('existinguser_check')) {
+  console.log(' Verify that user is able to Sign In using new password');
+  if (await pages.authAdmin.checkWebElementExists('check')) {
     console.log('passed');
   } else {
     console.log('failed');

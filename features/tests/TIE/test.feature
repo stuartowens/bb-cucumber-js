@@ -1,8 +1,9 @@
-Feature: R&P happy path workflow 1
+eature: R&P happy path workflow 1
 
+   Media Producer creates a course
 Background:
-    Given I have opened Achieve <$env> in the <$browser>
-
+    Given I have opened Achieve "loginURL"
+    
 Scenario: Create course in Achieve for "Bookname??" 
     When I elect to login as "mediaProducer1" user
     When save the value <value> to variable <variableName>
@@ -83,4 +84,3 @@ Scenario: Create course in Achieve for "Bookname??"
         | $course.name | $course.code | $instructor1.email | [$course.pm]  |
 
     Scenario: Enroll into course from link
-#### TBD

@@ -25,7 +25,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1972000000
+              "duration": 1829000000
             }
           },
           {
@@ -38,7 +38,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 10102000000
+              "duration": 5438000000
             }
           },
           {
@@ -51,7 +51,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 5573000000
+              "duration": 5571000000
             }
           },
           {
@@ -64,7 +64,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1592000000
+              "duration": 569000000
             }
           },
           {
@@ -77,7 +77,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 585000000
+              "duration": 588000000
             }
           },
           {
@@ -90,7 +90,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 220000000
+              "duration": 218000000
             }
           },
           {
@@ -103,7 +103,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 572000000
+              "duration": 554000000
             }
           },
           {
@@ -116,20 +116,20 @@
             },
             "result": {
               "status": "passed",
-              "duration": 570000000
+              "duration": 571000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 14,
+            "line": 13,
             "name": "I sign out of Achieve",
             "match": {
               "location": "features/steps/general/navigation.js:50"
             },
             "result": {
               "status": "passed",
-              "duration": 1715000000
+              "duration": 1713000000
             }
           }
         ]
@@ -137,7 +137,7 @@
       {
         "id": "authentication-for-achieve-admin-via-iam;verifying-password-reset-functionality-is-working-fine",
         "keyword": "Scenario",
-        "line": 16,
+        "line": 15,
         "name": "Verifying password reset functionality is working fine",
         "tags": [],
         "type": "scenario",
@@ -145,118 +145,118 @@
           {
             "arguments": [],
             "keyword": "Given ",
-            "line": 17,
+            "line": 16,
             "name": "I have opened Achieve \"loginURL\"",
             "match": {
               "location": "features/steps/general/navigation.js:19"
             },
             "result": {
               "status": "passed",
-              "duration": 404000000
+              "duration": 473000000
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 18,
+            "line": 17,
             "name": "I have logged in as \"admin\"",
             "match": {
               "location": "features/steps/general/navigation.js:35"
             },
             "result": {
               "status": "passed",
-              "duration": 2375000000
+              "duration": 2437000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 19,
+            "line": 18,
             "name": "I click on user menu",
             "match": {
               "location": "features/steps/IAM/admin.js:20"
             },
             "result": {
               "status": "passed",
-              "duration": 5570000000
+              "duration": 5562000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 20,
+            "line": 19,
             "name": "I click on Admin Panel",
             "match": {
               "location": "features/steps/IAM/admin.js:30"
             },
             "result": {
               "status": "passed",
-              "duration": 574000000
+              "duration": 575000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 21,
+            "line": 20,
             "name": "I click on Password reset",
             "match": {
               "location": "features/steps/IAM/admin.js:39"
             },
             "result": {
               "status": "passed",
-              "duration": 584000000
+              "duration": 578000000
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 22,
+            "line": 21,
             "name": "I enter \"admin\" account details which is registered in macmillan account",
             "match": {
               "location": "features/steps/IAM/admin.js:67"
             },
             "result": {
               "status": "passed",
-              "duration": 302000000
+              "duration": 299000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 23,
+            "line": 22,
             "name": "I click on Reset button",
             "match": {
               "location": "features/steps/IAM/admin.js:77"
             },
             "result": {
               "status": "passed",
-              "duration": 551000000
+              "duration": 556000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 24,
+            "line": 23,
             "name": "I click on Close Icon",
             "match": {
               "location": "features/steps/IAM/admin.js:49"
             },
             "result": {
               "status": "passed",
-              "duration": 574000000
+              "duration": 566000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 25,
+            "line": 24,
             "name": "I sign out of Achieve",
             "match": {
               "location": "features/steps/general/navigation.js:50"
             },
             "result": {
               "status": "passed",
-              "duration": 1725000000
+              "duration": 1718000000
             }
           }
         ]
@@ -264,7 +264,7 @@
       {
         "id": "authentication-for-achieve-admin-via-iam;verify-the-user-is-able-to-luanch-the-url-and-reset-the-password",
         "keyword": "Scenario",
-        "line": 28,
+        "line": 27,
         "name": "Verify the user is able to luanch the url and reset the password",
         "tags": [],
         "type": "scenario",
@@ -272,72 +272,72 @@
           {
             "arguments": [],
             "keyword": "Given ",
-            "line": 29,
+            "line": 28,
             "name": "I have opened Achieve \"ThirdpartyURL\"",
             "match": {
               "location": "features/steps/general/navigation.js:19"
             },
             "result": {
               "status": "passed",
-              "duration": 1807000000
+              "duration": 1357000000
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 30,
+            "line": 29,
             "name": "I log in as \"admin\"",
             "match": {
               "location": "features/steps/IAM/admin.js:96"
             },
             "result": {
               "status": "passed",
-              "duration": 6510000000
+              "duration": 6531000000
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 31,
+            "line": 30,
             "name": "I check E-mail Notification",
             "match": {
               "location": "features/steps/IAM/admin.js:110"
             },
             "result": {
               "status": "passed",
-              "duration": 23000000
+              "duration": 22000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 32,
+            "line": 31,
             "name": "I enter Password and confirm password from \"admin\" account for fulfilling the validation criteria",
             "match": {
               "location": "features/steps/IAM/admin.js:129"
             },
             "result": {
               "status": "passed",
-              "duration": 5019000000
+              "duration": 5021000000
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 33,
+            "line": 32,
             "name": "I click on Reset password",
             "match": {
               "location": "features/steps/IAM/admin.js:140"
             },
             "result": {
               "status": "passed",
-              "duration": 10015000000
+              "duration": 10019000000
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 34,
+            "line": 33,
             "name": "I verify Message is displayed as \"Your password has been successfully reset. You can now log in to your account\"",
             "match": {
               "location": "features/steps/IAM/admin.js:160"
@@ -350,14 +350,14 @@
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 35,
+            "line": 34,
             "name": "I click on login button to return to login page",
             "match": {
               "location": "features/steps/IAM/admin.js:150"
             },
             "result": {
               "status": "passed",
-              "duration": 5020000000
+              "duration": 5018000000
             }
           }
         ]
@@ -365,7 +365,7 @@
       {
         "id": "authentication-for-achieve-admin-via-iam;verify-that-user-is-able-to-sign-in-using-new-password",
         "keyword": "Scenario",
-        "line": 37,
+        "line": 36,
         "name": "Verify that user is able to Sign In using new password",
         "tags": [],
         "type": "scenario",
@@ -373,27 +373,40 @@
           {
             "arguments": [],
             "keyword": "Given ",
-            "line": 38,
+            "line": 37,
             "name": "I have opened Achieve \"loginURL\"",
             "match": {
               "location": "features/steps/general/navigation.js:19"
             },
             "result": {
               "status": "passed",
-              "duration": 222000000
+              "duration": 236000000
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 39,
+            "line": 38,
             "name": "I have logged in as \"admin\"",
             "match": {
               "location": "features/steps/general/navigation.js:35"
             },
             "result": {
               "status": "passed",
-              "duration": 2908000000
+              "duration": 4478000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 39,
+            "name": "Verify that user is able to login using newly created password",
+            "match": {
+              "location": "features/steps/IAM/admin.js:172"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
             }
           }
         ]

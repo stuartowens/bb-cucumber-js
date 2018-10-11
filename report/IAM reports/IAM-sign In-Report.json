@@ -5,7 +5,7 @@
     "line": 1,
     "id": "sign-in",
     "tags": [],
-    "uri": "features/tests/IAM/IAM-signIn.feature",
+    "uri": "features/tests/IAM/IAM-signIN.feature",
     "elements": [
       {
         "id": "sign-in;verify-that-password-info-icon-tooltip-information-is-consistent-to-application-behavior",
@@ -25,7 +25,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1659000000
+              "duration": 1876000000
             }
           },
           {
@@ -38,7 +38,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 7327000000
+              "duration": 7177000000
             }
           },
           {
@@ -51,7 +51,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1328000000
+              "duration": 1386000000
             }
           },
           {
@@ -64,7 +64,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 547000000
+              "duration": 573000000
             }
           },
           {
@@ -100,7 +100,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 328000000
+              "duration": 106000000
             }
           },
           {
@@ -113,7 +113,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 5730000000
+              "duration": 5729000000
             }
           },
           {
@@ -126,7 +126,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 777000000
+              "duration": 707000000
             }
           },
           {
@@ -138,7 +138,8 @@
               "location": "features/steps/IAM/SignIn.js:55"
             },
             "result": {
-              "status": "passed"
+              "status": "passed",
+              "duration": 1000000
             }
           }
         ]
@@ -161,7 +162,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 271000000
+              "duration": 192000000
             }
           },
           {
@@ -174,7 +175,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 5689000000
+              "duration": 5717000000
             }
           },
           {
@@ -187,7 +188,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2143000000
+              "duration": 2771000000
             }
           },
           {
@@ -200,7 +201,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1684000000
+              "duration": 1681000000
             }
           },
           {
@@ -236,7 +237,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 481000000
+              "duration": 145000000
             }
           },
           {
@@ -249,7 +250,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 5693000000
+              "duration": 5723000000
             }
           },
           {
@@ -258,11 +259,11 @@
             "line": 27,
             "name": "I click on help Link",
             "match": {
-              "location": "features/steps/IAM/SignIn.js:129"
+              "location": "features/steps/IAM/SignIn.js:133"
             },
             "result": {
               "status": "passed",
-              "duration": 1281000000
+              "duration": 4000000
             }
           },
           {
@@ -271,7 +272,7 @@
             "line": 28,
             "name": "I verify the help page is displayed",
             "match": {
-              "location": "features/steps/IAM/SignIn.js:142"
+              "location": "features/steps/IAM/SignIn.js:146"
             },
             "result": {
               "status": "passed",
@@ -297,8 +298,9 @@
               "location": "features/steps/general/navigation.js:19"
             },
             "result": {
-              "status": "passed",
-              "duration": 664000000
+              "status": "failed",
+              "duration": 5000000,
+              "error_message": "NoSuchWindowError: no such window: window was already closed\n  (Session info: chrome=68.0.3440.84)\n  (Driver info: chromedriver=2.41.578706 (5f725d1b4f0a4acbf5259df887244095596231db),platform=Mac OS X 10.13.6 x86_64)\n    at Object.checkLegacyResponse (/Users/greeshma.reddy/Documents/bb-cucumber-js/bb-cucumber-js/node_modules/selenium-webdriver/lib/error.js:585:15)\n    at parseHttpResponse (/Users/greeshma.reddy/Documents/bb-cucumber-js/bb-cucumber-js/node_modules/selenium-webdriver/lib/http.js:533:13)\n    at Executor.execute (/Users/greeshma.reddy/Documents/bb-cucumber-js/bb-cucumber-js/node_modules/selenium-webdriver/lib/http.js:468:26)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"
             }
           },
           {
@@ -310,8 +312,7 @@
               "location": "features/steps/general/navigation.js:25"
             },
             "result": {
-              "status": "passed",
-              "duration": 5739000000
+              "status": "skipped"
             }
           },
           {
@@ -442,8 +443,7 @@
               "location": "features/steps/IAM/SignIn.js:97"
             },
             "result": {
-              "status": "passed",
-              "duration": 1000000
+              "status": "skipped"
             }
           },
           {
@@ -455,8 +455,7 @@
               "location": "features/steps/IAM/SignIn.js:101"
             },
             "result": {
-              "status": "passed",
-              "duration": 9690000000
+              "status": "skipped"
             }
           },
           {
@@ -465,11 +464,10 @@
             "line": 54,
             "name": "I Verify that \"Too many login attempts. Wait 15 minutes and try again\" message is displayed",
             "match": {
-              "location": "features/steps/IAM/SignIn.js:115"
+              "location": "features/steps/IAM/SignIn.js:116"
             },
             "result": {
-              "status": "passed",
-              "duration": 24000000
+              "status": "skipped"
             }
           }
         ]
@@ -477,7 +475,7 @@
       {
         "id": "sign-in;verify-whether-user-able-to-login-without-waiting-for-15minutes",
         "keyword": "Scenario",
-        "line": 56,
+        "line": 57,
         "name": "Verify whether user able to login without waiting for 15minutes",
         "tags": [],
         "type": "scenario",
@@ -485,52 +483,51 @@
           {
             "arguments": [],
             "keyword": "Given ",
-            "line": 57,
+            "line": 58,
             "name": "I have opened Achieve \"signURL\"",
             "match": {
               "location": "features/steps/general/navigation.js:19"
             },
             "result": {
-              "status": "passed",
-              "duration": 214000000
+              "status": "failed",
+              "duration": 3000000,
+              "error_message": "NoSuchWindowError: no such window: window was already closed\n  (Session info: chrome=68.0.3440.84)\n  (Driver info: chromedriver=2.41.578706 (5f725d1b4f0a4acbf5259df887244095596231db),platform=Mac OS X 10.13.6 x86_64)\n    at Object.checkLegacyResponse (/Users/greeshma.reddy/Documents/bb-cucumber-js/bb-cucumber-js/node_modules/selenium-webdriver/lib/error.js:585:15)\n    at parseHttpResponse (/Users/greeshma.reddy/Documents/bb-cucumber-js/bb-cucumber-js/node_modules/selenium-webdriver/lib/http.js:533:13)\n    at Executor.execute (/Users/greeshma.reddy/Documents/bb-cucumber-js/bb-cucumber-js/node_modules/selenium-webdriver/lib/http.js:468:26)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 58,
+            "line": 59,
             "name": "I click on sign In button on top right corner",
             "match": {
               "location": "features/steps/general/navigation.js:25"
             },
             "result": {
-              "status": "passed",
-              "duration": 5701000000
+              "status": "skipped"
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 59,
+            "line": 60,
             "name": "I have logged in as \"admin\"",
             "match": {
               "location": "features/steps/general/navigation.js:35"
             },
             "result": {
-              "status": "passed",
-              "duration": 3006000000
+              "status": "skipped"
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 60,
-            "name": "I verify that user must not able to login",
+            "line": 61,
+            "name": "I Verify that \"Too many login attempts. Wait 15 minutes and try again\" message is displayed",
             "match": {
-              "location": "features/steps/IAM/SignIn.js:151"
+              "location": "features/steps/IAM/SignIn.js:116"
             },
             "result": {
-              "status": "passed"
+              "status": "skipped"
             }
           }
         ]

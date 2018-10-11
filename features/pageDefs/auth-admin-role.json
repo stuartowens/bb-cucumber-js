@@ -311,7 +311,33 @@
             "definition":"(//*[@class='pad'])[1]",
             "frame":"default",
             "specialInstr":"NA"
+		},
+		{
+			"name":"check",
+            "byType":"xpath",
+            "definition":"//*[@class='_1YVk']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+		{ 
+			"name":"single_use_code",
+            "byType":"xpath",
+            "definition":"//*[@class='_1qpH']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+		{ 
+			"name":"course_validation",
+            "byType":"xpath",
+            "definition":"//*[text()='Courses']",
+            "frame":"default",
+            "specialInstr":"NA"
+
 		}
+		
+
 
 
 	]

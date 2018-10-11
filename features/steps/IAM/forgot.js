@@ -31,6 +31,26 @@ When('I click on forgot link', async function () {
   }
 });
 
+When('I hover on "?" icon', async function () {
+  try {
+    log.debug('clicking on ?');
+    await pages.login.populate('email_forgot', 'click');
+    log.debug(`? was clicked: ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+});
+
+Then('I verify that forgot email info icon tooltip Information is consistent to application behavior', async function () {
+  console.log('Verify Forgot Password page cancel Button redirects to Sign In Page')
+  if (await pages.login.checkWebElementExists('email_forgot_check')) {
+    console.log('passed');
+  } else {
+    console.log('failed');
+  }
+});
+
+
 When('I click on cancel button', async function () {
   try {
     log.debug('clicking on cancle_button');
@@ -73,8 +93,8 @@ Then('I Verify Error message should be displayed', async function () {
   try {
     console.log('Verify that forgot password is showing appropriate message for not registered with macmillan account e-mail address')
     const errorText = await pages.login.getElementValue('unregistered_username_check');
-    console.log(errorText+'error');
-    if (errorText === 'Request failed with status code 500') {
+    console.log(errorText + 'error');
+    if (errorText == 'Request failed with status code 500') {
       console.log('passed');
     } else {
       console.log('failed');
@@ -119,7 +139,7 @@ Then('I Verify Confirmation page says "An email has been sent to you with instru
     const errorText = await pages.login.getElementValue('registered_username_check');
     const message = "An email has been sent with instructions on how to reset your password and includes a link which will expire within 24 hours. If you don't receive an email shortly, check your spam or junk folders, or try again."
 
-    if (errorText === message) {
+    if (errorText == message) {
       console.log('passed');
     } else {
       console.log('failed');
@@ -180,7 +200,7 @@ Then('I Verify Confirmation message', async function () {
     const errorText = await pages.login.getElementValue('registered_username_check');
     const message = "An email has been sent with instructions on how to reset your password and includes a link which will expire within 24 hours. If you don't receive an email shortly, check your spam or junk folders, or try again."
 
-    if (errorText === message) {
+    if (errorText == message) {
       console.log('passed');
     } else {
       console.log('failed');
@@ -205,8 +225,8 @@ Then(/^I Verify Error Message is displayed as_ "(.*)"$/, async function (verify)
   try {
     console.log('Verify that security questions incorrect attempt shows appropriate error messages and not allow user to move further')
     const errorText = await pages.login.getElementValue('security_check');
-    console.log(errorText+'error')
-    if (errorText === verify) {
+    console.log(errorText + 'error')
+    if (errorText == verify) {
       console.log('passed');
     } else {
       console.log('failed');

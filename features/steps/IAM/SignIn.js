@@ -82,7 +82,7 @@ Then('I Verify "Invalid user name and password" message should be displayed', as
   try {
     console.log('Invalid user name and password')
     const errorText = await pages.login.getElementValue('error_sign');
-    if (errorText === 'Invalid username or password') {
+    if (errorText == 'Invalid username or password') {
       console.log('passed');
     } else {
       console.log('failed');
@@ -111,11 +111,13 @@ Then('I login with following credentials:', async function () {
   }
   await sleep(5000);
 });
+
 Then('I Verify that "Too many login attempts. Wait 15 minutes and try again" message is displayed', async function () {
   try {
     console.log('Verify that invalid username and password attempt for more than 3 times will now allow user to login for 15 minutes using any browser or system')
     const errorText = await pages.login.getElementValue('userinvalid_errortext');
-    if (errorText === 'Too many login attempts. Wait 15 minutes and try again') {
+    console.log(errorText+'errortext');
+    if (errorText == 'Too many login attempts. Wait 15 minutes and try again') {
       console.log('passed');
     } else {
       console.log('failed');
@@ -125,6 +127,8 @@ Then('I Verify that "Too many login attempts. Wait 15 minutes and try again" mes
     log.error(err);
   }
 });
+
+
 Then('I click on help Link', async function () {
   try {
     const hyperlink = await getDriver().findElement(By.xpath("//*[text()='Help']")).getAttribute('href');
