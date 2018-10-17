@@ -12,9 +12,8 @@ var {setDefaultTimeout} = require('cucumber');
 
 const config = loadConfig('config');
 
-//setDefaultTimeout(60 * 500);
-setDefaultTimeout(180 * 500); 
-
+// setDefaultTimeout(60 * 500);
+setDefaultTimeout(700 * 700); 
 let service;
 const buildDriver = function () {
   const config = loadConfig('config');

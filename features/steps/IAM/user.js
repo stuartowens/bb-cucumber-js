@@ -108,7 +108,7 @@ When('I verify the functionality of first name and lastname by entering symbols'
   }
 });
 
-Then(/^I enter the first name, lastname and email address without symbols nad number using the "(.*)" account details$/, async function (account) {
+Then(/^I enter the first name, lastname and email address without symbols and number using the "(.*)" account details$/, async function (account) {
   try {
     const user = await loadLogin(account)
     await pages.createAccount.populate('firstName', user.firstName);
@@ -875,6 +875,104 @@ Then('I verify the message', async function () {
     } else {
       throw new Error('failed');
     }
+  } catch (err) {
+    log.error(err);
+  }
+});
+
+When('I click on cancle button', async function () {
+  try {
+    log.debug('Clickig on cancle');
+    await pages.createAccount.populate('cancle_account', 'click');
+    log.debug(`cancle button was clicked, ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+});
+
+When('I verify home page is displayed', async function () {
+  if (await pages.createAccount.checkWebElementExists('cancle_account_verification')) {
+    console.log('passed');
+  } else {
+    console.log('failed');
+  }
+});
+
+When('I click on compose', async function () {
+  try {
+    await sleep(3000);
+    log.debug('Clickig on compose');
+    await pages.createAccount.populate('compose', 'click');
+    log.debug(`compose button was clicked, ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+  try {
+    await sleep(3000);
+    log.debug('Clickig on To button');
+    await pages.createAccount.populate('To_email', 'OPT-OUT@macmillanlearning.com', 'click');
+    log.debug(`To button was clicked, ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+  try {
+    await sleep(3000);
+    log.debug('Clickig on subject');
+    await pages.createAccount.populate('Subject_email', 'verification');
+    log.debug(`subject was clicked, ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+  try {
+    await sleep(3000);
+    log.debug('Clickig on send button');
+    await pages.createAccount.populate('send_email', 'click');
+    log.debug(`send button was clicked, ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+    await sleep(3000);
+  }
+  try {
+    await sleep(3000);
+    log.debug('Clickig on inbox');
+    await pages.createAccount.populate('Inbox_email', 'click');
+    log.debug(`Inbox was clicked, ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+    await sleep(3000);
+  }
+});
+When('I Verify that on sharing e-mail to the e-mail address "OPT-OUT@macmillanlearning.com" link no -emial updates should be recived regarding macmillan updates', async function () {
+  await sleep(10000);
+  if (await pages.createAccount.checkWebElementExists('opt_verfication')) {
+    console.log('passed');
+  } else {
+    console.log('failed');
+  }
+});
+When('I click setpassword button', async function () {
+  try {
+    log.debug('Clickig on setpassword button');
+    await pages.createAccount.populate('setpassword_button', 'click');
+    log.debug(`setpassword button  was clicked, ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+});
+When('I click on newpassword', async function () {
+  try {
+    log.debug('Clickig on new password button');
+    await pages.createAccount.populate('password', 'ABCabc@123');
+    log.debug(`new password button  was clicked, ${clickedButton}`);
+  } catch (err) {
+    log.error(err);
+  }
+});
+When('I click on save changes button', async function () {
+  try {
+    log.debug('Clickig on savechanges button');
+    await pages.createAccount.populate('save_button', 'click');
+    log.debug(`save changes button  was clicked, ${clickedButton}`);
   } catch (err) {
     log.error(err);
   }

@@ -22,11 +22,17 @@ Background:
 
     Scenario: Verify that forgot password functionality working fine for existing macmillanaccounts 
         When I click on forgot link
-        And I enter existed created e-mail address of "instructor_1" which is registered to Macmillan account
+        And I enter existed created e-mail address of "admin_alt" which is registered to Macmillan account
         And click on reset password button
-        And I enter security question from "instructor_1" account 
+        And I enter security question from "admin_alt" account 
         And click on submit button
         Then I Verify Confirmation page says "An email has been sent to you with instructions on how to reset your password." 
+        Given I have opened Achieve "ThirdpartyURL"
+        When I log in as "admin_alt"
+        When I check E-mail Notification
+        And I enter Password and confirm password from "admin_alt" account for fulfilling the validation criteria
+        And I click on Reset password
+        Then I verify Message is displayed as "Your password has been successfully reset. You can now log in to your account" 
 
 
     Scenario: I create an account every time I run the script for newly created account 

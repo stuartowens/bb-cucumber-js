@@ -101,6 +101,7 @@ When(/^I log in as "(.*)"$/, async function (Login) {
     await sleep(5000);
     await pages.authAdmin.populate('temp_password', account.password);
     await pages.authAdmin.populate('temp_password_next', 'click');
+    await sleep(3000);
     await pages.authAdmin.populate('gmail', 'click');
   } catch (err) {
     log.error(err);
@@ -175,4 +176,8 @@ Then('Verify that user is able to login using newly created password', async fun
   } else {
     console.log('failed');
   }
+});
+
+Then('I click on OPT link', async function () {
+
 });
