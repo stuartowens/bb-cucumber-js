@@ -138,7 +138,183 @@
             "frame":"default",
             "specialInstr":"NA"
 
-		}
+		},
+		{
+			"name":"Change_Target_points",
+            "byType":"xpath",
+            "definition":"//*[@id='root']/div/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div/button",
+            "frame":"default",
+            "specialInstr":"NA"
+		
+		},
+		{
+			"name":"Edit_Target_points",
+            "byType":"classname",
+            "definition":"EditTargetScoreModal__targetScoreInput___glbM",
+            "frame":"default",
+            "specialInstr":"NA"
+
+		},
+		{
+			"name":"Change_Target_score",
+            "byType":"classname",
+            "definition":"btn-cdl-main EditTargetScoreModal__changeButton__2UR6S",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"Very_short_button",
+            "byType":"classname",
+            "definition":"btn-cdl-main EditTargetScoreModal__proceedOkay__2xZKI",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"folder_button",
+            "byType":"xpath",
+            "definition":"(//*[@class= '_3xl4'])[3]",
+            "frame":"default",
+            "specialInstr":"NA"
+
+
+        },
+		{
+			"name":"Resource_button_instructor",
+            "byType":"xpath",
+            "definition":"//*[@id='react-tabs-24']/span",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"submit",
+            "byType":"classname",
+            "definition":"btn-cdl-main style__footerPrimaryButton__3MZBM",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"courseplanner_button",
+            "byType":"xpath",
+            "definition":"//*[text()='COURSE PLANNER']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"activity_assign",
+            "byType":"xpath",
+            "definition":"(//*[text()='Assign Item'])[2]",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"Date_assign",
+            "byType":"xpath",
+            "definition":"//*[@class='EVUx ']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"Time_Hour",
+            "byType":"id",
+            "definition":"__timePickerHour",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"Time_minute",
+            "byType":"id",
+            "definition":"__timePickerMinute",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"Time_period",
+            "byType":"id",
+            "definition":"__timePickerPeriod",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"points_minimum",
+            "byType":"xpath",
+            "definition":"//*[@class='_3dMU _195Y ']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"Assignment_button",
+            "byType":"classname",
+            "definition":"_2oIm undefined ",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"Assign_button",
+            "byType":"classname",
+            "definition":"_1tkc undefined",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"create_exception",
+            "byType":"classname",
+            "definition":"QNU9 _2n0e",
+            "frame":"default",
+            "specialInstr":"NA"
+
+
+        },
+        {
+            "name":"exception_student",
+            "byType":"classname",
+            "definition":"_2Srk",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"open_folder_activity",
+            "byType":"xpath",
+            "definition":"//*[@id='container']/div/div/div/div[4]/div/article/div[2]/div[1]/div[2]/div[1]/div/div/div[1]/div/button[1]",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+
+        {
+            "name":"open_folder_chapter1_activity",
+            "byType":"xpath",
+            "definition":"(//*[@class='_1WIu'])[2]",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+
+        {
+            "name":"open_folder_chapterR&P_activity",
+            "byType":"xpath",
+            "definition":"(//*[@class='_15F5'])[3]",
+            "frame":"default",
+            "specialInstr":"NA"
+
+
+
+
+        }
+       
+
+       
 	
 		
 	]

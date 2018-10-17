@@ -17,14 +17,14 @@ Feature: Authentication for Achieve via IAM
         When I verify the functionality of first name and lastname by entering symbols
         Then I verify validation message for first name and last name
 
-    Scenario: Verify that First Name field and last name validations are working as expected (with  entering large character)
-        Given I have opened Achieve "UserCreationUrl"
-        When I verify the functionality of first name and lastname by entering large characters
-        Then I verify validation message in first name and last name
+    #Scenario: Verify that First Name field and last name validations are working as expected (with  entering large character)
+        #Given I have opened Achieve "UserCreationUrl"
+        #When I verify the functionality of first name and lastname by entering large characters
+        #Then I verify validation message in first name and last name
 
     Scenario: Verify that First Name field and last name validations are working as expected
         Given I have opened Achieve "UserCreationUrl"
-        Then I enter the first name, lastname and email address without symbols nad number using the "student" account details 
+        Then I enter the first name, lastname and email address without symbols and number using the "student" account details 
 
     Scenario: Verify that password field validations are working as expected
         Given I have opened Achieve "UserCreationUrl"
@@ -40,10 +40,10 @@ Feature: Authentication for Achieve via IAM
         And I check the error message of confirm password
         And I enter Password and confirm password from "student" account fullfiling all password requirements
 
-    Scenario: Verify that the application should not allow to enter more than 150 characters in the "Security Question Answer" text box. Moreover on entering 150 characters, the application displays a message "Limit of 150 characters reached"
-        Given I have opened Achieve "UserCreationUrl"
-        When I Select SecurityQuestions from "student" account and I enter 150 character value
-        Then I verify the message displayed
+    #Scenario: Verify that the application should not allow to enter more than 150 characters in the "Security Question Answer" text box. Moreover on entering 150 characters, the application displays a message "Limit of 150 characters reached"
+        #Given I have opened Achieve "UserCreationUrl"
+        #When I Select SecurityQuestions from "student" account and I enter 150 character value
+        #Then I verify the message displayed
 
     Scenario: Verify that Security Question & Answer validations are working as expected without entering the question and answers
         Given I have opened Achieve "UserCreationUrl"
@@ -60,10 +60,10 @@ Feature: Authentication for Achieve via IAM
         Then I verify list of Primary Institutions or schools will display starting with the letter "a"
         Then I verify the Sign up is disabled
 
-    Scenario: Verify that the application should not allow to enter more than 150 characters in the "Security Question Answer" text box. Moreover on entering 150 characters, the application displays a message "Limit of 150 characters reached"
-        Given I have opened Achieve "UserCreationUrl"
-        Then I click on Primary Institution 
-        And I verify the message 
+    #Scenario: Verify that the application should not allow to enter more than 150 characters in the "Security Question Answer" text box. Moreover on entering 150 characters, the application displays a message "Limit of 150 characters reached"
+        #Given I have opened Achieve "UserCreationUrl"
+        #Then I click on Primary Institution 
+        #And I verify the message 
         
     Scenario: Verify that on selecting a US college in "Primary Institution or School" text box, the application automatically checks the "Opt IN" check box
         Given I have opened Achieve "UserCreationUrl"
@@ -161,8 +161,44 @@ Feature: Authentication for Achieve via IAM
         And I click on Account 
         And I verify Email- address is disabled
         And I click on checkbox in account 
+        And I click on cancle button
+        And I sign out of Achieve
+
+    Scenario: Verify that Privacy Notice Link redirects to appropriate page
+        Given I have opened Achieve "loginURL"
+        When I have logged in as "instructor_1"
+        And I click on user menu
+        And I click on Account
+        And I click on privacy notice link 
+        Then I verify that I am redirected to privacy notice link page
+        And I click on cancle button
+        And I sign out of Achieve
+
+    Scenario: Verify that aplication return to home page on clicking Cancel Button
+        Given I have opened Achieve "loginURL"
+        When I have logged in as "instructor_1"
+        And I click on user menu
+        And I click on Account
+        And I click on cancle button
+        And I verify home page is displayed
+        And I sign out of Achieve
+    Scenario: Verify that Set Password functionality is working as expected
+        Given I have opened Achieve "loginURL"
+        When I have logged in as "instructor_1"
+        And I click on user menu
+        And I click on Account
+        And I click setpassword button
+        And I click on newpassword
+        And I click on save changes button
+
     
-      
+   #Scenario: Verify that on sharing e-mail to the e-mail address OPT-OUT@macmillanlearning.com link no -emial updates should be recived regarding macmillan updates
+        #Given I have opened Achieve "ThirdpartyURL"
+        #When I log in as "admin_alt"
+        #And I click on compose
+        #And I Verify that on sharing e-mail to the e-mail address "OPT-OUT@macmillanlearning.com" link no -emial updates should be recived regarding macmillan updates
+
+
 
 
 

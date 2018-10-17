@@ -327,6 +327,48 @@
 
 		},
 		{
+			"name": "To_email",
+			"byType": "xpath",
+			"definition": "//textarea[@name='to']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "Subject_email",
+			"byType": "xpath",
+			"definition": "//input[@name='subjectbox']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "send_email",
+			"byType": "xpath",
+			"definition": "//div[text()='Send']",
+			"frame": "default",
+			"specialInstr": "NA"
+		},
+		{
+			"name": "Inbox_email",
+			"byType": "xpath",
+			"definition": "//*[text()='Inbox']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "opt_verfication",
+			"byType": "xpath",
+			"definition": "//*[@name='Mail Delivery Subsystem']",
+			"frame": "default",
+			"specialInstr": "NA"
+
+
+
+		},
+
+		{
 			"name": "checkbox",
 			"byType": "id",
 			"definition": "OptIn__c",
@@ -379,9 +421,39 @@
 			"definition": "institution_length",
 			"frame": "default",
 			"specialInstr": "NA"
+		},
+		{
+			"name": "cancle_account",
+			"byType": "id",
+			"definition": "cancel",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "cancle_account_verification",
+			"byType": "classname",
+			"definition": "_1YVk",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "setpassword_button",
+			"byType": "id",
+			"definition": "editPassword",
+			"frame": "default",
+			"specialInstr": "NA"
+
+		},
+		{
+			"name": "save_button",
+			"byType": "id",
+			"definition": "update",
+			"frame": "default",
+			"specialInstr": "NA"
+
 		}
-
-
 
 	]
 }
