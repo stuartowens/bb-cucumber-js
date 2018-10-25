@@ -11,23 +11,28 @@
 		{
 			"name": "current_score",
             "byType": "xpath",
-			"definition": "//div[@data-test-id=activityScoreValueInfo']",
+			"definition": "//span[@data-test-id='activityScoreValueInfo']",
 			"frame": "default",
 			"specialInstr": "NA"
 			
         },
 		{
-			"name": "current_score",
+			"name": "question_points",
             "byType": "xpath",
-			"definition": "//div[@data-test-id=activityQuestionPoints']",
+			"definition": "//div[@data-test-id='activityQuestionPoints']",
 			"frame": "default",
 			"specialInstr": "NA"
 			
-		},
-		{
+		},{
+			"name": "whole_question",
+            "byType": "xpath",
+			"definition": "//div[@data-test-id='question']",
+			"frame": "default",
+			"specialInstr": "NA"
+		},{
 			"name": "question",
             "byType": "xpath",
-			"definition": "//h1[@data-test-id=activityQuestion']",
+			"definition": "//h1[@data-test-id='activityQuestion']",
 			"frame": "default",
 			"specialInstr": "NA"
 			
@@ -38,14 +43,7 @@
 			"definition": "//label[@data-test-id='multipleChoiceAnswer']",
 			"frame": "default",
 			"specialInstr": "NA"
-		},{
-
-			"name": "mc_answers",
-            "byType": "xpath",
-			"definition": "//label[@data-test-id='multipleChoiceAnswer']",
-			"frame": "default",
-			"specialInstr": "NA"
-		},{
+		}, {
 
 			"name": "fill_in_the_blank_answer",
             "byType": "xpath",
@@ -127,13 +125,19 @@
 		},{
 			"name": "incorrect_sentense_select",
             "byType": "partialLinkText",
-			"definition": "Correct",
+			"definition": "Wrong",
 			"frame": "default",
 			"specialInstr": "NA"
 		},{
 			"name": "complete_quiz_lc",
             "byType": "xpath",
 			"definition": "//div[@data-test-id='quizCompleteModal']",
+			"frame": "default",
+			"specialInstr": "NA"
+		},{
+			"name": "complete_quiz_lcrp",
+            "byType": "xpath",
+			"definition": "//button[text()='View Study Plan']",
 			"frame": "default",
 			"specialInstr": "NA"
 		},{
@@ -155,12 +159,6 @@
 			"frame": "default",
 			"specialInstr": "NA"
 		},{
-			"name": "midway_modal",
-            "byType": "xpath",
-			"definition": "//div[@data-test-id='midWayModall']",
-			"frame": "default",
-			"specialInstr": "NA"
-		},{
 			"name": "back_to_study_plan_midpoint",
             "byType": "xpath",
 			"definition": "//button[@data-test-id='midWayModalStudyPlanBtn']",
@@ -170,6 +168,18 @@
 			"name": "next_question_midway",
             "byType": "xpath",
 			"definition": "//button[@data-test-id='midWayModalNextQuestionBtn']",
+			"frame": "default",
+			"specialInstr": "NA"
+		},{
+			"name": "popout_ereader",
+            "byType": "xpath",
+			"definition": "//a[@data-test-id='openSplitScreenNewTabBtn']",
+			"frame": "default",
+			"specialInstr": "NA"
+		},{
+			"name": "close_ereader",
+            "byType": "xpath",
+			"definition": "//a[@data-test-id='closeSplitScreenEbook']",
 			"frame": "default",
 			"specialInstr": "NA"
 		}
