@@ -42,8 +42,8 @@
 			"byType": "xpath",
 			"definition": "//button[@aria-label='Toggle User Menu']",
 			"frame": "default",
-			"specialInstr": "NA",
-			"waitToBeVisible": "logout"
+			"specialInstr": "NA"
+			
 		},
 		{
 			"name": "admin_panel",

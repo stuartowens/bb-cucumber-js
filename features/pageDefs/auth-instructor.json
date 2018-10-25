@@ -142,7 +142,7 @@
 		{
 			"name":"Change_Target_points",
             "byType":"xpath",
-            "definition":"//*[@id='root']/div/div/div[2]/div/div[1]/div/div[1]/div[2]/div/div/button",
+            "definition":"//*[text()='Edit Target']",
             "frame":"default",
             "specialInstr":"NA"
 		
@@ -157,15 +157,15 @@
 		},
 		{
 			"name":"Change_Target_score",
-            "byType":"classname",
-            "definition":"btn-cdl-main EditTargetScoreModal__changeButton__2UR6S",
+            "byType":"xpath",
+            "definition":"//*[text()='Change Target Score']",
             "frame":"default",
             "specialInstr":"NA"
         },
         {
             "name":"Very_short_button",
-            "byType":"classname",
-            "definition":"btn-cdl-main EditTargetScoreModal__proceedOkay__2xZKI",
+            "byType":"xpath",
+            "definition":"//*[text()='A very short activity is OK']",
             "frame":"default",
             "specialInstr":"NA"
 
@@ -205,7 +205,7 @@
         {
             "name":"activity_assign",
             "byType":"xpath",
-            "definition":"(//*[text()='Assign Item'])[2]",
+            "definition":"/html/body/div[2]/div/div/div/div/div/div[1]/span/div/div/div/span",
             "frame":"default",
             "specialInstr":"NA"
 
@@ -260,8 +260,8 @@
         },
         {
             "name":"Assign_button",
-            "byType":"classname",
-            "definition":"_1tkc undefined",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[3]/div[2]/button",
             "frame":"default",
             "specialInstr":"NA"
 
@@ -286,7 +286,7 @@
         {
             "name":"open_folder_activity",
             "byType":"xpath",
-            "definition":"//*[@id='container']/div/div/div/div[4]/div/article/div[2]/div[1]/div[2]/div[1]/div/div/div[1]/div/button[1]",
+            "definition":"//*[@id='container']/div/div/div/div[4]/div/article/div[2]/div/div[2]/div[1]/div/div/div[1]/div/div[2]/button[1]",
             "frame":"default",
             "specialInstr":"NA"
 
@@ -295,7 +295,7 @@
         {
             "name":"open_folder_chapter1_activity",
             "byType":"xpath",
-            "definition":"(//*[@class='_1WIu'])[2]",
+            "definition":"//*[@id='container']/div/div/div/div[4]/div/article/div[2]/div/div[2]/div[1]/div[2]/div[1]/div/div/div[1]/div/div[2]/button[1]",
             "frame":"default",
             "specialInstr":"NA"
 
@@ -307,8 +307,6 @@
             "definition":"(//*[@class='_15F5'])[3]",
             "frame":"default",
             "specialInstr":"NA"
-
-
 
 
         }

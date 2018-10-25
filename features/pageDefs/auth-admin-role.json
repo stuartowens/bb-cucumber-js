@@ -6,6 +6,7 @@
 			"definition": "_12-z",
 			"frame": "default",
 			"specialInstr": "NA"
+	
 			
 		},
 		{
@@ -45,6 +46,14 @@
 			"frame": "default",
 			"specialInstr": "NA"
 
+		},
+		{
+			"name": "close_cheackAccount",
+			"byType": "xpath",
+			"definition": "/html/body/div[3]/div/div/div[1]/button",
+			"frame": "default",
+			"specialInstr": "NA"
+		
 		},
 		{
 			"name": "manage_roles",
@@ -96,7 +105,7 @@
 		{
 			"name": "revoke_role",
 			"byType": "xpath",
-			"definition": "/html/body/div[3]/div/div/div[2]/button[2]/div/span",
+			"definition": "/html/body/div[3]/div/div/div[2]/button[2]",
 			"frame": "default",
 			"specialInstr": "NA",
 			"waitForElementToBeEnabled": true,

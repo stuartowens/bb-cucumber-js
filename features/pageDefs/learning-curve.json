@@ -30,7 +30,8 @@
 			"frame": "default",
 			"specialInstr": "NA"
 			
-        },{
+		},
+		{
 			"name": "multiple_choice",
             "byType": "xpath",
 			"definition": "//div[@data-test-id='MultipleChoice']/form/label",

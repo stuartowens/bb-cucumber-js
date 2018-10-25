@@ -888,6 +888,7 @@ When('I click on cancle button', async function () {
   } catch (err) {
     log.error(err);
   }
+  await sleep(5000);
 });
 
 When('I verify home page is displayed', async function () {

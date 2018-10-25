@@ -4,7 +4,7 @@
 			"name": "email_field",
 			"byType": "id",
 			"definition": "__checkAccount_emailInput",
-			"frame": "1",
+			"frame": "default",
 			"specialInstr": "NA"
 		},
 		{

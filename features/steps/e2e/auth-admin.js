@@ -17,31 +17,26 @@ let pages = {
   checkAccount: new PageObject('checkAccount.json', stepsPath)
 };
 
-When(/^I elect to manage the role of user (.*)$/, async function (userLogin) {
+When(/^I elect to manage the role of user '(.*)'$/, async function (userLogin) {
   try {
-    console.log('before usrlogin');
-    //const login = await loadLogin(userLogin);
-   // console.log('login' + login)
-    await sleep(10000);
-    console.log(' befor menusystem');
+    const login = await loadLogin(userLogin);
     await pages.authAdmin.populate('menu_system', 'click');
-    console.log('after menusystem');
-    await sleep(10000);
+    await sleep(2000);
     await pages.authAdmin.populate('admin_panel', 'click');
     await pages.authAdmin.populate('manage_roles', 'click');
-   // await pages.authAdmin.populate('enter_email_address', login.username);
+    await pages.authAdmin.populate('enter_email_address', login.username);
   } catch (err) {
     log.error(err)
   }
 });
 
-When(/^I grant the role of (.*)$/, async function (role) {
+When(/^I grant the role of '(.*)'$/, async function (role) {
   log.debug(`Grant Role email: ${role}`);
   await pages.authAdmin.populate('choose_role', role);
   await pages.authAdmin.populate('grant_role', 'click');
 });
 
-When(/^I revoke the role of (.*)$/, async function (role) {
+When(/^I revoke the role of '(.*)'$/, async function (role) {
   log.debug(`Revoke Role email: ${role}`);
   await pages.authAdmin.populate('choose_role', role);
   await pages.authAdmin.populate('revoke_role', 'click');
@@ -51,7 +46,7 @@ Then('Verify Successful permission grant message', async function () {
   await pages.authAdmin.assertText('choose_role', 'Admin');
 });
 
-When(/^I elect to check the account for (.*)$/, async function (account) {
+When(/^I elect to check the account for '(.*)'$/, async function (account) {
   log.debug(`Checking login:" ${account}`);
   const loginFile = await loadLogin(account);
   log.debug(`Checking the account:" ${loginFile.username}`);
@@ -60,4 +55,5 @@ When(/^I elect to check the account for (.*)$/, async function (account) {
   await pages.authAdmin.populate('check_account', 'click');
   await pages.checkAccount.populate('email_field', loginFile.username);
   await pages.checkAccount.populate('search_btn', 'click');
+  await pages.authAdmin.populate('close_cheackAccount', 'click');
 });

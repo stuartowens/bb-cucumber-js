@@ -170,7 +170,7 @@
         {
             "name":"resources_tab",
             "byType":"xpath",
-            "definition":"//*[@id='react-tabs-20']/span",
+            "definition":"//*[text()= 'RESOURCES']",
             "frame":"default",
             "specialInstr":"NA"
         },
@@ -400,9 +400,80 @@
             "definition":"(//*[@class='_3xl4'])[6]",
             "frame":"default",
             "specialInstr":"NA"
+        },
+        {
+            "name":"file_open",
+            "byType":"xpath",
+            "definition":"//*[@class='_3BbM']",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"Plus_button",
+            "byType":"xpath",
+            "definition":"//*[@id='container']/div/div[2]/div[2]/button/div/div",
+            "frame":"default",
+            "specialInstr":"NA"
+
+
+        },
+        {
+            "name":"course_card_2",
+            "byType":"classname",
+            "definition":"DOD8 CourseCard_draft CourseCard_product_2 CourseCard_template",
+            "frame":"default",
+            "specialInstr":"NA",
+            "waitToBeVisible": "Resource_tab_writing"
+
+        },
+        {
+            "name":"Resource_tab_writing",
+            "byType":"xpath",
+            "definition":"//*[@id='react-tabs-24']/span",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"folder_name_writing",
+            "byType":"xpath",
+            "definition":"//*[@class='_3dMU _1EX4 ']",
+            "frame":"default",
+            "specialInstr":"NA"
+        },
+        {
+            "name":"edit_button_writing",
+            "byType":"xpath",
+            "definition":"(//*[@class='_1plU _1j68'])[2]",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"chapter_2_InstructorReview_writing",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div/div/div/div/div[2]/div[1]/div/div/div[2]",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        {
+            "name":"placefolder_writing",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div[1]/div/div/div/div[2]/div[3]/div/div/div[2]/button",
+            "frame":"default",
+            "specialInstr":"NA"
+
+        },
+        
+        {
+            "name":"chapter1_peerReview",
+            "byType":"xpath",
+            "definition":"/html/body/div[2]/div/div/div[2]/div/div/div/div/div[2]/div[2]/div/div/div[2]/button/span",
+            "frame":"default",
+            "specialInstr":"NA"
+
         }
-       
-       
 
 	]
 }

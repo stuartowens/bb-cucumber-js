@@ -57,7 +57,7 @@ Feature: Sign in
     Scenario:Verify whether user able to login without waiting for 15minutes
         Given I have opened Achieve "signURL"
         When I click on sign In button on top right corner
-        And I have logged in as "admin"
+        And I have logged in as "admin_alt"
         Then I Verify that "Too many login attempts. Wait 15 minutes and try again" message is displayed
  
 

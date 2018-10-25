@@ -17,10 +17,10 @@ Feature: Authentication for Achieve via IAM
         When I verify the functionality of first name and lastname by entering symbols
         Then I verify validation message for first name and last name
 
-    #Scenario: Verify that First Name field and last name validations are working as expected (with  entering large character)
-        #Given I have opened Achieve "UserCreationUrl"
-        #When I verify the functionality of first name and lastname by entering large characters
-        #Then I verify validation message in first name and last name
+    Scenario: Verify that First Name field and last name validations are working as expected (with  entering large character)
+        Given I have opened Achieve "UserCreationUrl"
+        When I verify the functionality of first name and lastname by entering large characters
+        Then I verify validation message in first name and last name
 
     Scenario: Verify that First Name field and last name validations are working as expected
         Given I have opened Achieve "UserCreationUrl"
@@ -40,10 +40,10 @@ Feature: Authentication for Achieve via IAM
         And I check the error message of confirm password
         And I enter Password and confirm password from "student" account fullfiling all password requirements
 
-    #Scenario: Verify that the application should not allow to enter more than 150 characters in the "Security Question Answer" text box. Moreover on entering 150 characters, the application displays a message "Limit of 150 characters reached"
-        #Given I have opened Achieve "UserCreationUrl"
-        #When I Select SecurityQuestions from "student" account and I enter 150 character value
-        #Then I verify the message displayed
+    Scenario: Verify that the application should not allow to enter more than 150 characters in the "Security Question Answer" text box. Moreover on entering 150 characters, the application displays a message "Limit of 150 characters reached"
+        Given I have opened Achieve "UserCreationUrl"
+        When I Select SecurityQuestions from "student" account and I enter 150 character value
+        Then I verify the message displayed
 
     Scenario: Verify that Security Question & Answer validations are working as expected without entering the question and answers
         Given I have opened Achieve "UserCreationUrl"
@@ -60,10 +60,10 @@ Feature: Authentication for Achieve via IAM
         Then I verify list of Primary Institutions or schools will display starting with the letter "a"
         Then I verify the Sign up is disabled
 
-    #Scenario: Verify that the application should not allow to enter more than 150 characters in the "Security Question Answer" text box. Moreover on entering 150 characters, the application displays a message "Limit of 150 characters reached"
-        #Given I have opened Achieve "UserCreationUrl"
-        #Then I click on Primary Institution 
-        #And I verify the message 
+    Scenario: Verify that the application should not allow to enter more than 150 characters in the "Security Question Answer" text box. Moreover on entering 150 characters, the application displays a message "Limit of 150 characters reached"
+        Given I have opened Achieve "UserCreationUrl"
+        Then I click on Primary Institution 
+        And I verify the message 
         
     Scenario: Verify that on selecting a US college in "Primary Institution or School" text box, the application automatically checks the "Opt IN" check box
         Given I have opened Achieve "UserCreationUrl"
@@ -156,7 +156,7 @@ Feature: Authentication for Achieve via IAM
 
     Scenario: Verify that E-mail Address shown is disabled and it is same as user created account
         Given I have opened Achieve "loginURL"
-        When I have logged in as "instructor_1"
+        When I have logged in as "admin"
         And I click on user menu 
         And I click on Account 
         And I verify Email- address is disabled

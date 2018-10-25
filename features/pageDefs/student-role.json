@@ -141,8 +141,8 @@
 
         {
             "name":"close_Reading&Practice",
-            "byType":"classname",
-            "definition":"Clickable__base__6UTKl CloseX__closeXClick__2Ah7A Clickable__colorInherit__hnmAj",
+            "byType":"xpath",
+            "definition":"//*[@aria-label='Close Learning Curve Read & Practice']",
             "frame":"default",
             "specialInstr":"NA"
 
